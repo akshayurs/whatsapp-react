@@ -1,0 +1,19 @@
+.new-chat-screen {
+  .contact {
+    img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-left: 2rem;
+      justify-content: space-evenly;
+      .name {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+    }
+  }
+}

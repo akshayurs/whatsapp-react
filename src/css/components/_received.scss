@@ -1,0 +1,32 @@
+.chatscreen {
+  .received {
+    position: relative;
+    align-self: flex-start;
+    background: #fff;
+    padding: 1rem;
+    margin-left: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    border-top-left-radius: 0;
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.244);
+    max-width: 65%;
+    min-width: 6rem;
+    .main {
+      .content {
+        user-select: text;
+      }
+    }
+    .time {
+      position: absolute;
+      bottom: 0.2rem;
+      right: 0.3rem;
+      color: var(--time);
+    }
+    svg {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -0.8rem;
+    }
+  }
+}

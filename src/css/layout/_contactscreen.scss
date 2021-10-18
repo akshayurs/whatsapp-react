@@ -1,0 +1,124 @@
+.contactscreen {
+  // display: none;
+  // position: absolute;
+  // z-index: 1002;
+  // top: 0;
+  // left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #ededed;
+  animation: zoom 0.1s;
+  .header {
+    .top {
+      width: 100%;
+      backdrop-filter: blur(1px);
+      position: fixed;
+      z-index: 9999;
+      color: white;
+      padding: 1.2rem 2rem;
+      display: flex;
+      // background-color: rgba(0, 0, 0, 0.062);
+      justify-content: space-between;
+      i {
+        filter: drop-shadow(0 0 10px black);
+      }
+    }
+    .image {
+      position: relative;
+      img {
+        display: block;
+        width: 100vw;
+        height: 80vw;
+        object-fit: cover;
+        object-position: center;
+        
+        position: relative;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          rgba(0, 0, 0, 0.233) 1%,
+          transparent 80%,
+          rgba(0, 0, 0, 0.233)
+        );
+      }
+      .name {
+        position: absolute;
+        z-index: 9999;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        color: white;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.37);
+        font-size: 3rem;
+      }
+    }
+  }
+  .container {
+    margin: 1.2rem 0;
+    background: white;
+    &.report {
+      .item {
+        justify-content: flex-start;
+        color: rgb(172, 4, 4);
+        i {
+          padding-right: 1.5rem;
+          color: rgb(172, 4, 4);
+        }
+        .flip {
+          i {
+            padding-right: 0rem;
+            padding-left: 1.5rem;
+          }
+          transform: rotateY(180deg);
+        }
+      }
+    }
+    .title {
+      padding: 1rem;
+      font-size: 1.5rem;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem;
+      .content {
+        display: flex;
+        flex-direction: column;
+      }
+      .about {
+        user-select: text;
+      }
+      h2 {
+        font-weight: normal;
+      }
+      h3 {
+        padding-top: 0.2rem;
+        font-weight: normal;
+      }
+      .icons {
+        display: flex;
+        align-items: center;
+        i {
+          padding: 0 1rem;
+        }
+      }
+      img {
+        width: 3rem;
+        height: 3rem;
+      }
+      i {
+        color: var(--dark-green);
+      }
+      svg {
+        box-sizing: content-box;
+        padding-right: 1rem;
+        color: var(--dark-green);
+      }
+    }
+  }
+}

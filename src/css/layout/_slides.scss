@@ -1,0 +1,17 @@
+.homescreen {
+  .slides {
+    display: flex;
+    flex-wrap: no-wrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    &.smooth {
+      scroll-behavior: smooth;
+    }
+  }
+  .slide-item {
+    scroll-snap-align: center;
+    flex: none;
+    width: 100vw;
+    min-height: 89vh;
+  }
+}

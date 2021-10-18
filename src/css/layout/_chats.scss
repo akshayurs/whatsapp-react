@@ -1,0 +1,51 @@
+.chatscreen {
+  .message-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    padding-top: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    scroll-behavior: smooth;
+    .message {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 1rem;
+      // margin-bottom: 1rem;
+      position: relative;
+      transform: translateX(0);
+      transition: all 0.1s;
+      &.selected {
+        background: rgba(181, 216, 255, 0.315);
+        animation: fadein 0.2s;
+      }
+      .reply-logo {
+        position: absolute;
+        background-color: rgba(102, 102, 102, 0.314);
+        padding: 0.5rem;
+        color: white;
+        border-radius: 50%;
+        top: 50%;
+        left: -4rem;
+        transform: translateY(-50%);
+      }
+      .tick > *:not(.active) {
+        display: none;
+      }
+      .tick .active {
+        display: block;
+        &.blue {
+          color: #4fc3f7;
+        }
+      }
+    }
+    .content {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

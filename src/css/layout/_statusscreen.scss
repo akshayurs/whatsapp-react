@@ -1,0 +1,50 @@
+.status-screen {
+  .add-status {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    .image {
+      position: relative;
+      img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+      }
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        right: -0.1rem;
+        border-radius: 50%;
+        background: var(--light-green);
+        padding: 0.5rem;
+      }
+    }
+    .container {
+      flex: 1;
+      padding-left: 2rem;
+      h2,
+      h3 {
+        font-weight: normal;
+      }
+      h2 {
+        font-size: 1.6rem;
+        padding: 0.3rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .title {
+    padding: 1rem;
+    padding-left: 1.5rem;
+    background: #eee;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: var(--grey);
+  }
+}

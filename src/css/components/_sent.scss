@@ -1,0 +1,49 @@
+.chatscreen {
+  .sent {
+    background: var(--sent-green);
+    align-self: flex-end;
+    margin-right: 1.5rem;
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+    border-top-right-radius: 0;
+    box-shadow: 1px 1px 10px #0000003e;
+    min-width: 7rem;
+    max-width: 65%;
+    .main {
+      .content {
+        user-select: text;
+      }
+    }
+    svg {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: -0.8rem;
+    }
+    .time {
+      position: absolute;
+      bottom: 0.2rem;
+      right: 2rem;
+      color: var(--time);
+    }
+    .tick {
+      position: absolute;
+      color: black;
+      div {
+        width: 1rem;
+        height: 1rem;
+      }
+      display: flex;
+      align-items: center;
+      bottom: 0.6rem;
+      right: 1rem;
+      color: var(--grey);
+      img {
+        width: 1.5rem;
+      }
+    }
+  }
+}

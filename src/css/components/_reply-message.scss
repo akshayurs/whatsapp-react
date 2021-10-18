@@ -1,0 +1,35 @@
+.message-container {
+  .replied {
+    .replay-message-container {
+      display: block;
+    }
+  }
+  .replay-message-container {
+    display: none;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.058);
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    border-left: 2px solid var(--reply-color);
+    .name {
+      font-size: 1.3rem;
+      color: var(--reply-color);
+    }
+    .content {
+      color: black;
+      font-size: 1.2rem;
+      padding-top: 0rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+  .replied {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    .content {
+      padding-top: 0.4rem;
+    }
+  }
+}

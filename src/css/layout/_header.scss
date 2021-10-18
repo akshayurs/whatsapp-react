@@ -1,0 +1,131 @@
+.chatscreen {
+  .header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    background: var(--dark-green);
+    padding: 0.7rem 0;
+    .left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      i {
+        padding: 0 0.7rem;
+      }
+      img {
+        width: 4rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-left: 0.8rem;
+      }
+      .container {
+        padding-left: 1.5rem;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        .name {
+          font-size: 2rem;
+        }
+        .lastseen {
+          font-size: 1.2rem;
+          padding-left: 0.1rem;
+        }
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      padding-right: 0.5rem;
+      i {
+        padding: 1rem;
+        padding-right: 1.5rem;
+      }
+    }
+  }
+}
+.homescreen {
+  header {
+    .top {
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      background: var(--dark-green);
+      padding: 0.7rem 0;
+      .left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        font-size: 2.5rem;
+        margin-left: 2rem;
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      padding-right: 0.5rem;
+      i {
+        padding: 1rem;
+        padding-right: 1.5rem;
+      }
+    }
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      color: white;
+      font-size: 1.3rem;
+      background: var(--dark-green);
+      text-align: center;
+      .small {
+        flex: 1;
+        padding: 1rem;
+      }
+      .title {
+        flex: 2;
+        padding: 1rem;
+      }
+      .active {
+        border-bottom: 0.4rem solid white;
+      }
+    }
+  }
+}
+.new-chat-screen {
+  header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    background: var(--dark-green);
+    padding: 0.7rem 0;
+    .left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      i {
+        margin-left: 2rem;
+      }
+      .container {
+        padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        margin-left: 2rem;
+        h2,
+        h3 {
+          font-weight: normal;
+        }
+        h2 {
+          font-size: 1.7rem;
+        }
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      padding-right: 0.5rem;
+      i {
+        padding: 1rem;
+        padding-right: 1.5rem;
+      }
+    }
+  }
+}

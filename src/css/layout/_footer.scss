@@ -1,0 +1,92 @@
+.chatscreen {
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    padding-bottom: 1rem;
+    width: 100vw;
+    .left {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background: #fff;
+      border-radius: 2rem;
+      margin: 0 0.8rem;
+      padding: 0.2rem 0;
+      max-width: 83vw;
+      &.reply--visible {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+      }
+      .reply-container {
+        flex-basis: 100%;
+        max-width: 100%;
+        margin: 0.4rem 0.5rem;
+        padding: 1rem;
+        background-color: rgb(238, 238, 238);
+        overflow: hidden;
+        position: relative;
+        border-left: 3px solid var(--reply-color);
+        border-radius: 0.3rem;
+        animation: increaseHeight 0.2s ease;
+        animation-fill-mode: backwards;
+        .name {
+          font-size: 1.2rem;
+          padding-bottom: 0.2rem;
+          color: var(--reply-color);
+        }
+        .content {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        .cancel {
+          position: absolute;
+          right: 0.3rem;
+          top: 0rem;
+        }
+      }
+      .textbox {
+        flex: 1;
+        height: 2rem;
+        border: none;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow-y: visible;
+        max-height: 12rem;
+        resize: none;
+        &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+      i {
+        padding: 1rem;
+        &.rotate {
+          transform: rotate(270deg);
+        }
+      }
+    }
+    .right {
+      padding: 0.8rem;
+      margin-right: 1rem;
+      background-color: var(--dark-green);
+      border-radius: 50%;
+      align-self: flex-end;
+      margin-bottom: 0.5rem;
+      i {
+        display: none !important;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        &.visible {
+          display: flex !important;
+        }
+      }
+    }
+  }
+}

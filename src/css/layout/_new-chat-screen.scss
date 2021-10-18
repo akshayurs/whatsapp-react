@@ -1,0 +1,33 @@
+.new-chat-screen {
+  // display: none;
+  min-height: 100vh;
+  animation: slide 0.2s linear;
+  animation-fill-mode: backwards;
+  .new-group,
+  .new-contact {
+    display: flex;
+    align-items: center;
+    h2 {
+      flex: 1;
+    }
+  }
+  .item {
+    display: flex;
+    padding: 1rem;
+  }
+  .user-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+    width: 4rem;
+    height: 4rem;
+    background: var(--light-green);
+    padding: 1rem;
+    color: white;
+    border-radius: 50%;
+  }
+  .qrcode {
+    margin-right: 1.5rem;
+  }
+}
