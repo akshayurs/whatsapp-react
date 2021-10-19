@@ -28,7 +28,9 @@ function Message(props) {
         if (ele.querySelector('.received')) {
           type = 0
         }
-        let content = ele.querySelector('.main .content').innerHTML
+        let content = ele
+          .querySelector('.main .content')
+          .innerHTML.replaceAll(/<br>/g, '\n')
         inputEle.current.focus()
         return { active: true, type, content, index: msgIndex }
       })
@@ -51,35 +53,41 @@ function Message(props) {
   if (chat.type === 0) {
     return <div className="content-date">{chat.content}</div>
   }
-
-  if (chat.type === 1) {
-    return (
+  return (
+    <div
+      ref={element}
+      onTouchStart={(e) => touchstart(e)}
+      onTouchEnd={(e) => touchend(e, element)}
+      onTouchMove={(e) => touchmove(e, element, chat.index)}
+      className="message"
+      data-message-index={chat.index}
+    >
+      <i className="fas fa-2x fa-reply reply-logo"></i>
       <div
-        ref={element}
-        onTouchStart={(e) => touchstart(e)}
-        onTouchEnd={(e) => touchend(e, element)}
-        onTouchMove={(e) => touchmove(e, element, chat.index)}
-        className="message"
-        data-message-index={chat.index}
+        className={`${chat.type === 1 ? 'received ' : 'sent '} ${
+          chat.isReply ? 'replied' : ''
+        }`}
       >
-        <i className="fas fa-2x fa-reply reply-logo"></i>
-        <div className={`received ${chat.isReply ? 'replied' : ''}`}>
-          {chat.isReply ? (
-            <div
-              className="replay-message-container"
-              onClick={() => gotoMessage(chat.replyFor.index)}
-            >
-              <div className="name">
-                {chat.replyFor.type === 0 ? user.name : 'You'}
-              </div>
-              <div className="content">
-                {chat.replyFor.content.replaceAll(/\n/g, '<br>')}
-              </div>
+        {chat.isReply ? (
+          <div
+            onClick={() => gotoMessage(chat.replyFor.index)}
+            className="replay-message-container"
+          >
+            <div className="name">
+              {chat.replyFor.type === 0 ? user.name : 'You'}
             </div>
-          ) : (
-            ''
-          )}
-          <div className="main">
+            <div
+              className="content"
+              dangerouslySetInnerHTML={{
+                __html: chat.replyFor.content.replaceAll(/\n/g, ' '),
+              }}
+            ></div>
+          </div>
+        ) : (
+          ''
+        )}
+        <div className="main">
+          {chat.type === 1 ? (
             <svg viewBox="0 0 8 13" width="8" height="13" className="">
               <path
                 opacity=".13"
@@ -91,44 +99,7 @@ function Message(props) {
                 d="M1.533 2.568L8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z"
               ></path>
             </svg>
-            <div className="content">
-              {chat.content.replaceAll(/\n/g, '<br>')}
-            </div>
-            <div className="time">{chat.time}</div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (chat.type === 2) {
-    return (
-      <div
-        ref={element}
-        onTouchStart={(e) => touchstart(e)}
-        onTouchEnd={(e) => touchend(e, element)}
-        onTouchMove={(e) => touchmove(e, element, chat.index)}
-        className="message"
-        data-message-index={chat.index}
-      >
-        <i className="fas fa-2x fa-reply reply-logo"></i>
-        <div className={`sent ${chat.isReply ? 'replied' : ''}`}>
-          {chat.isReply ? (
-            <div
-              onClick={() => gotoMessage(chat.replyFor.index)}
-              className="replay-message-container"
-            >
-              <div className="name">
-                {chat.replyFor.type === 0 ? user.name : 'You'}
-              </div>
-              <div className="content">
-                {chat.replyFor.content.replaceAll(/\n/g, '<br>')}
-              </div>
-            </div>
           ) : (
-            ''
-          )}
-          <div className="main">
             <svg viewBox="0 0 8 13" width="8" height="13" className="">
               <path
                 opacity=".13"
@@ -139,10 +110,15 @@ function Message(props) {
                 d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"
               ></path>
             </svg>
-            <div className="content">
-              {chat.content.replaceAll(/\n/g, '<br>')}
-            </div>
-            <div className="time">{chat.time}</div>
+          )}
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: chat.content.replaceAll(/\n/g, '<br>'),
+            }}
+          ></div>
+          <div className="time">{chat.time}</div>
+          {chat.type === 2 ? (
             <div className="tick">
               <div className={'single ' + (chat.status === 0 ? 'active' : '')}>
                 <svg viewBox="0 0 16 15" width="16" height="15">
@@ -169,11 +145,13 @@ function Message(props) {
                 </svg>
               </div>
             </div>
-          </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default Message

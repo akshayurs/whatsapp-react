@@ -74,6 +74,10 @@ function ChatScreen(props) {
     setInputVal('')
     setReply({ active: false })
     inputEle.current.focus()
+    setTimeout(() => {
+      inputEle.current.style.height = `${inputEleLen.current}px`
+      inputEle.current.style.height = `${inputEle.current.scrollHeight}px`
+    }, 10)
   }
 
   return (
@@ -109,7 +113,7 @@ function ChatScreen(props) {
       <div
         className="message-container"
         ref={messageContainerEle}
-        style={{ background: 'url("/img/background.png")' }}
+        style={{ background: ' #E5DDD5 url("/img/bg.png")' }}
       >
         {user.chatsList.map((chat) => (
           <Message
@@ -122,12 +126,14 @@ function ChatScreen(props) {
           />
         ))}
       </div>
-      <footer style={{ background: 'url("/img/background.png")' }}>
+      <footer style={{ background: ' #E5DDD5 url("/img/bg.png")' }}>
         <div className={'left ' + (reply.active ? 'reply--visible' : '')}>
           {reply.active ? (
             <div className="reply-container" data-active="false">
-              <div className="name">{reply.type == 0 ? user.name : 'You'}</div>
-              <div className="content">{reply.content}</div>
+              <div className="name">{reply.type === 0 ? user.name : 'You'}</div>
+              <div className="content">
+                {reply.content.replaceAll(/\n/g, ' ')}
+              </div>
               <i
                 onClick={() => {
                   setReply({ active: false })
