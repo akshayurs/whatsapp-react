@@ -8,15 +8,9 @@
     padding: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 1.5rem;
-    border-top-right-radius: 0;
     box-shadow: 1px 1px 10px #0000003e;
     min-width: 7rem;
     max-width: 65%;
-    .main {
-      .content {
-        user-select: text;
-      }
-    }
     svg {
       display: block;
       position: absolute;

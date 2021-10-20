@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import StatusItem from './StatusItem'
-import { UserContext } from '../UserContext'
+import StatusItem from '../../components/StatusItem'
+import { UserContext } from '../../Helpers/UserContext'
 
 function StatusListSlide() {
   const appState = useContext(UserContext)

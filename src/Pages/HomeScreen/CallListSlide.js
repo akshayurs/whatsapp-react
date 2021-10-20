@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import CallItem from './CallItem'
-import { UserContext } from '../UserContext'
+import CallItem from '../../components/CallItem'
+import { UserContext } from '../../Helpers/UserContext'
 
 function CallListSlide() {
   const appState = useContext(UserContext)

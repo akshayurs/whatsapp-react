@@ -1,12 +1,8 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-
+import ChangeImage from '../Helpers/ChangeImage'
 function ContactItem(props) {
   const { user, history } = props
-  let img = user.profile
-  if (!/^http/.test(img)) {
-    img = '/img/' + img
-  }
   return (
     <Link to={`/chatscreen/${user.userIndex}`} className="item contact">
       <img
@@ -15,7 +11,7 @@ function ContactItem(props) {
           e.stopPropagation()
           history.push(`/contactabout/${user.userIndex}`)
         }}
-        src={img}
+        src={ChangeImage(user.profile)}
         alt="profile icon"
       />
       <div className="container">

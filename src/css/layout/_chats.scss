@@ -3,22 +3,73 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-size: cover;
+    background-size: cover !important;
     padding-top: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
     scroll-behavior: smooth;
+    .scroll-down {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      background-color: rgba(255, 255, 255, 0.964);
+      border: 1px solid rgba(233, 233, 233, 0.964);
+      color: #7e7e7e;
+      -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.9);
+      bottom: 7rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      right: 2.5rem;
+      border-radius: 50%;
+      animation: fadein 0.3s;
+    }
+
+    .to + .from,
+    .from + .to,
+    .content-date + .to,
+    .content-date + .from {
+      margin-top: 0.7rem;
+      .triangle {
+        display: block;
+      }
+      .received {
+        border-top-left-radius: 0;
+      }
+      .sent {
+        border-top-right-radius: 0;
+      }
+    }
+
     .message {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding-bottom: 1rem;
-      // margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       position: relative;
       transform: translateX(0);
       transition: all 0.1s;
+      &:active {
+        .sent,
+        .received {
+          background: lightblue;
+        }
+        .triangle path {
+          fill: lightblue;
+        }
+      }
+      .main {
+        .content {
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
+          word-break: break-all;
+        }
+      }
+      .triangle {
+        display: none;
+      }
       &.selected {
         background: rgba(181, 216, 255, 0.315);
         animation: fadein 0.2s;
@@ -38,14 +89,11 @@
       }
       .tick .active {
         display: block;
+        color: rgba(0, 0, 0, 0.3);
         &.blue {
           color: #4fc3f7;
         }
       }
-    }
-    .content {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
     }
   }
 }

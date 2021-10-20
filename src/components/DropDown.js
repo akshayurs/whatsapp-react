@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 function DropDown(props) {
+  const container = useRef(null)
   return (
     <div
       className="dropdown-screen"
@@ -9,7 +10,9 @@ function DropDown(props) {
         props.playStatus && props.playStatus()
       }}
     >
-      <div className="dropdown-container">{props.children}</div>
+      <div className="dropdown-container" ref={container}>
+        {props.children}
+      </div>
     </div>
   )
 }

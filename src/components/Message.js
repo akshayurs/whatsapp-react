@@ -3,26 +3,43 @@ import React, { useRef } from 'react'
 function Message(props) {
   const { chat, user, setReply, inputEle, messageContainerEle } = props
   const element = useRef(null)
+  const toReply = useRef(false)
   let startedX = 0
   let currentX = 0
+  let startedY = 0
+  let currentY = 0
   function touchstart(e) {
+    toReply.current = false
     e.persist()
     startedX = e.touches[0].clientX
+    startedY = e.touches[0].clientY
   }
   function touchmove(e, { current: ele }, msgIndex) {
     e.persist()
     e.stopPropagation()
     currentX = e.touches[0].clientX
-    let moveX = currentX - startedX
+    currentY = e.touches[0].clientY
 
+    let moveX = currentX - startedX
+    let moveY = currentY - startedY
     if (moveX > 0) {
       ele.style.transform = `translateX(${
         ((moveX * startedX) / currentX) * 1.5
       }px)`
     }
-    if (moveX > 200) {
-      touchend(e, { current: ele })
-      //   addReplyToInputBox(ele)
+    if (moveX > 260 && moveY < 50 && moveY > -50) {
+      touchend(e, { current: ele }, msgIndex)
+      toReply.current = false
+      return
+    }
+    if (moveX > 200 && moveY < 50 && moveY > -50) {
+      toReply.current = true
+    }
+  }
+  function touchend(e, { current: ele }, msgIndex) {
+    e.persist()
+    ele.style.transform = `translateX(0px)`
+    if (toReply.current) {
       setReply(() => {
         let type = 1
         if (ele.querySelector('.received')) {
@@ -35,16 +52,12 @@ function Message(props) {
         return { active: true, type, content, index: msgIndex }
       })
     }
-  }
-  function touchend(e, { current: ele }) {
-    e.persist()
-    ele.style.transform = `translateX(0px)`
+    toReply.current = false
   }
   function gotoMessage(index) {
     const ele = document.querySelector(`[data-message-index="${index}"]`)
     messageContainerEle.current.scrollTop = ele.offsetTop - 75
     ele.classList.add('selected')
-    console.log(ele.offsetTop)
     setTimeout(() => {
       ele.classList.remove('selected')
     }, 2000)
@@ -57,9 +70,9 @@ function Message(props) {
     <div
       ref={element}
       onTouchStart={(e) => touchstart(e)}
-      onTouchEnd={(e) => touchend(e, element)}
+      onTouchEnd={(e) => touchend(e, element, chat.index)}
       onTouchMove={(e) => touchmove(e, element, chat.index)}
-      className="message"
+      className={'message ' + (chat.type === 1 ? 'from ' : 'to ')}
       data-message-index={chat.index}
     >
       <i className="fas fa-2x fa-reply reply-logo"></i>
@@ -88,7 +101,7 @@ function Message(props) {
         )}
         <div className="main">
           {chat.type === 1 ? (
-            <svg viewBox="0 0 8 13" width="8" height="13" className="">
+            <svg viewBox="0 0 8 13" width="8" height="13" className="triangle">
               <path
                 opacity=".13"
                 fill="#0000000"
@@ -100,7 +113,7 @@ function Message(props) {
               ></path>
             </svg>
           ) : (
-            <svg viewBox="0 0 8 13" width="8" height="13" className="">
+            <svg viewBox="0 0 8 13" width="8" height="13" className="triangle">
               <path
                 opacity=".13"
                 d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"

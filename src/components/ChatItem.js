@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { FullScreenContext } from '../FullScreenContext'
+import ChangeImage from '../Helpers/ChangeImage'
+import OpenFullscreen from '../Helpers/OpenFullScreen'
 function ChatItem(props) {
   const user = props.user
-  const openFullScreen = useContext(FullScreenContext)
   let onlineClass = ''
   let seen = ''
   if (user.isOnline) {
@@ -12,14 +12,11 @@ function ChatItem(props) {
   } else {
     seen = user.lastSeen
   }
-  let img = user.profile
-  if (!/^http/.test(img)) {
-    img = '/img/' + img
-  }
+
   return (
     <>
       <Link
-        onClick={() => openFullScreen()}
+        onClick={() => OpenFullscreen()}
         to={`/chatscreen/${user.userIndex}`}
         className="chat-item"
       >
@@ -31,7 +28,11 @@ function ChatItem(props) {
               props.history.push(`/contactabout/${user.userIndex}`)
             }}
           >
-            <img src={img} className="online" alt="profile Icon" />
+            <img
+              src={ChangeImage(user.profile)}
+              className="online"
+              alt="profile Icon"
+            />
           </div>
         </div>
         <div className="name-container">

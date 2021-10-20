@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import CallListSlide from './CallListSlide'
 import CameraSlide from './CameraSlide'
 import ChatListSlide from './ChatListSlide'
@@ -9,7 +9,9 @@ function Slides(props) {
     <div
       className="slides"
       ref={props.slideContainer}
-      onScroll={props.handleScroll}
+      onScroll={() => {
+        props.handleScroll()
+      }}
     >
       <CameraSlide startCamera={props.startCamera} />
       <ChatListSlide />
@@ -19,4 +21,4 @@ function Slides(props) {
   )
 }
 
-export default Slides
+export default memo(Slides)

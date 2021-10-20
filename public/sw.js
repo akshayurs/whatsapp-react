@@ -33,7 +33,6 @@ self.addEventListener('install', (evt) => {
 self.addEventListener('activate', (evt) => {
   evt.waitUntil(
     caches.keys().then((keys) => {
-      //console.log(keys);
       return Promise.all(
         keys
           .filter((key) => key !== staticCacheName && key !== dynamicCacheName)
@@ -45,7 +44,6 @@ self.addEventListener('activate', (evt) => {
 
 // fetch event
 self.addEventListener('fetch', (evt) => {
-  //console.log('fetch event', evt);
   evt.respondWith(
     caches.match(evt.request).then((cacheRes) => {
       return (

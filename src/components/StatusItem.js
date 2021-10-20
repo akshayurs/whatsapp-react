@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
-import { FullScreenContext } from '../FullScreenContext'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import ChangeImage from '../Helpers/ChangeImage'
 function StatusItem(props) {
-  const openFullScreen = useContext(FullScreenContext)
   const user = props.user
-  let img = user.status[user.status.length - 1].img
-  if (!/^http/.test(img)) {
-    img = '/img/' + img
-  }
+  let img = ChangeImage(user.status[user.status.length - 1].img)
+
   return (
     <Link
-      onClick={() => openFullScreen()}
+      // onClick={() => openFullScreen()}
       to={`/statusview/${user.userIndex}`}
       className="status-item"
     >

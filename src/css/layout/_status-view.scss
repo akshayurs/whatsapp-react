@@ -1,3 +1,8 @@
+.status-container {
+  background: rgb(22, 22, 22);
+  width: 100vw;
+  height: 100vh;
+}
 .status-view {
   position: fixed;
   display: block;
@@ -7,9 +12,9 @@
   z-index: 1000;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.892);
-  backdrop-filter: blur(10px);
   animation: zoom 0.1s ease-in-out;
+  transform-origin: 50% 150%;
+  transition: all 0.1s;
   &.hold .header .active::after {
     animation-play-state: paused !important;
   }
@@ -17,6 +22,7 @@
     .top {
       display: flex;
       margin-top: 0.5rem;
+
       .progress {
         border-radius: 0.5rem;
         background-color: grey;
@@ -48,6 +54,9 @@
       color: white;
       display: flex;
       align-items: center;
+      i {
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.8);
+      }
       .left {
         flex: 1;
         display: flex;
@@ -102,15 +111,22 @@
       object-fit: cover;
       transform: translateY(-4rem);
     }
+
     .spinner {
-      display: none;
+      animation: rotate 2s linear infinite;
       position: absolute;
-      z-index: 9999;
-      top: 50%;
+      top: 40%;
       left: 50%;
-      // width: ;
-      margin: auto;
-      transform: translate(-50%, -100%);
+      width: 8rem;
+      height: 8rem;
+      display: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      & .path {
+        stroke: rgb(255, 255, 255);
+        stroke-linecap: round;
+        animation: dash 1.5s ease-in-out infinite;
+      }
     }
   }
   .caption {

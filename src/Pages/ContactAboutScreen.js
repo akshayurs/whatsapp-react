@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react'
-import { UserContext } from '../UserContext'
+import React, { useContext } from 'react'
+import { UserContext } from '../Helpers/UserContext'
 import { withRouter, useParams, Link } from 'react-router-dom'
+import ChangeImage from '../Helpers/ChangeImage'
 function ContactAboutScreen(props) {
   const { userid } = useParams()
   const appState = useContext(UserContext)
@@ -8,10 +9,7 @@ function ContactAboutScreen(props) {
   if (!user) {
     return ''
   }
-  let img = user.profile
-  if (!/^http/.test(img)) {
-    img = '/img/' + img
-  }
+
   return (
     <div className="contactscreen">
       <div className="header">
@@ -27,7 +25,7 @@ function ContactAboutScreen(props) {
           <i className="fas fa-2x fa-ellipsis-v"></i>
         </div>
         <div className="image">
-          <img src={img} alt="" />
+          <img src={ChangeImage(user.profile)} alt="" />
           <div className="name">{user.name}</div>
         </div>
       </div>

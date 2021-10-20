@@ -1,16 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import ChangeImage from '../Helpers/ChangeImage'
 function CallItem(props) {
   const call = props.call
   const user = props.user
 
   const red = call.isMissed ? 'red' : ''
   const direction = call.isIncomming ? 'incomming' : 'outgoing'
-  let img = user.profile
-  if (!/^http/.test(img)) {
-    img = '/img/' + img
-  }
+  let img = ChangeImage(user.profile)
   return (
     <Link to={`/contactabout/${user.userIndex}`} className="call-item">
       <img src={img} alt="profile Icon" />

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { UserContext } from '../UserContext'
-import ChatItem from './ChatItem'
+import { UserContext } from '../../Helpers/UserContext'
+import ChatItem from '../../components/ChatItem'
 
 function ChatListSlide() {
   const appState = useContext(UserContext)

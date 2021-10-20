@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
-import { Redirect, useParams, Link } from 'react-router-dom'
-import ProgressBars from './ProgressBars'
-import { UserContext } from '../UserContext'
-import { DispatchContext } from '../DispatchContext'
-import DropDown from './DropDown'
-import spinner from '../Spinner.svg'
-
+import { Redirect, useParams, Link, withRouter } from 'react-router-dom'
+import ProgressBars from '../components/ProgressBars'
+import { UserContext } from '../Helpers/UserContext'
+import { DispatchContext } from '../Helpers/DispatchContext'
+import DropDown from '../components/DropDown'
+import ChangeImage from '../Helpers/ChangeImage'
+import OpenFullScreen from '../Helpers/OpenFullScreen'
 const animationDuration = 5000
-function StatusView() {
+
+function StatusView(props) {
   const { userid } = useParams()
   const appState = useContext(UserContext)
   const appDispatch = useContext(DispatchContext)
@@ -23,9 +24,17 @@ function StatusView() {
   const animationStartedTime = useRef(null)
   const viewEle = useRef(null)
   const [loading, setLoading] = useState(true)
+  let startedX = 0
+  let currentX = 0
+  let startedY = 0
+  let currentY = 0
+
   function nextStatus() {
     setStatusIndex((prev) => prev + 1)
   }
+  useEffect(() => {
+    OpenFullScreen()
+  }, [OpenFullScreen])
   useEffect(() => {
     setStatus(user?.status[statusIndex])
     if (viewEle.current) {
@@ -39,7 +48,7 @@ function StatusView() {
     return () => {
       clearTimeout(timeout.current)
     }
-  }, [statusIndex, userid])
+  }, [statusIndex, userid, appDispatch, user])
 
   if (!user || !status) {
     return ''
@@ -48,34 +57,51 @@ function StatusView() {
   if (statusIndex < 0 || user?.status.length - 1 < statusIndex) {
     return <Redirect to="/" />
   }
-  let profileimg = user.profile
-  if (!/^http/.test(profileimg)) {
-    profileimg = '/img/' + profileimg
-  }
-  let statusimg = status.img
-  if (!/^http/.test(statusimg)) {
-    statusimg = '/img/' + statusimg
-  }
   function handleClick(e) {
-    console.log('clicked')
     if (e.clientX > window.innerWidth / 2) {
       setStatusIndex((prev) => prev + 1)
     } else {
       setStatusIndex((prev) => prev - 1)
     }
   }
-  function handleMouseDown() {
+  function handleMouseDown(e) {
     holdTimeout.current = setTimeout(pauseStatus, 200)
+    e.persist()
+    startedX = e.touches[0].clientX
+    startedY = e.touches[0].clientY
+  }
+  function handleMouseMove(e) {
+    e.persist()
+    e.stopPropagation()
+    currentX = e.touches[0].clientX
+    currentY = e.touches[0].clientY
+
+    let moveX = currentX - startedX
+    let moveY = currentY - startedY
+    if (moveY < 20 || moveX > 50) {
+      viewEle.current.style.transform = `rotate(${moveX / 10}deg)`
+    }
+    if (moveX > -20 && moveX < 20 && moveY > 0) {
+      viewEle.current.style.transform = `translateY(${moveY}px)`
+    }
+    if (moveX > 200 || moveX < -200 || moveY > 300) {
+      props.history.go(-1)
+    }
   }
   function pauseStatus() {
+    if (!viewEle.current) {
+      return
+    }
     const now = new Date()
     holdStartTime.current = now
     holded.current = true
     viewEle.current.classList.add('hold')
     clearTimeout(timeout.current)
   }
+
   function handleMouseUp() {
     viewEle.current.classList.remove('hold')
+    viewEle.current.style.transform = `rotate(0deg)`
     clearTimeout(holdTimeout.current)
     if (holded.current) {
       holded.current = false
@@ -94,9 +120,20 @@ function StatusView() {
     viewEle.current.classList.remove('hold')
   }
   return (
-    <>
+    <div className="status-container">
       {openMenu && (
         <DropDown setOpenMenu={setOpenMenu} playStatus={handleMouseUp}>
+          {!window.matchMedia('(display-mode: standalone)').matches ? (
+            <div
+              onClick={() => {
+                OpenFullScreen()
+              }}
+            >
+              FullScreen
+            </div>
+          ) : (
+            ''
+          )}
           <Link to={`/chatscreen/${userid}`}>Open Chat</Link>
           <Link to={`/contactabout/${userid}`}>Open Contact</Link>
         </DropDown>
@@ -105,6 +142,7 @@ function StatusView() {
         className="status-view hold"
         onClick={handleClick}
         onTouchStart={handleMouseDown}
+        onTouchMove={handleMouseMove}
         onTouchEnd={handleMouseUp}
         ref={viewEle}
       >
@@ -116,7 +154,7 @@ function StatusView() {
             <div className="left">
               <Link to="/" className="fas fa-2x fa-arrow-left"></Link>
               <Link to={`/contactabout/${userid}`}>
-                <img src={profileimg} alt="profile icon" />
+                <img src={ChangeImage(user.profile)} alt="profile icon" />
               </Link>
               <Link to={`/contactabout/${userid}`}>
                 <div className="container">
@@ -144,10 +182,19 @@ function StatusView() {
               e.preventDefault()
             }}
             onLoad={() => handleStart()}
-            src={statusimg}
+            src={ChangeImage(status.img)}
             alt=""
           />
-          <img src={spinner} className="spinner" alt="Loading..." />
+          <svg className="spinner" viewBox="0 0 50 50">
+            <circle
+              className="path"
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              strokeWidth="2"
+            ></circle>
+          </svg>
         </div>
         {status.caption ? <div className="caption">{status.caption}</div> : ''}
         <div className="reply">
@@ -155,8 +202,8 @@ function StatusView() {
           <Link to={`/chatscreen/${userid}`}>REPLY</Link>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
-export default StatusView
+export default withRouter(StatusView)

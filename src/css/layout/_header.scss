@@ -5,6 +5,9 @@
     justify-content: space-between;
     background: var(--dark-green);
     padding: 0.7rem 0;
+    i {
+      -webkit-text-stroke: 1px var(--dark-green);
+    }
     .left {
       flex: 1;
       display: flex;
@@ -51,6 +54,9 @@
       justify-content: space-between;
       background: var(--dark-green);
       padding: 0.7rem 0;
+      i {
+        -webkit-text-stroke: 1px var(--dark-green);
+      }
       .left {
         flex: 1;
         display: flex;
