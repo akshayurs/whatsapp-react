@@ -1,30 +1,73 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 function Message(props) {
-  const { chat, user, setReply, inputEle, messageContainerEle } = props
+  const {
+    chat,
+    user,
+    setReply,
+    inputEle,
+    messageContainerEle,
+    handleSelect,
+    clickToSelect,
+  } = props
   const element = useRef(null)
   const toReply = useRef(false)
-  let startedX = 0
-  let currentX = 0
-  let startedY = 0
-  let currentY = 0
-  function touchstart(e) {
-    toReply.current = false
-    e.persist()
-    startedX = e.touches[0].clientX
-    startedY = e.touches[0].clientY
+  const toSelect = useRef(false)
+  const [selected, setSelected] = useState(false)
+  const timeout = useRef(0)
+  let startedX = useRef(0)
+  let currentX = useRef(0)
+  let startedY = useRef(0)
+  let currentY = useRef(0)
+  useEffect(() => {
+    if (!clickToSelect) {
+      setSelected(false)
+    }
+  }, [clickToSelect])
+  function handleClick() {
+    if (clickToSelect) {
+      setSelected((prev) => {
+        return !prev
+      })
+      handleSelect(chat.index)
+    }
   }
+  function handleMessageSelect() {
+    if (toSelect.current) {
+      setSelected(true)
+      handleSelect(chat.index)
+    }
+  }
+  function touchstart(e) {
+    if (clickToSelect) {
+      return
+    }
+    toReply.current = false
+    toSelect.current = true
+    e.persist()
+    startedX.current = e.touches[0].clientX
+    startedY.current = e.touches[0].clientY
+    timeout.current = setTimeout(handleMessageSelect, 500)
+  }
+
   function touchmove(e, { current: ele }, msgIndex) {
+    if (clickToSelect) {
+      return
+    }
     e.persist()
     e.stopPropagation()
-    currentX = e.touches[0].clientX
-    currentY = e.touches[0].clientY
+    currentX.current = e.touches[0].clientX
+    currentY.current = e.touches[0].clientY
 
-    let moveX = currentX - startedX
-    let moveY = currentY - startedY
+    let moveX = currentX.current - startedX.current
+    let moveY = currentY.current - startedY.current
+    if (moveX > 10 && toSelect.current) {
+      toSelect.current = false
+      clearTimeout(timeout.current)
+    }
     if (moveX > 0) {
       ele.style.transform = `translateX(${
-        ((moveX * startedX) / currentX) * 1.5
+        ((moveX * startedX.current) / currentX.current) * 1.5
       }px)`
     }
     if (moveX > 260 && moveY < 50 && moveY > -50) {
@@ -37,8 +80,13 @@ function Message(props) {
     }
   }
   function touchend(e, { current: ele }, msgIndex) {
-    e.persist()
+    clearTimeout(timeout.current)
     ele.style.transform = `translateX(0px)`
+    if (clickToSelect) {
+      return
+    }
+    toSelect.current = false
+    e.persist()
     if (toReply.current) {
       setReply(() => {
         let type = 1
@@ -57,9 +105,9 @@ function Message(props) {
   function gotoMessage(index) {
     const ele = document.querySelector(`[data-message-index="${index}"]`)
     messageContainerEle.current.scrollTop = ele.offsetTop - 75
-    ele.classList.add('selected')
+    ele.classList.add('temp-selected')
     setTimeout(() => {
-      ele.classList.remove('selected')
+      ele.classList.remove('temp-selected')
     }, 2000)
   }
 
@@ -72,7 +120,15 @@ function Message(props) {
       onTouchStart={(e) => touchstart(e)}
       onTouchEnd={(e) => touchend(e, element, chat.index)}
       onTouchMove={(e) => touchmove(e, element, chat.index)}
-      className={'message ' + (chat.type === 1 ? 'from ' : 'to ')}
+      onClick={handleClick}
+      onContextMenu={(e) => {
+        e.preventDefault()
+      }}
+      className={
+        'message ' +
+        (chat.type === 1 ? 'from ' : 'to ') +
+        (selected ? ' selected' : '')
+      }
       data-message-index={chat.index}
     >
       <i className="fas fa-2x fa-reply reply-logo"></i>
@@ -83,7 +139,10 @@ function Message(props) {
       >
         {chat.isReply ? (
           <div
-            onClick={() => gotoMessage(chat.replyFor.index)}
+            onClick={(e) => {
+              e.stopPropagation()
+              gotoMessage(chat.replyFor.index)
+            }}
             className="replay-message-container"
           >
             <div className="name">

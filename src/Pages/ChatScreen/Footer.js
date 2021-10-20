@@ -1,8 +1,8 @@
-import React, { useRef, useContext, useState } from 'react'
+import React, { useRef, useContext, useState, memo } from 'react'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 
 function Footer(props) {
-  const { reply, setReply,user,inputEle } = props
+  const { reply, setReply, user, inputEle } = props
   const soundEle = useRef(null)
   const appDispatch = useContext(DispatchContext)
   const [inputVal, setInputVal] = useState('')
@@ -101,4 +101,4 @@ function Footer(props) {
   )
 }
 
-export default Footer
+export default memo(Footer)

@@ -1,4 +1,20 @@
 .chatscreen {
+  .scroll-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.964);
+    border: 1px solid rgba(233, 233, 233, 0.964);
+    color: #7e7e7e;
+    -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.9);
+    bottom: 7rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    right: 2.5rem;
+    border-radius: 50%;
+    animation: fadein 0.3s;
+  }
   .message-container {
     flex: 1;
     display: flex;
@@ -9,22 +25,6 @@
     overflow-x: hidden;
     position: relative;
     scroll-behavior: smooth;
-    .scroll-down {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      background-color: rgba(255, 255, 255, 0.964);
-      border: 1px solid rgba(233, 233, 233, 0.964);
-      color: #7e7e7e;
-      -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.9);
-      bottom: 7rem;
-      width: 3.5rem;
-      height: 3.5rem;
-      right: 2.5rem;
-      border-radius: 50%;
-      animation: fadein 0.3s;
-    }
 
     .to + .from,
     .from + .to,
@@ -47,10 +47,24 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       position: relative;
       transform: translateX(0);
       transition: all 0.1s;
+      position: relative;
+      padding: 0.3rem 0;
+      &.selected::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        --blue: rgba(0, 128, 233, 0.18);
+        background: var(--blue);
+      }
+      &.temp-selected {
+        background: rgba(181, 216, 255, 0.315);
+        animation: fadein 0.2s;
+      }
       &:active {
         .sent,
         .received {
@@ -69,10 +83,6 @@
       }
       .triangle {
         display: none;
-      }
-      &.selected {
-        background: rgba(181, 216, 255, 0.315);
-        animation: fadein 0.2s;
       }
       .reply-logo {
         position: absolute;

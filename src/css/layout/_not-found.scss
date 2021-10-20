@@ -1,0 +1,20 @@
+.notfound {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  font-family: monospace;
+  font-size: 2rem;
+  background: var(--dark-green);
+  color: white;
+  h1,
+  h2 {
+    text-align: center;
+    padding: 5rem 0;
+  }
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
