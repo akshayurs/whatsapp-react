@@ -9,7 +9,7 @@ export const UsersList = [
     lastSeen: '',
     openedStatus: 0,
     statusViewed: false,
-    messageIndex: 4,
+    messageIndex: 6,
     userIndex: 0,
     chatsList: [
       {
@@ -19,28 +19,21 @@ export const UsersList = [
       },
       {
         index: 1,
-        type: 2,
-        content: 'HI',
+        type: 1,
+        content: 'Hi 👋🏼',
         time: '10:30 AM',
-        status: 2,
       },
       {
         index: 2,
         type: 2,
-        isReply: true,
-        replyFor: {
-          type: 0,
-          content: 'HI',
-          index: 1,
-        },
-        content: 'Good Morning',
+        content: 'Hi...',
         time: '10:31 AM',
-        status: 1,
+        status: 2,
       },
       {
         index: 3,
         type: 1,
-        content: 'Good Morning',
+        content: 'How are you?',
         time: '10:31 AM',
       },
       {
@@ -49,12 +42,23 @@ export const UsersList = [
         isReply: true,
         replyFor: {
           type: 1,
-          content: 'Good Morning',
-          index: 2,
+          content: 'How are you?',
+          index: 3,
         },
-        content:
-          'okasd asd adsa das ddddda dsa d d sad sad  asd asd sa asd AS ADS',
-        time: '12:20 PM',
+        content: 'Fine',
+        time: '10:31 PM',
+        status: 1,
+      },
+      {
+        index: 5,
+        type: 0,
+        content: 'Today',
+      },
+      {
+        index: 6,
+        type: 2,
+        content: 'Good Morning 🌞',
+        time: '6:02 AM',
         status: 0,
       },
     ],
@@ -112,8 +116,8 @@ export const UsersList = [
     ],
     status: [
       {
-        img: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
-        caption: '',
+        img: 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg',
+        caption: 'im unknown',
         time: '11:55 PM',
       },
     ],

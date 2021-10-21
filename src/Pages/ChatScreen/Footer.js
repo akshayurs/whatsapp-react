@@ -9,18 +9,22 @@ function Footer(props) {
   let inputEleLen = useRef(0)
 
   function handleInput(e) {
+    e.persist()
     setInputVal(e.target.value)
     e.target.style.height = `${inputEleLen.current}px`
     e.target.style.height = `${e.target.scrollHeight}px`
   }
 
   function handleSubmit() {
+    if (!inputVal.trim()) {
+      return
+    }
     soundEle.current.play()
     let obj = {}
 
     if (reply.active) {
       obj = {
-        content: inputVal,
+        content: inputVal.trim(),
         isReply: true,
         replyFor: {
           type: reply.type,
@@ -30,7 +34,7 @@ function Footer(props) {
       }
     } else {
       obj = {
-        content: inputVal,
+        content: inputVal.trim(),
       }
     }
     appDispatch({
@@ -75,6 +79,12 @@ function Footer(props) {
           ref={inputEle}
           value={inputVal}
           onChange={handleInput}
+          onKeyPress={(e) => {
+            e.persist()
+            if (e.key === '\n' && e.ctrlKey) {
+              handleSubmit()
+            }
+          }}
           className="textbox message-box"
           placeholder="Type a message"
         />

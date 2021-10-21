@@ -1,14 +1,9 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-} from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Slides from './Slides'
 import NewIcon from '../../components/NewIcon'
 
 import Header from './Header'
-function HomeScreen(props) {
+function HomeScreen() {
   useEffect(() => {
     if (slideContainer.current) {
       slideContainer.current.classList.remove('smooth')
@@ -61,7 +56,10 @@ function HomeScreen(props) {
   }, [slideContainer])
   return (
     <div className="homescreen">
-      <Header moveSlide={moveSlide} openedSlide={openedSlide} />
+      <Header
+        moveSlide={moveSlide}
+        openedSlide={openedSlide}
+      />
       <Slides
         slideContainer={slideContainer}
         handleScroll={handleScroll}

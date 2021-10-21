@@ -18,6 +18,7 @@ function ChatScreen() {
   const selectedMessages = useRef(new Set())
   const [clickToSelect, setClickToSelect] = useState(false)
   const appState = useContext(UserContext)
+  const [scrollDownEle, setScrollDownEle] = useState(false)
   const [headerState, setHeaderState] = useState({
     type: 0,
   })
@@ -28,12 +29,7 @@ function ChatScreen() {
     type: 0,
     index: 0,
   })
-  useEffect(() => {
-    if (messageContainerEle.current) {
-      messageContainerEle.current.scrollTop =
-        messageContainerEle.current.scrollHeight
-    }
-  }, [appState, reply])
+
   useEffect(() => {
     if (!clickToSelect) {
       setHeaderState({ type: 0 })
@@ -83,6 +79,8 @@ function ChatScreen() {
         inputEle={inputEle}
         handleSelect={handleSelect}
         clickToSelect={clickToSelect}
+        setScrollDownEle={setScrollDownEle}
+        messageContainerEle={messageContainerEle}
       />
       <Footer
         reply={reply}
@@ -90,6 +88,17 @@ function ChatScreen() {
         user={user}
         inputEle={inputEle}
       />
+      {scrollDownEle && (
+        <div
+          className="scroll-down"
+          onClick={() => {
+            messageContainerEle.current.scrollTop =
+              messageContainerEle.current.scrollHeight
+          }}
+        >
+          <i className="fas fa-2x fa-angle-double-down scroll-down"></i>
+        </div>
+      )}
     </div>
   )
 }

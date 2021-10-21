@@ -5,6 +5,7 @@ export default function reducer(state, action) {
     case 'SET_DATA':
       return action.value
     case 'RESET_DATA':
+      localStorage.removeItem('whatsAppUsersList')
       return UsersList
     case 'SEND_MSG': {
       const { content, userIndex } = action.value
@@ -14,7 +15,7 @@ export default function reducer(state, action) {
         type: 2,
         ...content,
         time: GetTime(),
-        status: 1,
+        status: 0,
       })
       return draft
     }

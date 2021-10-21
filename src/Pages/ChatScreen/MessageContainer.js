@@ -1,18 +1,26 @@
-import React, { useEffect, useRef, memo, useState, useContext } from 'react'
+import React, { useEffect, memo, useContext } from 'react'
 import Message from '../../components/Message'
 import { UserContext } from '../../Helpers/UserContext'
 function MessageContainer(props) {
   const appState = useContext(UserContext)
-  const { user, setReply, inputEle, handleSelect, clickToSelect } = props
-  const [scrollDownEle, setScrollDownEle] = useState(false)
-  const messageContainerEle = useRef(null)
-  useEffect(() => {
-    if (messageContainerEle.current) {
-      messageContainerEle.current.scrollTop =
-        messageContainerEle.current.scrollHeight
-    }
-  }, [messageContainerEle, user, appState, setReply])
 
+  const {
+    user,
+    setReply,
+    inputEle,
+    handleSelect,
+    clickToSelect,
+    setScrollDownEle,
+    messageContainerEle,
+  } = props
+  useEffect(() => {
+    setTimeout(() => {
+      if (messageContainerEle.current) {
+        messageContainerEle.current.scrollTop =
+          messageContainerEle.current.scrollHeight
+      }
+    }, 0)
+  }, [messageContainerEle, user, appState, setReply])
   return (
     <div
       className="message-container"
@@ -43,17 +51,6 @@ function MessageContainer(props) {
           clickToSelect={clickToSelect}
         />
       ))}
-      {scrollDownEle && (
-        <div
-          className="scroll-down"
-          onClick={() => {
-            messageContainerEle.current.scrollTop =
-              messageContainerEle.current.scrollHeight
-          }}
-        >
-          <i className="fas fa-2x fa-angle-double-down scroll-down"></i>
-        </div>
-      )}
     </div>
   )
 }

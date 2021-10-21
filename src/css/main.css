@@ -259,7 +259,6 @@ a * {
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
-  margin-left: 0.8rem;
 }
 
 .chatscreen .header .left .container {

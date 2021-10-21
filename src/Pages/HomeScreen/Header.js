@@ -27,7 +27,7 @@ function Header(props) {
           <div
             onClick={() => {
               appDispatch({ type: 'RESET_DATA' })
-              appDispatch({ type: 'SAVE_DATA' })
+              window.history.go(0)
             }}
           >
             Reset Data
