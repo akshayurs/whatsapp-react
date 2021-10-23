@@ -10,6 +10,9 @@
       font-size: 1.2rem;
       margin: 0.5rem;
       z-index: 1000;
+      min-width: 7.5rem;
+      display: flex;
+      justify-content: center;
     }
   }
 }
