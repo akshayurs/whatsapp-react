@@ -106,8 +106,12 @@ function Header(props) {
           </Link>
         </div>
         <div className="right">
-          <i className="fas fa-2x fa-video"></i>
-          <i className="fas fa-2x fa-phone-alt"></i>
+          <Link to={'/videocall/' + userid}>
+            <i className="fas fa-2x fa-video"></i>
+          </Link>
+          <Link to={'/voicecall/' + userid}>
+            <i className="fas fa-2x fa-phone-alt"></i>
+          </Link>
           <i
             className="fas fa-2x fa-ellipsis-v"
             onClick={(e) => {

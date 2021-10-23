@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, withRouter } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
 import ChangeImage from '../Helpers/ChangeImage'
-function VoiceCall() {
+function VoiceCall(props) {
   const { userid } = useParams()
   const appState = useContext(UserContext)
   const user = appState.find((user) => {
@@ -11,15 +11,18 @@ function VoiceCall() {
   if (!user) {
     return ''
   }
+  function handleBack() {
+    props.history.go(-1)
+  }
   const src = ChangeImage(user.profile)
   return (
     <>
       <div className="voice-call-screen">
         <header>
           <div className="top">
-            <i class="fas fa-2x fa-chevron-down"></i>
+            <i className="fas fa-2x fa-chevron-down" onClick={handleBack}></i>
             <p>
-              <i class="fas fa-lock"></i> End-to-end encrypted
+              <i className="fas fa-lock"></i> End-to-end encrypted
             </p>
           </div>
           <div className="bottom">
@@ -29,18 +32,18 @@ function VoiceCall() {
         </header>
         <div className="image">
           <img src={src} alt="" />
-          <div className="end-call">
-            <i class="fas fa-2x fa-phone"></i>
+          <div className="end-call" onClick={handleBack}>
+            <i className="fas fa-2x fa-phone"></i>
           </div>
         </div>
         <footer>
-          <i class="fas fa-2x fa-volume-up"></i>
-          <i class="fas fa-2x fa-video"></i>
-          <i class="fas fa-2x fa-microphone-slash"></i>
+          <i className="fas fa-2x fa-volume-up"></i>
+          <i className="fas fa-2x fa-video"></i>
+          <i className="fas fa-2x fa-microphone-slash"></i>
         </footer>
       </div>
     </>
   )
 }
 
-export default VoiceCall
+export default withRouter(VoiceCall)

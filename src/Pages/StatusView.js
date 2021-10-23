@@ -38,7 +38,7 @@ function StatusView(props) {
   useEffect(() => {
     setStatus(user?.status[statusIndex])
     if (viewEle.current) {
-      viewEle.current.classList.add('hold')
+      viewEle.current.classList.add('temp-hold')
     }
     setLoading(true)
     if (user?.status?.length - 1 === statusIndex && !user.statusViewed) {
@@ -117,7 +117,7 @@ function StatusView(props) {
     setLoading(false)
     animationStartedTime.current = new Date()
     timeout.current = setTimeout(nextStatus, animationDuration)
-    viewEle.current.classList.remove('hold')
+    viewEle.current.classList.remove('temp-hold')
   }
   return (
     <div className="status-container">
@@ -139,7 +139,7 @@ function StatusView(props) {
         </DropDown>
       )}
       <div
-        className="status-view hold"
+        className="status-view temp-hold"
         onClick={handleClick}
         onTouchStart={handleMouseDown}
         onTouchMove={handleMouseMove}
