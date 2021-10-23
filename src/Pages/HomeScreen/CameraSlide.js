@@ -24,7 +24,7 @@ function CameraSlide(props) {
       startCamerafun()
       setCameraStarted(true)
     }
-  }, [cameraStarted, props.startCamera])
+  }, [cameraStarted, props.startCamera, setCameraStarted])
   return (
     <div className="slide-item camera-screen">
       {error === false ? (

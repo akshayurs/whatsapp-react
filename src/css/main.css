@@ -192,6 +192,18 @@
   }
 }
 
+@-webkit-keyframes fadeOpacity {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOpacity {
+  100% {
+    opacity: 0;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -842,8 +854,6 @@ a * {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.123);
-  -webkit-backdrop-filter: blur(2px) saturate(0.3);
-          backdrop-filter: blur(2px) saturate(0.3);
   -webkit-animation: backFilter 0.2s linear;
           animation: backFilter 0.2s linear;
   width: 100vw;
@@ -1358,6 +1368,14 @@ a * {
           animation-play-state: paused !important;
 }
 
+.status-view.hold .header,
+.status-view.hold .reply {
+  -webkit-animation: fadeOpacity 0.5s ease-out;
+          animation: fadeOpacity 0.5s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
 .status-view .header .top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1539,6 +1557,33 @@ a * {
           transform: translateX(50%);
   margin: 0 auto;
   z-index: 1001;
+}
+
+.voice-call-screen header {
+  background-color: var(--dark-green);
+  color: white;
+  padding: 1rem;
+}
+
+.voice-call-screen header .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.voice-call-screen header .top p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.voice-call-screen header .top .bottom .name {
+  text-align: center;
 }
 
 .chatscreen .received {

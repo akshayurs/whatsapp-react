@@ -15,8 +15,16 @@
   animation: zoom 0.1s ease-in-out;
   transform-origin: 50% 150%;
   transition: all 0.1s;
-  &.hold .header .active::after {
-    animation-play-state: paused !important;
+  &.hold {
+    .header .active::after {
+      animation-play-state: paused !important;
+    }
+    .header,
+    .reply {
+      // opacity: 0;
+      animation: fadeOpacity 0.5s ease-out;
+      animation-fill-mode: forwards;
+    }
   }
   .header {
     .top {

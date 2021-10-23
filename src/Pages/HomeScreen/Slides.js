@@ -13,7 +13,7 @@ function Slides(props) {
         props.handleScroll()
       }}
     >
-      <CameraSlide />
+      <CameraSlide startCamera={props.startCamera} />
       <ChatListSlide />
       <StatusListSlide />
       <CallListSlide />

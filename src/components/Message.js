@@ -104,6 +104,10 @@ function Message(props) {
   }
   function gotoMessage(index) {
     const ele = document.querySelector(`[data-message-index="${index}"]`)
+    if (!ele) {
+      console.log('Message not found')
+      return
+    }
     messageContainerEle.current.scrollTop = ele.offsetTop - 75
     ele.classList.add('temp-selected')
     setTimeout(() => {

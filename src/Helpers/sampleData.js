@@ -9,7 +9,7 @@ export const UsersList = [
     lastSeen: '',
     openedStatus: 0,
     statusViewed: false,
-    messageIndex: 6,
+    messageIndex: 8,
     userIndex: 0,
     chatsList: [
       {
@@ -43,7 +43,7 @@ export const UsersList = [
         replyFor: {
           type: 1,
           content: 'How are you?',
-          index: 3,
+          index: 10,
         },
         content: 'Fine',
         time: '10:31 PM',
@@ -101,11 +101,17 @@ export const UsersList = [
     profile: 'profile.jpg',
     isOnline: false,
     lastSeen: 'Today 6:36 AM',
-    chatsList: [],
+    chatsList: [
+      {
+        index: 0,
+        type: 0,
+        content: 'Today',
+      },
+    ],
     openedStatus: 0,
     statusViewed: false,
     userIndex: 1,
-    messageIndex: -1,
+    messageIndex: 0,
     calls: [
       {
         time: '2 October 12:30 PM',

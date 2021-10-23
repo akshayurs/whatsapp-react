@@ -36,7 +36,7 @@ function HomeScreen() {
         }
       }
     },
-    [slideContainer, prevOpenedSlide, setStartCamera]
+    [slideContainer, prevOpenedSlide, setStartCamera, allowToStartCamera]
   )
 
   function moveSlide(e) {
@@ -56,10 +56,7 @@ function HomeScreen() {
   }, [slideContainer])
   return (
     <div className="homescreen">
-      <Header
-        moveSlide={moveSlide}
-        openedSlide={openedSlide}
-      />
+      <Header moveSlide={moveSlide} openedSlide={openedSlide} />
       <Slides
         slideContainer={slideContainer}
         handleScroll={handleScroll}
