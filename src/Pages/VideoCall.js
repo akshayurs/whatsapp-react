@@ -84,6 +84,7 @@ function VideoCall(props) {
           <i className="fas fa-2x fa-microphone-slash"></i>
         </footer>
       </div>
+      <audio src="/audio/outgoing.mp3" autoPlay={true} loop></audio>
     </>
   )
 }
