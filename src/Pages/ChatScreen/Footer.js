@@ -46,7 +46,6 @@ function Footer(props) {
         userIndex: user.userIndex,
       },
     })
-    appDispatch({ type: 'SAVE_DATA' })
     setInputVal('')
     setReply({ active: false })
     inputEle.current.focus()

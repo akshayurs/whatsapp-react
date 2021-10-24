@@ -30,6 +30,10 @@ function ChatItem(props) {
         onClick={() => OpenFullscreen()}
         to={`/chatscreen/${user.userIndex}`}
         className="chat-item"
+        onContextMenu={(e) => {
+          // e.preventDefault()
+          // alert('ok')
+        }}
       >
         <div className={'profile-picture ' + onlineClass}>
           <div

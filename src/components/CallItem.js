@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import ChangeImage from '../Helpers/ChangeImage'
 function CallItem(props) {
   const call = props.call
@@ -9,7 +9,12 @@ function CallItem(props) {
   const direction = call.isIncomming ? 'incomming' : 'outgoing'
   let img = ChangeImage(user.profile)
   return (
-    <Link to={`/contactabout/${user.userIndex}`} className="call-item">
+    <div
+      className="call-item"
+      onClick={() => {
+        props.history.push(`/contactabout/${user.userIndex}`)
+      }}
+    >
       <img src={img} alt="profile Icon" />
       <div className="container">
         <div className="name">{user.name}</div>
@@ -21,12 +26,24 @@ function CallItem(props) {
         </div>
       </div>
       {call.isVideo ? (
-        <i className="fas fa-2x fa-video icon"></i>
+        <i
+          className="fas fa-2x fa-video icon"
+          onClick={(e) => {
+            e.stopPropagation()
+            props.history.push(`/videocall/${user.userIndex}`)
+          }}
+        ></i>
       ) : (
-        <i className="fas fa-2x fa-phone-alt icon"></i>
+        <i
+          className="fas fa-2x fa-phone-alt icon"
+          onClick={(e) => {
+            e.stopPropagation()
+            props.history.push(`/voicecall/${user.userIndex}`)
+          }}
+        ></i>
       )}
-    </Link>
+    </div>
   )
 }
 
-export default CallItem
+export default withRouter(CallItem)

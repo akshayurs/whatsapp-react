@@ -61,7 +61,7 @@ function Message(props) {
 
     let moveX = currentX.current - startedX.current
     let moveY = currentY.current - startedY.current
-    if (moveX > 10 && toSelect.current) {
+    if ((moveX > 10 || moveY > 10) && toSelect.current) {
       toSelect.current = false
       clearTimeout(timeout.current)
     }

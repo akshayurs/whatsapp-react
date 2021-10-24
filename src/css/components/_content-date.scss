@@ -13,6 +13,9 @@
       min-width: 7.5rem;
       display: flex;
       justify-content: center;
+      &:only-child {
+        display: none;
+      }
     }
   }
 }

@@ -43,7 +43,6 @@ function StatusView(props) {
     setLoading(true)
     if (user?.status?.length - 1 === statusIndex && !user.statusViewed) {
       appDispatch({ type: 'STATUS_VIEWED', value: parseInt(userid) })
-      appDispatch({ type: 'SAVE_DATA' })
     }
     return () => {
       clearTimeout(timeout.current)

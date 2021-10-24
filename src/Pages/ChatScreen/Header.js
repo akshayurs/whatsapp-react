@@ -1,14 +1,15 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useContext } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ChangeImage from '../../Helpers/ChangeImage'
 import DropDown from '../../components/DropDown'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import CopyText from '../../Helpers/CopyText'
+import { DispatchContext } from '../../Helpers/DispatchContext'
 function Header(props) {
   const { userid, user, headerState, setClickToSelect, selectedMessages } =
     props
   const [openMenu, setOpenMenu] = useState(false)
-
+  const appDispatch = useContext(DispatchContext)
   let profileimg = ChangeImage(user.profile)
 
   if (headerState.type === 1) {
@@ -38,6 +39,17 @@ function Header(props) {
             </div>
           </div>
           <div className="right">
+            <i
+              className="fas fa-2x fa-trash"
+              onClick={(e) => {
+                e.preventDefault()
+                appDispatch({
+                  type: 'DELETE_MESSAGES',
+                  value: { selectedMessages, userid },
+                })
+                setClickToSelect(false)
+              }}
+            ></i>
             {headerState.count === 1 ? (
               <i
                 className="fas fa-2x fa-copy"
@@ -81,6 +93,13 @@ function Header(props) {
             FullScreen
           </div>
           <Link to={'/contactabout/' + userid}>View Contact</Link>
+          <div
+            onClick={() => {
+              appDispatch({ type: 'CLEAR_CHAT', value: { userid } })
+            }}
+          >
+            Clear Chat
+          </div>
         </DropDown>
       )}
       <div className="header">

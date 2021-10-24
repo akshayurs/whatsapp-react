@@ -1888,6 +1888,10 @@ a * {
           justify-content: center;
 }
 
+.chatscreen .message-container .content-date:only-child {
+  display: none;
+}
+
 .fullscreen-modal {
   display: none;
   position: fixed;
@@ -2207,7 +2211,8 @@ a * {
 }
 
 .calls-list .call-item .icon {
-  margin-right: 0.8rem;
+  margin-right: 0.5rem;
+  padding: 1rem;
   color: var(--dark-green);
 }
 
