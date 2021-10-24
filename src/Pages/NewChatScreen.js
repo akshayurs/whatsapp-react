@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
 import ContactItem from '../components/ContactItem'
 function NewChatScreen(props) {
@@ -24,7 +24,9 @@ function NewChatScreen(props) {
           </div>
         </div>
         <div className="right">
-          <i className="fas fa-2x fa-search"></i>
+          <Link to="/search">
+            <i className="fas fa-2x fa-search"></i>
+          </Link>
           <i className="fas fa-2x fa-ellipsis-v"></i>
         </div>
       </header>

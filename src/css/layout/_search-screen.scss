@@ -1,0 +1,42 @@
+.search-screen {
+  header {
+    display: flex;
+    padding: 1rem;
+    padding: 2rem;
+    border-bottom: 0.2px solid rgba(0, 0, 0, 0.336);
+    i {
+      -webkit-text-stroke: 1px white;
+    }
+    input {
+      flex: 1;
+      border: none;
+      margin-left: 2.5rem;
+      font-size: 1.5rem;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .item {
+    display: flex;
+    padding: 1rem;
+  }
+  .user-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+    width: 4rem;
+    height: 4rem;
+    background: var(--light-green);
+    padding: 1rem;
+    color: white;
+    border-radius: 50%;
+  }
+  .user-not-found {
+    text-align: center;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.568);
+    margin-top: 6rem;
+  }
+}

@@ -3,6 +3,11 @@
   min-height: 100vh;
   animation: slide 0.2s linear;
   animation-fill-mode: backwards;
+  header {
+    i {
+      -webkit-text-stroke: 1px var(--dark-green);
+    }
+  }
   .new-group,
   .new-contact {
     display: flex;

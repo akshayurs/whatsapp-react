@@ -17,6 +17,7 @@ import reducer from './Helpers/Reducer'
 import './css/main.css'
 import Settings from './Pages/Settings'
 import NotFound from './Pages/NotFound'
+import Search from './Pages/Search'
 
 function App() {
   const [usersList, dispatch] = useReducer(reducer, [])
@@ -60,6 +61,9 @@ function App() {
               </Route>
               <Route path="/settings">
                 <Settings />
+              </Route>
+              <Route path="/search">
+                <Search />
               </Route>
               <Route>
                 <NotFound />

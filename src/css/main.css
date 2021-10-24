@@ -1227,6 +1227,10 @@ a * {
           animation-fill-mode: backwards;
 }
 
+.new-chat-screen header i {
+  -webkit-text-stroke: 1px var(--dark-green);
+}
+
 .new-chat-screen .new-group,
 .new-chat-screen .new-contact {
   display: -webkit-box;
@@ -1272,6 +1276,65 @@ a * {
 
 .new-chat-screen .qrcode {
   margin-right: 1.5rem;
+}
+
+.search-screen header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  padding: 2rem;
+  border-bottom: 0.2px solid rgba(0, 0, 0, 0.336);
+}
+
+.search-screen header i {
+  -webkit-text-stroke: 1px white;
+}
+
+.search-screen header input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: none;
+  margin-left: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.search-screen header input:focus {
+  outline: none;
+}
+
+.search-screen .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+}
+
+.search-screen .user-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  background: var(--light-green);
+  padding: 1rem;
+  color: white;
+  border-radius: 50%;
+}
+
+.search-screen .user-not-found {
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.568);
+  margin-top: 6rem;
 }
 
 .status-screen .add-status {
@@ -1980,12 +2043,12 @@ a * {
   display: flex !important;
 }
 
-.homescreen .chats-list {
+.chats-list {
   max-height: 89vh;
   overflow-y: auto;
 }
 
-.homescreen .chats-list .chat-item {
+.chats-list .chat-item {
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1995,22 +2058,22 @@ a * {
           align-items: center;
 }
 
-.homescreen .chats-list .chat-item:not(:last-of-type) {
+.chats-list .chat-item:not(:last-of-type) {
   border-bottom: 0.5px solid;
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, transparent 75px, rgba(112, 112, 112, 0.137) 75px);
 }
 
-.homescreen .chats-list .chat-item .profile-picture {
+.chats-list .chat-item .profile-picture {
   position: relative;
 }
 
-.homescreen .chats-list .chat-item .profile-picture img {
+.chats-list .chat-item .profile-picture img {
   width: 5rem;
   border-radius: 50%;
 }
 
-.homescreen .chats-list .chat-item .profile-picture.online::after {
+.chats-list .chat-item .profile-picture.online::after {
   content: '';
   width: 1rem;
   height: 1rem;
@@ -2024,7 +2087,7 @@ a * {
   right: 0.1rem;
 }
 
-.homescreen .chats-list .chat-item .name-container {
+.chats-list .chat-item .name-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2041,12 +2104,12 @@ a * {
           flex-direction: column;
 }
 
-.homescreen .chats-list .chat-item .name-container .name {
+.chats-list .chat-item .name-container .name {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.homescreen .chats-list .chat-item .name-container .lastmessage {
+.chats-list .chat-item .name-container .lastmessage {
   font-size: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
@@ -2054,7 +2117,7 @@ a * {
   max-width: 65vw;
 }
 
-.homescreen .chats-list .chat-item .time-container {
+.chats-list .chat-item .time-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2065,22 +2128,24 @@ a * {
   text-align: right;
 }
 
-.homescreen .chats-list .chat-item .time-container .message-time,
-.homescreen .chats-list .chat-item .time-container .lastseen-time {
+.chats-list .chat-item .time-container .message-time,
+.chats-list .chat-item .time-container .lastseen-time {
   padding: 0.1rem;
 }
 
-.homescreen .chats-list .chat-item .time-container .online {
+.chats-list .chat-item .time-container .online {
   color: var(--light-green);
 }
 
-.new-chat-screen .contact img {
+.new-chat-screen .contact img,
+.search-screen .contact img {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
 }
 
-.new-chat-screen .contact .container {
+.new-chat-screen .contact .container,
+.search-screen .contact .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2094,7 +2159,8 @@ a * {
           justify-content: space-evenly;
 }
 
-.new-chat-screen .contact .container .name {
+.new-chat-screen .contact .container .name,
+.search-screen .contact .container .name {
   font-size: 1.5rem;
   font-weight: 400;
 }

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import DropDown from '../../components/DropDown'
 import { DispatchContext } from '../../Helpers/DispatchContext'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 function Header(props) {
   const { moveSlide, openedSlide } = props
@@ -59,7 +59,9 @@ function Header(props) {
       <div className="top">
         <div className="left">WhatsApp</div>
         <div className="right">
-          <i className="fas fa-2x fa-search"></i>
+          <Link to="/search">
+            <i className="fas fa-2x fa-search"></i>
+          </Link>
           <i
             className="fas fa-2x fa-ellipsis-v"
             onClick={() => setOpenMenu(true)}
