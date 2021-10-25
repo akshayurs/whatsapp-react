@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
 import StatusItem from '../../components/StatusItem'
 import { UserContext } from '../../Helpers/UserContext'
-
+import { SortByKeyLast } from '../../Helpers/Sort'
 function StatusListSlide() {
   const appState = useContext(UserContext)
+
+  const sortedStatus = SortByKeyLast(appState, ['status', 'time'], false)
+
   return (
     <div className="slide-item status-screen">
       <label htmlFor="camerainput">
@@ -24,7 +27,7 @@ function StatusListSlide() {
         ''
       )}
       <div className="recent-status-container">
-        {appState.map((user) =>
+        {sortedStatus.map((user) =>
           !user.statusViewed ? (
             <StatusItem key={user.userIndex} user={user} />
           ) : (

@@ -44,7 +44,7 @@ function Search(props) {
         />
       </header>
       {result.map((user) => {
-        return <ContactItem user={user} />
+        return <ContactItem user={user} key={user.userIndex} />
       })}
       {!found && <div className="user-not-found">No results found</div>}
     </div>

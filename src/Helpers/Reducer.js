@@ -1,5 +1,5 @@
 import { UsersList } from './sampleData'
-import GetTime from './GetTime'
+import { GetTime } from './Time'
 import GetUserIndex from './GetUserIndex'
 
 function saveData(state) {
@@ -21,7 +21,7 @@ export default function reducer(state, action) {
         index: ++draft[index].messageIndex,
         type: 2,
         ...content,
-        time: GetTime(),
+        time: new Date(),
         status: 0,
       })
       saveData(draft)

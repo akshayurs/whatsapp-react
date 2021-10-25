@@ -1,10 +1,11 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import { GetDayAndMonth, GetTime } from '../Helpers/Time'
 import ChangeImage from '../Helpers/ChangeImage'
 function CallItem(props) {
   const call = props.call
   const user = props.user
-
+  
   const red = call.isMissed ? 'red' : ''
   const direction = call.isIncomming ? 'incomming' : 'outgoing'
   let img = ChangeImage(user.profile)
@@ -22,7 +23,9 @@ function CallItem(props) {
           <span className={'arrow ' + red + ' ' + direction}>
             <i className="fas fa-long-arrow-alt-right"></i>
           </span>
-          <span className="time">{call.time}</span>
+          <span className="time">{`${GetDayAndMonth(call.time)}, ${GetTime(
+            call.time
+          )}`}</span>
         </div>
       </div>
       {call.isVideo ? (

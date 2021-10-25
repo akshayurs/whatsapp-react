@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ChangeImage from '../Helpers/ChangeImage'
 import OpenFullscreen from '../Helpers/OpenFullScreen'
+import {GetTime} from '../Helpers/Time'
 function ChatItem(props) {
   const user = props.user
 
@@ -57,7 +58,7 @@ function ChatItem(props) {
           </div>
         </div>
         <div className="time-container">
-          <div className="message-time">{lastMessage.time}</div>
+          <div className="message-time">{GetTime(lastMessage.time)}</div>
           <div className={'lastseen-time ' + onlineClass}>{seen}</div>
         </div>
       </Link>

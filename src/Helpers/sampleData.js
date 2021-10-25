@@ -21,20 +21,20 @@ export const UsersList = [
         index: 1,
         type: 1,
         content: 'Hi 👋🏼',
-        time: '10:30 AM',
+        time: 1635149523928,
       },
       {
         index: 2,
         type: 2,
         content: 'Hi...',
-        time: '10:31 AM',
+        time: 1635149543928,
         status: 2,
       },
       {
         index: 3,
         type: 1,
         content: 'How are you?',
-        time: '10:31 AM',
+        time: 1635149553928,
       },
       {
         index: 4,
@@ -46,7 +46,7 @@ export const UsersList = [
           index: 10,
         },
         content: 'Fine',
-        time: '10:31 PM',
+        time: 1635149563928,
         status: 1,
       },
       {
@@ -58,19 +58,19 @@ export const UsersList = [
         index: 6,
         type: 2,
         content: 'Good Morning 🌞',
-        time: '6:02 AM',
+        time: 1635149583928,
         status: 0,
       },
     ],
     calls: [
       {
-        time: '10:30 AM',
+        time: 1635149552928,
         isIncomming: true,
         isVideo: true,
         isMissed: true,
       },
       {
-        time: '10:32 AM',
+        time: 1635149853928,
         isIncomming: false,
         isVideo: false,
       },
@@ -79,17 +79,17 @@ export const UsersList = [
       {
         img: 'welcome.jpg',
         caption: 'Welcome to All',
-        time: '10:30 PM',
+        time: 1635149553928,
       },
       {
         img: 'background.png',
         caption: 'this is background',
-        time: '11:50 PM',
+        time: 1635149553928,
       },
       {
         img: 'githubbackground.jpg',
         caption: 'Code available on Github',
-        time: '11:55 PM',
+        time: 1635149523928,
       },
     ],
   },
@@ -114,7 +114,7 @@ export const UsersList = [
     messageIndex: 0,
     calls: [
       {
-        time: '2 October 12:30 PM',
+        time: 1635149553928,
         isIncomming: true,
         isVideo: false,
         isMissed: true,
@@ -124,7 +124,7 @@ export const UsersList = [
       {
         img: 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg',
         caption: 'im unknown',
-        time: '11:55 PM',
+        time: 1635149453928,
       },
     ],
   },

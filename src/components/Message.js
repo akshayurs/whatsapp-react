@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-
+import {GetTime} from '../Helpers/Time'
 function Message(props) {
   const {
     chat,
@@ -193,7 +193,7 @@ function Message(props) {
               __html: chat.content.replaceAll(/\n/g, '<br>'),
             }}
           ></div>
-          <div className="time">{chat.time}</div>
+          <div className="time">{GetTime(chat.time)}</div>
           {chat.type === 2 ? (
             <div className="tick">
               <div className={'single ' + (chat.status === 0 ? 'active' : '')}>

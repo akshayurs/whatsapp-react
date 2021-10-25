@@ -6,6 +6,7 @@ import { DispatchContext } from '../Helpers/DispatchContext'
 import DropDown from '../components/DropDown'
 import ChangeImage from '../Helpers/ChangeImage'
 import OpenFullScreen from '../Helpers/OpenFullScreen'
+import { GetTime, GetDayAndMonth } from '../Helpers/Time'
 const animationDuration = 5000
 
 function StatusView(props) {
@@ -158,7 +159,9 @@ function StatusView(props) {
               <Link to={`/contactabout/${userid}`}>
                 <div className="container">
                   <div className="name">{user.name}</div>
-                  <div className="time">{status.time}</div>
+                  <div className="time">{`${GetDayAndMonth(
+                    status.time
+                  )}, ${GetTime(status.time)}`}</div>
                 </div>
               </Link>
             </div>
