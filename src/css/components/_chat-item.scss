@@ -3,7 +3,7 @@
   overflow-y: auto;
   .chat-item {
     &.selected {
-      background-color: rgb(228, 228, 228);
+      background-color: rgb(233, 233, 233);
       .profile-picture i {
         display: block;
       }
@@ -32,14 +32,16 @@
       i {
         display: none;
         position: absolute;
-        bottom: 0.1rem;
-        right: 0.1rem;
-        background: teal;
+        bottom: 0rem;
+        right: -0.3rem;
+        // background: teal;
+        background: #00b09e;
         color: white;
         border-radius: 50%;
         padding: 0.3rem;
         font-size: 1.4rem;
-        -webkit-text-stroke: 1px teal;
+        -webkit-text-stroke: 1px #00b09e;
+        border: 2px solid rgb(233, 233, 233);
       }
       img {
         width: 5rem;

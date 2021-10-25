@@ -2068,7 +2068,7 @@ a * {
 }
 
 .chats-list .chat-item.selected {
-  background-color: #e4e4e4;
+  background-color: #e9e9e9;
 }
 
 .chats-list .chat-item.selected .profile-picture i {
@@ -2092,14 +2092,15 @@ a * {
 .chats-list .chat-item .profile-picture i {
   display: none;
   position: absolute;
-  bottom: 0.1rem;
-  right: 0.1rem;
-  background: teal;
+  bottom: 0rem;
+  right: -0.3rem;
+  background: #00b09e;
   color: white;
   border-radius: 50%;
   padding: 0.3rem;
   font-size: 1.4rem;
-  -webkit-text-stroke: 1px teal;
+  -webkit-text-stroke: 1px #00b09e;
+  border: 2px solid #e9e9e9;
 }
 
 .chats-list .chat-item .profile-picture img {
