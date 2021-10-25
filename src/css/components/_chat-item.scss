@@ -2,13 +2,25 @@
   max-height: 89vh;
   overflow-y: auto;
   .chat-item {
+    &.selected {
+      background-color: rgb(228, 228, 228);
+      .profile-picture i {
+        display: block;
+      }
+    }
+    &:active {
+      background-color: rgb(247, 247, 247);
+    }
+
     &:not(:last-of-type) {
       border-bottom: 0.5px solid;
       border-image-slice: 1;
       border-image-source: linear-gradient(
         to right,
         transparent 75px,
-        rgba(112, 112, 112, 0.137) 75px
+        rgba(112, 112, 112, 0.137) 75px,
+        rgba(112, 112, 112, 0.137) 97%,
+        transparent 97%
       );
     }
 
@@ -17,6 +29,18 @@
     align-items: center;
     .profile-picture {
       position: relative;
+      i {
+        display: none;
+        position: absolute;
+        bottom: 0.1rem;
+        right: 0.1rem;
+        background: teal;
+        color: white;
+        border-radius: 50%;
+        padding: 0.3rem;
+        font-size: 1.4rem;
+        -webkit-text-stroke: 1px teal;
+      }
       img {
         width: 5rem;
         border-radius: 50%;

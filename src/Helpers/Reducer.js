@@ -21,7 +21,7 @@ export default function reducer(state, action) {
         index: ++draft[index].messageIndex,
         type: 2,
         ...content,
-        time: new Date(),
+        time: new Date().getTime(),
         status: 0,
       })
       saveData(draft)

@@ -21,12 +21,18 @@
       }
       .details {
         font-size: 1.2rem;
+        i {
+          font-size: 1.6rem;
+          -webkit-text-stroke: 0.8px white;
+        }
         .incomming {
           display: inline-block;
           transform: rotate(135deg);
           color: green;
+          margin-right: 0.7rem;
         }
         .outgoing {
+          margin-right: 0.7rem;
           display: inline-block;
           transform: rotate(-45deg);
           color: green;

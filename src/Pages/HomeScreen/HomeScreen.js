@@ -17,7 +17,11 @@ function HomeScreen() {
   const [openedSlide, setOpenedSlide] = useState(0)
   const prevOpenedSlide = useRef(0)
   const allowToStartCamera = useRef(false)
+  const [headerState, setHeaderState] = useState({ type: 0 })
+  const [clickToSelect, setClickToSelect] = useState(false)
   const [startCamera, setStartCamera] = useState(false)
+  const selectedMessages = useRef(new Set())
+
   const handleScroll = useCallback(
     (e) => {
       const index = Math.ceil(
@@ -56,11 +60,21 @@ function HomeScreen() {
   }, [slideContainer])
   return (
     <div className="homescreen">
-      <Header moveSlide={moveSlide} openedSlide={openedSlide} />
+      <Header
+        moveSlide={moveSlide}
+        openedSlide={openedSlide}
+        headerState={headerState}
+        setClickToSelect={setClickToSelect}
+        selectedMessages={selectedMessages}
+      />
       <Slides
         slideContainer={slideContainer}
         handleScroll={handleScroll}
         startCamera={startCamera}
+        setHeaderState={setHeaderState}
+        setClickToSelect={setClickToSelect}
+        clickToSelect={clickToSelect}
+        selectedMessages={selectedMessages}
       />
 
       <NewIcon openedSlide={openedSlide} />

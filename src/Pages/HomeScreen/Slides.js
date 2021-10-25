@@ -14,7 +14,12 @@ function Slides(props) {
       }}
     >
       <CameraSlide startCamera={props.startCamera} />
-      <ChatListSlide />
+      <ChatListSlide
+        setHeaderState={props.setHeaderState}
+        clickToSelect={props.clickToSelect}
+        setClickToSelect={props.setClickToSelect}
+        selectedMessages={props.selectedMessages}
+      />
       <StatusListSlide />
       <CallListSlide />
     </div>

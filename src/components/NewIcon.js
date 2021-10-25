@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 function NewIcon(props) {
@@ -36,4 +36,4 @@ function NewIcon(props) {
   )
 }
 
-export default NewIcon
+export default memo(NewIcon)

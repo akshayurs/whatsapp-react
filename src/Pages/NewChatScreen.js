@@ -25,14 +25,14 @@ function NewChatScreen(props) {
         </div>
         <div className="right">
           <Link to="/search">
-            <i className="fas fa-2x fa-search"></i>````
+            <i className="fas fa-2x fa-search"></i>
           </Link>
           <i className="fas fa-2x fa-ellipsis-v"></i>
         </div>
       </header>
       <div className="item new-group">
         <i className="fas fa-2x fa-user-friends user-icon"></i>
-        <h2>New Group</h2>``
+        <h2>New Group</h2>
       </div>
       <div className="item new-contact">
         <i className="fas fa-2x fa-user-plus user-icon"></i>
