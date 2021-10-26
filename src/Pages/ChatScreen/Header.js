@@ -144,7 +144,7 @@ function Header(props) {
             <div className="container">
               <div className="name">{user.name}</div>
               <div className="lastseen">
-                {user.isOnline ? 'online' : user.lastseen}
+                {user.isOnline ? 'online' : user.lastSeen}
               </div>
             </div>
           </Link>
