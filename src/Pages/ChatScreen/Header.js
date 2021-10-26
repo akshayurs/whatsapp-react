@@ -1,17 +1,35 @@
-import React, { memo, useState, useContext } from 'react'
+import React, { memo, useState, useContext, useRef, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ChangeImage from '../../Helpers/ChangeImage'
 import DropDown from '../../components/DropDown'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import CopyText from '../../Helpers/CopyText'
 import { DispatchContext } from '../../Helpers/DispatchContext'
+import FlashMsg from '../../components/flashMsg'
 function Header(props) {
   const { userid, user, headerState, setClickToSelect, selectedMessages } =
     props
   const [openMenu, setOpenMenu] = useState(false)
   const appDispatch = useContext(DispatchContext)
   let profileimg = ChangeImage(user.profile)
-
+  const [flashMsg, setFlashMsg] = useState('')
+  const flashTimeout = useRef(null)
+  let flashEle = ''
+  if (flashMsg !== '') {
+    flashEle = <FlashMsg message={flashMsg} />
+  }
+  useEffect(() => {
+    return () => {
+      clearTimeout(flashTimeout.current)
+      setFlashMsg('')
+    }
+  }, [])
+  function clearflash() {
+    clearTimeout(flashTimeout.current)
+    flashTimeout.current = setTimeout(() => {
+      setFlashMsg('')
+    }, 2100)
+  }
   if (headerState.type === 1) {
     return (
       <>
@@ -47,6 +65,8 @@ function Header(props) {
                   type: 'DELETE_MESSAGES',
                   value: { selectedMessages, userid },
                 })
+                setFlashMsg('Deleted')
+                clearflash()
                 setClickToSelect(false)
               }}
             ></i>
@@ -62,6 +82,8 @@ function Header(props) {
                     )
                     .innerHTML.replaceAll(/<br>/g, '\n')
                   CopyText(text)
+                  setFlashMsg('Copied')
+                  clearflash()
                   setClickToSelect(false)
                 }}
               ></i>
@@ -77,6 +99,7 @@ function Header(props) {
             ></i>
           </div>
         </div>
+        {flashEle}
       </>
     )
   }
@@ -96,6 +119,8 @@ function Header(props) {
           <div
             onClick={() => {
               appDispatch({ type: 'CLEAR_CHAT', value: { userid } })
+              setFlashMsg('Cleared')
+              clearflash()
             }}
           >
             Clear Chat
@@ -140,6 +165,7 @@ function Header(props) {
           ></i>
         </div>
       </div>
+      {flashEle}
     </>
   )
 }

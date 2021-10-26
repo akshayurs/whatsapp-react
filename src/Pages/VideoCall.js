@@ -44,14 +44,12 @@ function VideoCall(props) {
   const src = ChangeImage(user.profile)
   if (error) {
     return (
-      <>
+      <div class="videocall-error">
         <br></br>
-        <h1 style={{ textAlign: 'center' }}>{error}</h1>
+        <h1>{error}</h1>
         <br></br>
-        <h2 style={{ textAlign: 'center' }} onClick={handleBack}>
-          Back
-        </h2>
-      </>
+        <h2 onClick={handleBack}>Back</h2>
+      </div>
     )
   }
   return (

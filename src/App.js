@@ -8,7 +8,7 @@ import ChatScreen from './Pages/ChatScreen/ChatScreen'
 import StatusView from './Pages/StatusView'
 import VideoCall from './Pages/VideoCall'
 import VoiceCall from './Pages/VoiceCall'
-
+import AboutScreen from './Pages/AboutScreen'
 import { UsersList as sampleData } from './Helpers/sampleData'
 import { UserContext } from './Helpers/UserContext'
 import { DispatchContext } from './Helpers/DispatchContext'
@@ -40,6 +40,9 @@ function App() {
             <Switch>
               <Route path="/" exact>
                 <HomeScreen />
+              </Route>
+              <Route path="/about" exact>
+                <AboutScreen />
               </Route>
               <Route path="/voicecall/:userid" exact>
                 <VoiceCall />

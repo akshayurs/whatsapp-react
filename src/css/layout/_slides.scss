@@ -14,4 +14,25 @@
     width: 100vw;
     min-height: 89vh;
   }
+  .empty-homescreen {
+    transform: translateY(30vh);
+    font-family: Merienda;
+    max-width: 80vw;
+    margin: 0 auto;
+    font-size: 1.6rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.801);
+    line-height: 1.8;
+    word-spacing: 5px;
+    // font-size: 700;
+    .lastline {
+      display: inline-block;
+      margin-top: 0.4rem;
+    }
+    svg {
+      transform: translateY(30%);
+      padding: 0 0.5rem;
+      box-sizing: content-box;
+    }
+  }
 }

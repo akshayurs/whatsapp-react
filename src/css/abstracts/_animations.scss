@@ -82,3 +82,24 @@
     opacity: 0;
   }
 }
+@keyframes flashPopup {
+  0% {
+    opacity: 0.2;
+    transform: translateX(-50%) translateY(5%) scale(0.5);
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    transform: translateX(-50%) translateY(0%) scale(1.1);
+  }
+  15% {
+    transform: translateX(-50%) translateY(0%) scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

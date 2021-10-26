@@ -32,8 +32,14 @@
     }
   }
   .error {
+    font-family: Merienda;
     text-align: center;
     display: block;
     font-size: 2rem;
+    #camerainput {
+      display: block;
+      margin: 1rem auto;
+      transform: translateX(4rem);
+    }
   }
 }

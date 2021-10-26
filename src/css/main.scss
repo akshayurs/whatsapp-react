@@ -1,6 +1,7 @@
 @import './abstracts/variables';
 @import './abstracts/animations';
 @import './base/reset';
+@import './layout/aboutscreen';
 @import './layout/header';
 @import './layout/chatscreen';
 @import './layout/camera-screen';
@@ -25,6 +26,7 @@
 @import './components/new-chat';
 @import './components/chat-item';
 @import './components/contact-item';
+@import './components/flash-message';
 @import './components/status-item';
 @import './components/call-item';
 @import './components/reply-message';

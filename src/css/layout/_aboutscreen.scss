@@ -1,0 +1,58 @@
+.aboutpage {
+  width: 100vw;
+  min-height: 100vh;
+  background: #eee;
+  header {
+    font-family: Merienda;
+    display: flex;
+    align-items: center;
+    padding: 2rem 1rem;
+    i {
+      padding: 0 1rem;
+      -webkit-text-stroke: 1px #eee;
+    }
+    h1 {
+      flex: 1;
+      padding-left: 1rem;
+    }
+  }
+  .container {
+    margin: 1rem 0 3rem 0;
+    background: white;
+    border-radius: 2.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.158);
+    .title {
+      padding-left: 0.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .item {
+      display: flex;
+      padding: 1.5rem 1rem;
+      font-size: 1.5rem;
+      animation: fadein 1s;
+      &.whatsapp {
+        font-size: 1.8rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.164);
+        margin-bottom: 1rem;
+        i {
+          color: rgb(86, 148, 199);
+          font-size: 2.5rem;
+        }
+      }
+      .right {
+        padding: 0 1.5rem;
+      }
+    }
+  }
+  .version {
+    text-align: center;
+    font-size: 1.4rem;
+    font-family: Merienda;
+
+    i {
+      color: var(--dark-green);
+    }
+  }
+}

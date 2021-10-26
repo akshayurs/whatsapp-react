@@ -1,0 +1,14 @@
+.flash-msg {
+  position: fixed;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  background: #eee;
+  z-index: 9999;
+  border-radius: 1rem;
+  animation: flashPopup 2s;
+  animation-fill-mode: forwards;
+  transform-origin: center;
+}

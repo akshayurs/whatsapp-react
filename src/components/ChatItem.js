@@ -87,13 +87,15 @@ function ChatItem(props) {
   return (
     <>
       <Link
-        onClick={() => OpenFullscreen()}
         to={`/chatscreen/${user.userIndex}`}
         className={'chat-item ' + (selected ? ' selected ' : '')}
         onTouchStart={touchstart}
         onTouchEnd={touchend}
         onTouchMove={touchmove}
-        onClick={handleClick}
+        onClick={(e) => {
+          handleClick(e)
+          OpenFullscreen()
+        }}
         onContextMenu={(e) => {
           e.preventDefault()
         }}

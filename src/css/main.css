@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merienda&display=swap");
 :root {
   --dark-green: #075e55;
   --light-green: #20c757;
@@ -204,6 +205,56 @@
   }
 }
 
+@-webkit-keyframes flashPopup {
+  0% {
+    opacity: 0.2;
+    -webkit-transform: translateX(-50%) translateY(5%) scale(0.5);
+            transform: translateX(-50%) translateY(5%) scale(0.5);
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    -webkit-transform: translateX(-50%) translateY(0%) scale(1.1);
+            transform: translateX(-50%) translateY(0%) scale(1.1);
+  }
+  15% {
+    -webkit-transform: translateX(-50%) translateY(0%) scale(1);
+            transform: translateX(-50%) translateY(0%) scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes flashPopup {
+  0% {
+    opacity: 0.2;
+    -webkit-transform: translateX(-50%) translateY(5%) scale(0.5);
+            transform: translateX(-50%) translateY(5%) scale(0.5);
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    -webkit-transform: translateX(-50%) translateY(0%) scale(1.1);
+            transform: translateX(-50%) translateY(0%) scale(1.1);
+  }
+  15% {
+    -webkit-transform: translateX(-50%) translateY(0%) scale(1);
+            transform: translateX(-50%) translateY(0%) scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -232,6 +283,85 @@ a * {
   color: unset;
   text-decoration: unset;
   display: unset;
+}
+
+.aboutpage {
+  width: 100vw;
+  min-height: 100vh;
+  background: #eee;
+}
+
+.aboutpage header {
+  font-family: Merienda;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2rem 1rem;
+}
+
+.aboutpage header i {
+  padding: 0 1rem;
+  -webkit-text-stroke: 1px #eee;
+}
+
+.aboutpage header h1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding-left: 1rem;
+}
+
+.aboutpage .container {
+  margin: 1rem 0 3rem 0;
+  background: white;
+  border-radius: 2.5rem;
+  padding: 1.5rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.158);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.158);
+}
+
+.aboutpage .container .title {
+  padding-left: 0.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.aboutpage .container .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1.5rem 1rem;
+  font-size: 1.5rem;
+  -webkit-animation: fadein 1s;
+          animation: fadein 1s;
+}
+
+.aboutpage .container .item.whatsapp {
+  font-size: 1.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.164);
+  margin-bottom: 1rem;
+}
+
+.aboutpage .container .item.whatsapp i {
+  color: #5694c7;
+  font-size: 2.5rem;
+}
+
+.aboutpage .container .item .right {
+  padding: 0 1.5rem;
+}
+
+.aboutpage .version {
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: Merienda;
+}
+
+.aboutpage .version i {
+  color: var(--dark-green);
 }
 
 .chatscreen .header {
@@ -534,9 +664,17 @@ a * {
 }
 
 .camera-screen .error {
+  font-family: Merienda;
   text-align: center;
   display: block;
   font-size: 2rem;
+}
+
+.camera-screen .error #camerainput {
+  display: block;
+  margin: 1rem auto;
+  -webkit-transform: translateX(4rem);
+          transform: translateX(4rem);
 }
 
 .chatscreen .scroll-down {
@@ -1061,6 +1199,32 @@ a * {
           flex: none;
   width: 100vw;
   min-height: 89vh;
+}
+
+.homescreen .empty-homescreen {
+  -webkit-transform: translateY(30vh);
+          transform: translateY(30vh);
+  font-family: Merienda;
+  max-width: 80vw;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.801);
+  line-height: 1.8;
+  word-spacing: 5px;
+}
+
+.homescreen .empty-homescreen .lastline {
+  display: inline-block;
+  margin-top: 0.4rem;
+}
+
+.homescreen .empty-homescreen svg {
+  -webkit-transform: translateY(30%);
+          transform: translateY(30%);
+  padding: 0 0.5rem;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 
 .settings {
@@ -1747,6 +1911,25 @@ a * {
   -webkit-text-stroke: 0.4px var(--dark-green);
 }
 
+.videocall-error {
+  -webkit-transform: translateY(30vh);
+          transform: translateY(30vh);
+  font-family: Merienda;
+  max-width: 80vw;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.801);
+}
+
+.videocall-error h2 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  border-bottom: 1px solid;
+}
+
 .video-call-screen {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2198,6 +2381,25 @@ a * {
 .search-screen .contact .container .name {
   font-size: 1.5rem;
   font-weight: 400;
+}
+
+.flash-msg {
+  position: fixed;
+  bottom: 15%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  background: #eee;
+  z-index: 9999;
+  border-radius: 1rem;
+  -webkit-animation: flashPopup 2s;
+          animation: flashPopup 2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-transform-origin: center;
+          transform-origin: center;
 }
 
 .status-screen .status-item {

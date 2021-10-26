@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import DropDown from '../../components/DropDown'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 import { Link, withRouter } from 'react-router-dom'
-
+import FlashMsg from '../../components/flashMsg'
 function Header(props) {
   const {
     moveSlide,
@@ -14,6 +14,23 @@ function Header(props) {
   } = props
   const [openMenu, setOpenMenu] = useState(false)
   const appDispatch = useContext(DispatchContext)
+  const [flashMsg, setFlashMsg] = useState('')
+  const flashTimeout = useRef(null)
+  let flashEle = ''
+  if (flashMsg !== '') {
+    flashEle = <FlashMsg message={flashMsg} />
+  }
+  useEffect(() => {
+    return () => {
+      clearTimeout(flashTimeout.current)
+      setFlashMsg('')
+    }
+  }, [])
+  function clearflash() {
+    flashTimeout.current = setTimeout(() => {
+      setFlashMsg('')
+    }, 2100)
+  }
   let headerTopEle = ''
   if (headerState.type === 0) {
     headerTopEle = (
@@ -35,6 +52,8 @@ function Header(props) {
             <div
               onClick={() => {
                 appDispatch({ type: 'RESET_DATA' })
+                setFlashMsg('Reset Successful')
+                clearflash()
                 window.history.go(0)
               }}
             >
@@ -95,6 +114,8 @@ function Header(props) {
             className="fas fa-2x fa-trash"
             onClick={(e) => {
               e.preventDefault()
+              setFlashMsg('Delete Successful')
+              clearflash()
               Array.from(selectedMessages.current).forEach((element) => {
                 appDispatch({
                   type: 'CLEAR_CHAT',
@@ -136,6 +157,7 @@ function Header(props) {
           </div>
         ))}
       </div>
+      {flashEle}
     </header>
   )
 }
