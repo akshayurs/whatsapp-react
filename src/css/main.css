@@ -1584,6 +1584,7 @@ a * {
 }
 
 .status-view {
+  --animationDuration: 5s;
   position: fixed;
   display: block;
   top: 0;
@@ -1617,6 +1618,15 @@ a * {
           animation-fill-mode: forwards;
 }
 
+.status-view.waiting .header .active::after {
+  -webkit-animation-play-state: paused !important;
+          animation-play-state: paused !important;
+}
+
+.status-view.waiting .spinner {
+  display: block !important;
+}
+
 .status-view .header .top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1645,8 +1655,8 @@ a * {
   content: '';
   height: 0.3rem;
   background: white;
-  -webkit-animation: progress 5s linear;
-          animation: progress 5s linear;
+  -webkit-animation: progress var(--animationDuration) linear;
+          animation: progress var(--animationDuration) linear;
   -webkit-animation-fill-mode: backwards;
           animation-fill-mode: backwards;
 }
@@ -1731,6 +1741,10 @@ a * {
 }
 
 .status-view .image.loading .spinner {
+  display: block !important;
+}
+
+.status-view .image.half-loaded .spinner {
   display: block !important;
 }
 

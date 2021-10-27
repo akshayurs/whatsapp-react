@@ -4,7 +4,7 @@ import ChangeImage from '../Helpers/ChangeImage'
 import { GetTime, GetDayAndMonth } from '../Helpers/Time'
 function StatusItem(props) {
   const user = props.user
-  let img = ChangeImage(user.status[user.status.length - 1].img)
+  let img = ChangeImage(user.status[user.status.length - 1].src)
   const time = user.status[user.status.length - 1].time
   return (
     <Link

@@ -7,8 +7,7 @@ import CopyText from '../../Helpers/CopyText'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 import FlashMsg from '../../components/flashMsg'
 function Header(props) {
-  const { userid, user, headerState, setClickToSelect, selectedMessages } =
-    props
+  const { userid, user, headerState, setClickToSelect, selectedMessages } = props
   const [openMenu, setOpenMenu] = useState(false)
   const appDispatch = useContext(DispatchContext)
   let profileimg = ChangeImage(user.profile)

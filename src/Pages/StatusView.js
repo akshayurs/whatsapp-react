@@ -7,7 +7,6 @@ import DropDown from '../components/DropDown'
 import ChangeImage from '../Helpers/ChangeImage'
 import OpenFullScreen from '../Helpers/OpenFullScreen'
 import { GetTime, GetDayAndMonth } from '../Helpers/Time'
-const animationDuration = 5000
 
 function StatusView(props) {
   const { userid } = useParams()
@@ -24,24 +23,28 @@ function StatusView(props) {
   const holded = useRef(null)
   const animationStartedTime = useRef(null)
   const viewEle = useRef(null)
-  const [loading, setLoading] = useState(true)
+  const videoEle = useRef(null)
+  const videoStarted = useRef(false)
+  const [loading, setLoading] = useState({ value: 'loading' })
   let startedX = 0
   let currentX = 0
   let startedY = 0
   let currentY = 0
+  let animationDuration = 5000
 
   function nextStatus() {
     setStatusIndex((prev) => prev + 1)
   }
   useEffect(() => {
-    OpenFullScreen()
+    // OpenFullScreen()
   }, [OpenFullScreen])
   useEffect(() => {
     setStatus(user?.status[statusIndex])
     if (viewEle.current) {
       viewEle.current.classList.add('temp-hold')
     }
-    setLoading(true)
+    setLoading({ value: 'loading' })
+    videoStarted.current = false
     if (user?.status?.length - 1 === statusIndex && !user.statusViewed) {
       appDispatch({ type: 'STATUS_VIEWED', value: parseInt(userid) })
     }
@@ -88,36 +91,64 @@ function StatusView(props) {
       props.history.go(-1)
     }
   }
-  function pauseStatus() {
+  function pauseStatus(videoWaiting) {
     if (!viewEle.current) {
       return
     }
     const now = new Date()
     holdStartTime.current = now
     holded.current = true
-    viewEle.current.classList.add('hold')
+    if (videoWaiting) {
+      viewEle.current.classList.add('waiting')
+    } else {
+      viewEle.current.classList.add('hold')
+    }
     clearTimeout(timeout.current)
+    if (status.isVideo) {
+      videoEle.current.pause()
+    }
   }
 
-  function handleMouseUp() {
+  function handleMouseUp(videoWaiting) {
+    if (videoWaiting) {
+      viewEle.current.classList.remove('waiting')
+    }
     viewEle.current.classList.remove('hold')
     viewEle.current.style.transform = `rotate(0deg)`
     clearTimeout(holdTimeout.current)
     if (holded.current) {
       holded.current = false
       clearTimeout(timeout.current)
+      const total =
+        getComputedStyle(viewEle.current)
+          .getPropertyValue('--animationDuration')
+          .split('s')[0] * 1000
+
       timeout.current = setTimeout(
         nextStatus,
-        animationDuration -
-          (holdStartTime.current - animationStartedTime.current)
+        total - (holdStartTime.current - animationStartedTime.current)
       )
+      if (status.isVideo) {
+        videoEle.current.play()
+      }
     }
   }
   function handleStart() {
-    setLoading(false)
+    setLoading({ value: '' })
     animationStartedTime.current = new Date()
-    timeout.current = setTimeout(nextStatus, animationDuration)
     viewEle.current.classList.remove('temp-hold')
+    if (status.isVideo) {
+      videoStarted.current = true
+      viewEle.current.style.setProperty(
+        '--animationDuration',
+        `${videoEle.current.duration}s`
+      )
+      animationDuration = videoEle.current.duration * 1000
+    } else {
+      viewEle.current.style.setProperty('--animationDuration', '5s')
+      animationDuration = 5000
+    }
+    timeout.current = setTimeout(nextStatus, animationDuration)
   }
   return (
     <div className="status-container">
@@ -136,6 +167,9 @@ function StatusView(props) {
           )}
           <Link to={`/chatscreen/${userid}`}>Open Chat</Link>
           <Link to={`/contactabout/${userid}`}>Open Contact</Link>
+          <a href={ChangeImage(status.src)} download>
+            Download
+          </a>
         </DropDown>
       )}
       <div
@@ -177,16 +211,42 @@ function StatusView(props) {
             </div>
           </div>
         </div>
-        <div className={'image ' + (loading ? 'loading' : '')}>
-          <img
-            className="status-image"
-            onContextMenu={(e) => {
-              e.preventDefault()
-            }}
-            onLoad={() => handleStart()}
-            src={ChangeImage(status.img)}
-            alt=""
-          />
+        <div className={'image ' + loading.value}>
+          {status.isVideo ? (
+            <video
+              className="status-image"
+              src={ChangeImage(status.src)}
+              autoPlay={true}
+              ref={videoEle}
+              onPlay={(e) => {
+                e.persist()
+                if (!videoStarted.current) {
+                  handleStart()
+                } else {
+                  handleMouseUp(true)
+                }
+              }}
+              onContextMenu={(e) => {
+                e.preventDefault()
+              }}
+              onWaiting={() => {
+                pauseStatus(true)
+              }}
+              onLoadedData={() => {
+                setLoading({ value: 'half-loaded' })
+              }}
+            ></video>
+          ) : (
+            <img
+              className="status-image"
+              onContextMenu={(e) => {
+                e.preventDefault()
+              }}
+              onLoad={() => handleStart()}
+              src={ChangeImage(status.src)}
+              alt=""
+            />
+          )}
           <svg className="spinner" viewBox="0 0 50 50">
             <circle
               className="path"

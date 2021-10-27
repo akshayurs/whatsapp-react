@@ -4,6 +4,7 @@
   height: 100vh;
 }
 .status-view {
+  --animationDuration: 5s;
   position: fixed;
   display: block;
   // display: none;
@@ -31,6 +32,14 @@
       animation-fill-mode: forwards;
     }
   }
+  &.waiting {
+    .header .active::after {
+      animation-play-state: paused !important;
+    }
+    .spinner {
+      display: block !important;
+    }
+  }
   .header {
     .top {
       display: flex;
@@ -54,7 +63,7 @@
           content: '';
           height: 0.3rem;
           background: white;
-          animation: progress 5s linear;
+          animation: progress var(--animationDuration) linear;
           animation-fill-mode: backwards;
         }
         &.completed {
@@ -110,6 +119,11 @@
       .status-image {
         display: none !important;
       }
+      .spinner {
+        display: block !important;
+      }
+    }
+    &.half-loaded {
       .spinner {
         display: block !important;
       }

@@ -77,19 +77,25 @@ export const UsersList = [
     ],
     status: [
       {
-        img: 'welcome.jpg',
+        src: 'welcome.jpg',
         caption: 'Welcome to All',
         time: 1635149553928,
       },
       {
-        img: 'background.png',
+        src: 'background.png',
         caption: 'this is background',
         time: 1635149553928,
       },
       {
-        img: 'githubbackground.jpg',
+        isVideo: true,
+        src: 'samplemusic.mp4',
+        caption: 'im video',
+        time: 1635159553928,
+      },
+      {
+        src: 'githubbackground.jpg',
         caption: 'Code available on Github',
-        time: 1635149523928,
+        time: 1635949523928,
       },
     ],
   },
@@ -122,7 +128,7 @@ export const UsersList = [
     ],
     status: [
       {
-        img: 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg',
+        src: 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg',
         caption: 'im unknown',
         time: 1635149453928,
       },
