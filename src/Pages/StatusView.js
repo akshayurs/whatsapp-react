@@ -14,7 +14,9 @@ function StatusView(props) {
   const appDispatch = useContext(DispatchContext)
 
   const user = appState.find((user) => user.userIndex === parseInt(userid))
-  const [statusIndex, setStatusIndex] = useState(0)
+  const [statusIndex, setStatusIndex] = useState(
+    user.statusViewed ? 0 : user.openedStatus + 1
+  )
   const [status, setStatus] = useState({})
   const [openMenu, setOpenMenu] = useState(false)
   const timeout = useRef(null)
@@ -24,6 +26,7 @@ function StatusView(props) {
   const animationStartedTime = useRef(null)
   const viewEle = useRef(null)
   const videoEle = useRef(null)
+  const statusContainer = useRef(null)
   const videoStarted = useRef(false)
   const [loading, setLoading] = useState({ value: 'loading' })
   let startedX = 0
@@ -45,9 +48,13 @@ function StatusView(props) {
     }
     setLoading({ value: 'loading' })
     videoStarted.current = false
-    if (user?.status?.length - 1 === statusIndex && !user.statusViewed) {
-      appDispatch({ type: 'STATUS_VIEWED', value: parseInt(userid) })
-    }
+    // if (user?.status?.length - 1 === statusIndex && !user.statusViewed) {
+    //   appDispatch({ type: 'STATUS_VIEWED', value: parseInt(userid) })
+    // }
+    appDispatch({
+      type: 'STATUS_VIEWED',
+      value: { userid: parseInt(userid), statusIndex },
+    })
     return () => {
       clearTimeout(timeout.current)
     }
@@ -86,6 +93,7 @@ function StatusView(props) {
     }
     if (moveX > -20 && moveX < 20 && moveY > 0) {
       viewEle.current.style.transform = `translateY(${moveY}px)`
+      statusContainer.current.style.opacity = 1 - moveY / 300
     }
     if (moveX > 200 || moveX < -200 || moveY > 300) {
       props.history.go(-1)
@@ -110,6 +118,7 @@ function StatusView(props) {
   }
 
   function handleMouseUp(videoWaiting) {
+    statusContainer.current.style.opacity = 1
     if (videoWaiting) {
       viewEle.current.classList.remove('waiting')
     }
@@ -151,7 +160,7 @@ function StatusView(props) {
     timeout.current = setTimeout(nextStatus, animationDuration)
   }
   return (
-    <div className="status-container">
+    <div className="status-container" ref={statusContainer}>
       {openMenu && (
         <DropDown setOpenMenu={setOpenMenu} playStatus={handleMouseUp}>
           {!window.matchMedia('(display-mode: standalone)').matches ? (

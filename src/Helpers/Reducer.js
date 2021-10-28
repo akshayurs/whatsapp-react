@@ -31,9 +31,20 @@ export default function reducer(state, action) {
       saveData(state)
       return state
     case 'STATUS_VIEWED': {
+      if (action.value.statusIndex < 0) {
+        return state
+      }
       const draft = [...state]
-      const userIndex = GetUserIndex(state, action.value)
-      draft[userIndex].statusViewed = true
+      const userIndex = GetUserIndex(state, action.value.userid)
+      if (draft[userIndex].status.length <= action.value.statusIndex) {
+        return state
+      }
+      if (draft[userIndex].status.length === action.value.statusIndex + 1) {
+        draft[userIndex].statusViewed = true
+        draft[userIndex].openedStatus = 0
+      } else {
+        draft[userIndex].openedStatus = action.value.statusIndex
+      }
       saveData(draft)
       return draft
     }

@@ -4,9 +4,33 @@ import ChangeImage from '../../Helpers/ChangeImage'
 import DropDown from '../../components/DropDown'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import CopyText from '../../Helpers/CopyText'
-import { GetTime, GetDayAndMonth } from '../../Helpers/Time'
+import { GetTime, GetDayAndMonth, FormatedDate } from '../../Helpers/Time'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 import FlashMsg from '../../components/flashMsg'
+function download(filename, text) {
+  var element = document.createElement('a')
+  element.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
+  )
+  element.setAttribute('download', filename)
+
+  element.style.display = 'none'
+  document.body.appendChild(element)
+
+  element.click()
+
+  document.body.removeChild(element)
+}
+function generateData(chats, name) {
+  let text = ''
+  chats.forEach((chat) => {
+    text += `${FormatedDate(chat.time)}, ${GetTime(chat.time)} - ${
+      chat.type === 1 ? name : 'You'
+    } : ${chat.content}\n`
+  })
+  return text
+}
 function Header(props) {
   const { userid, user, headerState, setClickToSelect, selectedMessages } =
     props
@@ -132,6 +156,18 @@ function Header(props) {
             }}
           >
             Clear Chat
+          </div>
+          <div
+            onClick={() => {
+              download(
+                `${user.name}-chats.txt`,
+                generateData(user.chatsList, user.name)
+              )
+              setFlashMsg('Exported')
+              clearflash()
+            }}
+          >
+            Export Chat
           </div>
         </DropDown>
       )}

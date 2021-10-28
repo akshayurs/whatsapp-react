@@ -61,12 +61,6 @@ function ChatListSlide(props) {
   return (
     <div className="chats-list slide-item">
       {sortedChats.map((user) => {
-        if (user.chatsList.length === 0) {
-          console.log('empty user', user.name)
-          return ''
-        } else {
-          console.log('user', user.name)
-        }
         return (
           <ChatItem
             key={user.userIndex}

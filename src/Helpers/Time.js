@@ -80,3 +80,8 @@ export const SameDay = function (timestamp, second) {
 
   return false
 }
+
+export const FormatedDate = (timestamp) => {
+  const date = new Date(timestamp)
+  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+}
