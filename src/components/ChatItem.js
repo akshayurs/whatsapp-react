@@ -65,12 +65,6 @@ function ChatItem(props) {
     }
     toSelect.current = false
   }
-  if (
-    user.chatsList.length === 0 ||
-    (user.chatsList.length === 1 && user.chatsList[0].type === 0)
-  ) {
-    return ''
-  }
 
   let onlineClass = ''
   let seen = ''

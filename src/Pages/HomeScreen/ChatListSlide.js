@@ -37,7 +37,7 @@ function ChatListSlide(props) {
     [selectedMessages, setClickToSelect]
   )
   const sortedChats = SortByKeyLast(
-    appState.filter((user) => user.chatsList.length > 1),
+    appState.filter((user) => user.chatsList.length > 0),
     ['chatsList', 'time'],
     false
   )
@@ -62,7 +62,10 @@ function ChatListSlide(props) {
     <div className="chats-list slide-item">
       {sortedChats.map((user) => {
         if (user.chatsList.length === 0) {
+          console.log('empty user', user.name)
           return ''
+        } else {
+          console.log('user', user.name)
         }
         return (
           <ChatItem
