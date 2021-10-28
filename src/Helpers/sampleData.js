@@ -9,36 +9,31 @@ export const UsersList = [
     lastSeen: '',
     openedStatus: 0,
     statusViewed: false,
-    messageIndex: 8,
+    messageIndex: 4,
     userIndex: 0,
     lastContentDate: 1635340638214,
     chatsList: [
       {
         index: 0,
-        type: 0,
-        time: 1635159553928,
-      },
-      {
-        index: 1,
         type: 1,
         content: 'Hi 👋🏼',
         time: 1635149523928,
       },
       {
-        index: 2,
+        index: 1,
         type: 2,
         content: 'Hi...',
         time: 1635149543928,
         status: 2,
       },
       {
-        index: 3,
+        index: 2,
         type: 1,
         content: 'How are you?',
         time: 1635149553928,
       },
       {
-        index: 4,
+        index: 3,
         type: 2,
         isReply: true,
         replyFor: {
@@ -51,15 +46,10 @@ export const UsersList = [
         status: 1,
       },
       {
-        index: 5,
-        type: 0,
-        time: 1635340638214,
-      },
-      {
-        index: 6,
+        index: 4,
         type: 2,
         content: 'Good Morning 🌞',
-        time: 1635149583928,
+        time: 1635190583928,
         status: 2,
       },
     ],

@@ -1,9 +1,11 @@
-import React, { useEffect, memo, useContext } from 'react'
+import React, { useEffect, memo, useContext, useRef } from 'react'
 import Message from '../../components/Message'
 import { UserContext } from '../../Helpers/UserContext'
+import { SameDay } from '../../Helpers/Time'
+
 function MessageContainer(props) {
   const appState = useContext(UserContext)
-
+  let prevChat = useRef(null)
   const {
     user,
     setReply,
@@ -39,18 +41,30 @@ function MessageContainer(props) {
         }
       }}
     >
-      {user.chatsList.map((chat) => (
-        <Message
-          key={chat.index}
-          chat={chat}
-          user={user}
-          setReply={setReply}
-          inputEle={inputEle}
-          messageContainerEle={messageContainerEle}
-          handleSelect={handleSelect}
-          clickToSelect={clickToSelect}
-        />
-      ))}
+      {user.chatsList.map((chat, index) => {
+        let addContentDate = false
+        if (index === 0) {
+          addContentDate = true
+        } else {
+          if (!SameDay(prevChat.current?.time, chat.time)) {
+            addContentDate = true
+          }
+        }
+        prevChat.current = chat
+        return (
+          <Message
+            addContentDate={addContentDate}
+            key={chat.index}
+            chat={chat}
+            user={user}
+            setReply={setReply}
+            inputEle={inputEle}
+            messageContainerEle={messageContainerEle}
+            handleSelect={handleSelect}
+            clickToSelect={clickToSelect}
+          />
+        )
+      })}
     </div>
   )
 }

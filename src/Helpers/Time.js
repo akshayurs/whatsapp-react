@@ -59,15 +59,24 @@ export const GetDayAndMonth = function (timestamp) {
   return `${day} ${month}`
 }
 
-export const SameDay = function (timestamp) {
-  const today = new Date()
-  const date = new Date(timestamp)
+export const SameDay = function (timestamp, second) {
+  if (!timestamp) {
+    return false
+  }
+  let date2
+  if (second) {
+    date2 = new Date(second)
+  } else {
+    date2 = new Date()
+  }
+  const date1 = new Date(timestamp)
   if (
-    today.getMonth() === date.getMonth() &&
-    today.getFullYear() === date.getFullYear() &&
-    today.getDate() === date.getDate()
+    date2.getMonth() === date1.getMonth() &&
+    date2.getFullYear() === date1.getFullYear() &&
+    date2.getDate() === date1.getDate()
   ) {
     return true
   }
+
   return false
 }

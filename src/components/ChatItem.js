@@ -87,9 +87,6 @@ function ChatItem(props) {
   }
   let lastMessage = user.chatsList[user.chatsList.length - 1]
 
-  if (lastMessage.type === 0 && user.chatsList.length > 1) {
-    lastMessage = user.chatsList[user.chatsList.length - 2]
-  }
   let tick = ''
   if (lastMessage.type === 2) {
     tick = (
