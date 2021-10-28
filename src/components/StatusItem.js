@@ -6,13 +6,21 @@ function StatusItem(props) {
   const user = props.user
   let img = ChangeImage(user.status[user.status.length - 1].src)
   const time = user.status[user.status.length - 1].time
+  let vars = {
+    '--count': user.status.length,
+  }
+  if (user.status.length === 1) {
+    vars = { ...vars, ...{ '--gap': '0deg' } }
+  }
   return (
     <Link
       // onClick={() => openFullScreen()}
       to={`/statusview/${user.userIndex}`}
       className="status-item"
     >
-      <div className="image">
+      <div className="image" style={vars}>
+        <div className="border"></div>
+        <div className="whiteborder"></div>
         <img src={img} alt="status" />
       </div>
       <div className="container">

@@ -4,23 +4,59 @@
     padding: 1rem;
     .image {
       position: relative;
+      // --count: 7;
+      --size: 4rem;
+      --borderSize: 0.7rem;
+      --gap: 3deg;
       width: 4rem;
       height: 4rem;
       margin-left: 1rem;
       img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         box-sizing: content-box;
-        width: 4rem;
-        border: 0.4rem solid var(--light-green);
-        height: 4rem;
+        width: var(--size);
+        height: var(--size);
         border-radius: 50%;
         object-fit: cover;
+      }
+      .whiteborder {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        content: '';
+        width: calc(var(--size) + 2px);
+        height: calc(var(--size) + 2px);
+        background: white;
+        border-radius: 50%;
+      }
+      .border {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(var(--size) + var(--borderSize));
+        height: calc(var(--size) + var(--borderSize));
+
+        --end: calc(
+          calc(360deg - var(--gap) * 2 * var(--count)) / var(--count) +
+            var(--gap)
+        );
+        background: repeating-conic-gradient(
+          transparent calc(var(--gap) * -1) var(--gap),
+          var(--light-green) var(--gap) var(--end)
+        );
+        border-radius: 50%;
       }
     }
     .container {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      padding-left: 3rem;
+      padding-left: 2rem;
       .name {
         font-size: 1.5rem;
       }
@@ -32,8 +68,9 @@
   }
   .viewed-status-container {
     .image {
-      img {
-        border: 0 !important;
+      .border,
+      .whiteborder {
+        display: none;
       }
     }
   }

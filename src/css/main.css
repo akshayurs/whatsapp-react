@@ -2425,20 +2425,56 @@ a * {
 
 .status-screen .status-item .image {
   position: relative;
+  --size: 4rem;
+  --borderSize: 0.7rem;
+  --gap: 3deg;
   width: 4rem;
   height: 4rem;
   margin-left: 1rem;
 }
 
 .status-screen .status-item .image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
-  width: 4rem;
-  border: 0.4rem solid var(--light-green);
-  height: 4rem;
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.status-screen .status-item .image .whiteborder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: '';
+  width: calc(var(--size) + 2px);
+  height: calc(var(--size) + 2px);
+  background: white;
+  border-radius: 50%;
+}
+
+.status-screen .status-item .image .border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: calc(var(--size) + var(--borderSize));
+  height: calc(var(--size) + var(--borderSize));
+  --end: calc(
+          calc(360deg - var(--gap) * 2 * var(--count)) / var(--count) +
+            var(--gap)
+        );
+  background: repeating-conic-gradient(transparent calc(var(--gap) * -1) var(--gap), var(--light-green) var(--gap) var(--end));
+  border-radius: 50%;
 }
 
 .status-screen .status-item .container {
@@ -2452,7 +2488,7 @@ a * {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding-left: 3rem;
+  padding-left: 2rem;
 }
 
 .status-screen .status-item .container .name {
@@ -2464,8 +2500,9 @@ a * {
   color: var(--grey);
 }
 
-.status-screen .viewed-status-container .image img {
-  border: 0 !important;
+.status-screen .viewed-status-container .image .border,
+.status-screen .viewed-status-container .image .whiteborder {
+  display: none;
 }
 
 .calls-list .call-item {
