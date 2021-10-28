@@ -52,9 +52,22 @@ export const GetDayAndMonth = function (timestamp) {
     if (today.getDate() === day) {
       return 'Today'
     }
-    if (today.getDate() === day - 1) {
+    if (today.getDate() === day + 1) {
       return 'Yesterday'
     }
   }
   return `${day} ${month}`
+}
+
+export const SameDay = function (timestamp) {
+  const today = new Date()
+  const date = new Date(timestamp)
+  if (
+    today.getMonth() === date.getMonth() &&
+    today.getFullYear() === date.getFullYear() &&
+    today.getDate() === date.getDate()
+  ) {
+    return true
+  }
+  return false
 }

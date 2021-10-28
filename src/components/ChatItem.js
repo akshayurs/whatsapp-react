@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ChangeImage from '../Helpers/ChangeImage'
 import OpenFullscreen from '../Helpers/OpenFullScreen'
-import { GetTime } from '../Helpers/Time'
+import { GetTime, GetDayAndMonth, SameDay } from '../Helpers/Time'
 function ChatItem(props) {
   const { user, clickToSelect, handleSelect } = props
   const toSelect = useRef(false)
@@ -78,12 +78,56 @@ function ChatItem(props) {
     onlineClass = 'online'
     seen = 'online'
   } else {
-    seen = user.lastSeen
+    const day = GetDayAndMonth(user.lastSeen)
+    if (day === 'Today') {
+      seen = `today at ${GetTime(user.lastSeen)}`
+    } else {
+      seen = `${day}, ${GetTime(user.lastSeen)}`
+    }
   }
   let lastMessage = user.chatsList[user.chatsList.length - 1]
+
   if (lastMessage.type === 0 && user.chatsList.length > 1) {
     lastMessage = user.chatsList[user.chatsList.length - 2]
   }
+  let tick = ''
+  if (lastMessage.type === 2) {
+    tick = (
+      <div className="tick">
+        <div className={'single ' + (lastMessage.status === 0 ? 'active' : '')}>
+          <svg viewBox="0 0 16 15" width="16" height="15">
+            <path
+              fill="currentColor"
+              d="M10.91 3.316l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"
+            ></path>
+          </svg>
+        </div>
+        <div className={'double ' + (lastMessage.status === 1 ? 'active' : '')}>
+          <svg viewBox="0 0 16 15" width="16" height="15">
+            <path
+              fill="currentColor"
+              d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"
+            ></path>
+          </svg>
+        </div>
+        <div className={'blue ' + (lastMessage.status === 2 ? 'active' : '')}>
+          <svg viewBox="0 0 16 15" width="16" height="15">
+            <path
+              fill="currentColor"
+              d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    )
+  }
+  let lastMessageTime
+  if (SameDay(lastMessage.time)) {
+    lastMessageTime = GetTime(lastMessage.time)
+  } else {
+    lastMessageTime = GetDayAndMonth(lastMessage.time)
+  }
+
   return (
     <>
       <Link
@@ -119,11 +163,14 @@ function ChatItem(props) {
         <div className="name-container">
           <div className="name">{user.name}</div>
           <div className="lastmessage">
-            {lastMessage?.content.replaceAll(/\n/g, ' ')}
+            {tick}
+            <div className="content">
+              {lastMessage?.content.replaceAll(/\n/g, ' ')}
+            </div>
           </div>
         </div>
         <div className="time-container">
-          <div className="message-time">{GetTime(lastMessage.time)}</div>
+          <div className="message-time">{lastMessageTime}</div>
           <div className={'lastseen-time ' + onlineClass}>{seen}</div>
         </div>
       </Link>

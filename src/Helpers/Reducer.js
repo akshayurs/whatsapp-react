@@ -1,5 +1,5 @@
 import { UsersList } from './sampleData'
-import { GetTime } from './Time'
+import { GetTime, SameDay } from './Time'
 import GetUserIndex from './GetUserIndex'
 
 function saveData(state) {
@@ -17,11 +17,20 @@ export default function reducer(state, action) {
       const { content, userIndex } = action.value
       const draft = [...state]
       const index = GetUserIndex(state, userIndex)
+      if (!SameDay(draft[index].lastContentDate)) {
+        console.log('ran')
+        draft[index].chatsList.push({
+          index: ++draft[index].messageIndex,
+          type: 0,
+          time: Date.now(),
+        })
+        draft[index].lastContentDate = Date.now()
+      }
       draft[index].chatsList.push({
         index: ++draft[index].messageIndex,
         type: 2,
         ...content,
-        time: new Date().getTime(),
+        time: Date.now(),
         status: 0,
       })
       saveData(draft)
@@ -50,13 +59,8 @@ export default function reducer(state, action) {
     case 'CLEAR_CHAT': {
       const draft = [...state]
       const userIndex = GetUserIndex(state, parseInt(action.value.userid))
-      draft[userIndex].chatsList = [
-        {
-          index: ++draft[userIndex].messageIndex,
-          type: 0,
-          content: 'Today',
-        },
-      ]
+      draft[userIndex].chatsList = []
+      draft[userIndex].lastContentDate = 0
       saveData(draft)
       return draft
     }

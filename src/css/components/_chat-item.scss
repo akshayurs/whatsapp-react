@@ -70,19 +70,39 @@
       .name {
         font-size: 1.5rem;
         font-weight: bold;
+        margin-bottom: 2px;
+        margin-left: 2px;
       }
       .lastmessage {
-        font-size: 1.2rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 65vw;
+        display: flex;
+        .content {
+          font-size: 1.2rem;
+          color: rgba(0, 0, 0, 0.76);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 65vw;
+        }
+        .tick > *:not(.active) {
+          display: none;
+        }
+        .tick .active {
+          margin-right: 2px;
+          display: block;
+          color: rgba(0, 0, 0, 0.3);
+          &.blue {
+            color: #4fc3f7;
+          }
+        }
       }
     }
     .time-container {
       display: flex;
       flex-direction: column;
       text-align: right;
+      .message-time {
+        color: rgba(0, 0, 0, 0.671);
+      }
       .message-time,
       .lastseen-time {
         padding: 0.1rem;

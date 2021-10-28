@@ -4,10 +4,12 @@ import ChangeImage from '../../Helpers/ChangeImage'
 import DropDown from '../../components/DropDown'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import CopyText from '../../Helpers/CopyText'
+import { GetTime, GetDayAndMonth } from '../../Helpers/Time'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 import FlashMsg from '../../components/flashMsg'
 function Header(props) {
-  const { userid, user, headerState, setClickToSelect, selectedMessages } = props
+  const { userid, user, headerState, setClickToSelect, selectedMessages } =
+    props
   const [openMenu, setOpenMenu] = useState(false)
   const appDispatch = useContext(DispatchContext)
   let profileimg = ChangeImage(user.profile)
@@ -102,6 +104,13 @@ function Header(props) {
       </>
     )
   }
+  let lastSeen
+  const day = GetDayAndMonth(user.lastSeen)
+  if (day === 'Today') {
+    lastSeen = GetTime(user.lastSeen)
+  } else {
+    lastSeen = `${day}, ${GetTime(user.lastSeen)}`
+  }
 
   return (
     <>
@@ -143,7 +152,7 @@ function Header(props) {
             <div className="container">
               <div className="name">{user.name}</div>
               <div className="lastseen">
-                {user.isOnline ? 'online' : user.lastSeen}
+                {user.isOnline ? 'online' : lastSeen}
               </div>
             </div>
           </Link>

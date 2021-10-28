@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {GetTime} from '../Helpers/Time'
+import { GetTime, GetDayAndMonth } from '../Helpers/Time'
 function Message(props) {
   const {
     chat,
@@ -24,6 +24,11 @@ function Message(props) {
       setSelected(false)
     }
   }, [clickToSelect])
+
+  if (chat.type === 0) {
+    return <div className="content-date">{GetDayAndMonth(chat.time)}</div>
+  }
+
   function handleClick() {
     if (clickToSelect) {
       setSelected((prev) => {
@@ -115,9 +120,6 @@ function Message(props) {
     }, 2000)
   }
 
-  if (chat.type === 0) {
-    return <div className="content-date">{chat.content}</div>
-  }
   return (
     <div
       ref={element}

@@ -1569,7 +1569,7 @@ a * {
 }
 
 .status-screen .title {
-  padding: 1rem;
+  padding: 0.7rem;
   padding-left: 1.5rem;
   background: #eee;
   margin-bottom: 1rem;
@@ -2339,14 +2339,37 @@ a * {
 .chats-list .chat-item .name-container .name {
   font-size: 1.5rem;
   font-weight: bold;
+  margin-bottom: 2px;
+  margin-left: 2px;
 }
 
 .chats-list .chat-item .name-container .lastmessage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chats-list .chat-item .name-container .lastmessage .content {
   font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.76);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 65vw;
+}
+
+.chats-list .chat-item .name-container .lastmessage .tick > *:not(.active) {
+  display: none;
+}
+
+.chats-list .chat-item .name-container .lastmessage .tick .active {
+  margin-right: 2px;
+  display: block;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.chats-list .chat-item .name-container .lastmessage .tick .active.blue {
+  color: #4fc3f7;
 }
 
 .chats-list .chat-item .time-container {
@@ -2358,6 +2381,10 @@ a * {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: right;
+}
+
+.chats-list .chat-item .time-container .message-time {
+  color: rgba(0, 0, 0, 0.671);
 }
 
 .chats-list .chat-item .time-container .message-time,
@@ -2503,6 +2530,10 @@ a * {
 .status-screen .viewed-status-container .image .border,
 .status-screen .viewed-status-container .image .whiteborder {
   display: none;
+}
+
+.status-screen .viewed-status-container .image img {
+  border: 2px solid rgba(75, 75, 75, 0.445);
 }
 
 .calls-list .call-item {

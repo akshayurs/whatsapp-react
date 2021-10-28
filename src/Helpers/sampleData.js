@@ -11,11 +11,12 @@ export const UsersList = [
     statusViewed: false,
     messageIndex: 8,
     userIndex: 0,
+    lastContentDate: 1635340638214,
     chatsList: [
       {
         index: 0,
         type: 0,
-        content: 'Yesterday',
+        time: 1635159553928,
       },
       {
         index: 1,
@@ -52,14 +53,14 @@ export const UsersList = [
       {
         index: 5,
         type: 0,
-        content: 'Today',
+        time: 1635340638214,
       },
       {
         index: 6,
         type: 2,
         content: 'Good Morning 🌞',
         time: 1635149583928,
-        status: 0,
+        status: 2,
       },
     ],
     calls: [
@@ -106,14 +107,8 @@ export const UsersList = [
     aboutUpdatedTime: 'November 20',
     profile: 'profile.jpg',
     isOnline: false,
-    lastSeen: 'Today 6:36 AM',
-    chatsList: [
-      {
-        index: 0,
-        type: 0,
-        content: 'Today',
-      },
-    ],
+    lastSeen: 1635406110434,
+    chatsList: [],
     openedStatus: 0,
     statusViewed: false,
     userIndex: 1,
