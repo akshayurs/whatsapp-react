@@ -81,6 +81,7 @@ function Header(props) {
             >
               Share Link
             </a>
+            <Link to={`/editdata`}>Edit Data</Link>
           </DropDown>
         )}
         <div className="top">

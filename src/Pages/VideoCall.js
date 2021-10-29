@@ -44,7 +44,7 @@ function VideoCall(props) {
   const src = ChangeImage(user.profile)
   if (error) {
     return (
-      <div class="videocall-error">
+      <div className="videocall-error">
         <br></br>
         <h1>{error}</h1>
         <br></br>

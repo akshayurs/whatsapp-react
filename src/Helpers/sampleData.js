@@ -2,16 +2,14 @@ export const UsersList = [
   {
     name: 'Akshay',
     about: 'Busy',
-    aboutUpdatedTime: 'October 14',
+    aboutUpdatedTime: 1634906110434,
     phoneNumber: '+91 987654321',
     profile: 'user.jpg',
     isOnline: true,
-    lastSeen: '',
     openedStatus: -1,
     statusViewed: false,
     messageIndex: 4,
     userIndex: 0,
-    lastContentDate: 1635340638214,
     chatsList: [
       {
         index: 0,
@@ -94,8 +92,8 @@ export const UsersList = [
     name: 'UnKnown',
     about: 'Hey there i am using whatsapp',
     phoneNumber: '+91 8975643213',
-    aboutUpdatedTime: 'November 20',
-    profile: 'profile.jpg',
+    aboutUpdatedTime: 1635006110434,
+    profile: 'default.jpg',
     isOnline: false,
     lastSeen: 1635406110434,
     chatsList: [],
@@ -120,3 +118,11 @@ export const UsersList = [
     ],
   },
 ]
+
+export const metaData = {
+  name: 'You',
+  about: 'Hey there i am using whatsapp',
+  aboutUpdatedTime: 1635006110434,
+  profile: 'default.jpg',
+  lastUserIndex: 1, //TODO: change this according to defalut user
+}

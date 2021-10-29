@@ -1,5 +1,4 @@
 import { UsersList } from './sampleData'
-import { GetTime, SameDay } from './Time'
 import GetUserIndex from './GetUserIndex'
 
 function saveData(state) {
@@ -65,6 +64,47 @@ export default function reducer(state, action) {
       draft[userIndex].lastContentDate = 0
       saveData(draft)
       return draft
+    }
+    case 'UPDATE_USER_DATA': {
+      const { userIndex, user } = action.value
+      const draft = [...state]
+      draft[userIndex] = {
+        ...draft[userIndex],
+        ...user,
+      }
+      saveData(draft)
+      return draft
+    }
+    case 'ADD_CONTACT': {
+      const { user } = action.value
+      const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
+      const draft = [...state]
+      draft.push({
+        ...user,
+        calls: [],
+        status: [],
+        chatsList: [],
+        openedStatus: -1,
+        statusViewed: false,
+        userIndex: ++metaData.lastUserIndex,
+        messageIndex: -1,
+      })
+      saveData(draft)
+      localStorage.setItem('metaDataWhatsapp', JSON.stringify(metaData))
+      return draft
+    }
+    case 'DELETE_USER': {
+      const newState = state.filter((user) => user.userIndex !== action.value)
+      saveData(newState)
+      return newState
+    }
+    case 'EDIT_META_DATA': {
+      const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
+      localStorage.setItem(
+        'metaDataWhatsapp',
+        JSON.stringify({ ...metaData, ...action.value })
+      )
+      return state
     }
     default:
       return new Error('INVALID TYPE')

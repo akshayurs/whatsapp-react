@@ -1,7 +1,21 @@
 export const SortByKey = function (arr, keys, toAscending) {
   if (keys.length === 1) {
     if (toAscending) {
-      return arr.sort((a, b) => a[keys[0]] - b[keys[0]])
+      return arr.sort((a, b) => {
+        let first = a[keys[0]]
+        let second = b[keys[0]]
+        if (keys[0] === 'name') {
+          first = first.toLowerCase()
+          second = second.toLowerCase()
+        }
+        if (first < second) {
+          return -1
+        }
+        if (first > second) {
+          return 1
+        }
+        return 0
+      })
     } else {
       return arr.sort((b, a) => a[keys[0]] - b[keys[0]])
     }

@@ -6,10 +6,12 @@ import ContactAboutScreen from './Pages/ContactAboutScreen'
 import NewChatScreen from './Pages/NewChatScreen'
 import ChatScreen from './Pages/ChatScreen/ChatScreen'
 import StatusView from './Pages/StatusView'
+import EditUser from './Pages/EditUser'
 import VideoCall from './Pages/VideoCall'
 import VoiceCall from './Pages/VoiceCall'
 import AboutScreen from './Pages/AboutScreen'
-import { UsersList as sampleData } from './Helpers/sampleData'
+import EditData from './Pages/EditData'
+import { UsersList as sampleData, metaData } from './Helpers/sampleData'
 import { UserContext } from './Helpers/UserContext'
 import { DispatchContext } from './Helpers/DispatchContext'
 import reducer from './Helpers/Reducer'
@@ -28,6 +30,10 @@ function App() {
       dispatch({ type: 'SET_DATA', value: JSON.parse(data) })
     } else {
       dispatch({ type: 'SET_DATA', value: sampleData })
+    }
+    const metaDataTemp = localStorage.getItem('metaDataWhatsapp')
+    if (!metaDataTemp) {
+      localStorage.setItem('metaDataWhatsapp', JSON.stringify(metaData))
     }
   }, [])
 
@@ -50,8 +56,20 @@ function App() {
               <Route path="/videocall/:userid" exact>
                 <VideoCall />
               </Route>
-              <Route path="/contactabout/:userid">
+              <Route path="/contactabout/:userid" exact>
                 <ContactAboutScreen />
+              </Route>
+              <Route path="/edituser/:userid" exact>
+                <EditUser />
+              </Route>
+              <Route path="/addnewuser/" exact>
+                <EditUser addNewContact={true} />
+              </Route>
+              <Route path="/editmetadata/" exact>
+                <EditUser isyourData={true} />
+              </Route>
+              <Route path="/editdata" exact>
+                <EditData />
               </Route>
               <Route path="/newchat">
                 <NewChatScreen />

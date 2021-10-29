@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { UserContext } from '../Helpers/UserContext'
 import { withRouter, useParams, Link } from 'react-router-dom'
 import ChangeImage from '../Helpers/ChangeImage'
+import { GetDayAndMonth } from '../Helpers/Time'
 function ContactAboutScreen(props) {
   const { userid } = useParams()
   const appState = useContext(UserContext)
@@ -62,7 +63,7 @@ function ContactAboutScreen(props) {
         <div className="item">
           <div className="content">
             <h2 className="about">{user.about}</h2>
-            <h3 className="time">{user.aboutUpdatedTime}</h3>
+            <h3 className="time">{GetDayAndMonth(user.aboutUpdatedTime)}</h3>
           </div>
         </div>
         <div className="item">

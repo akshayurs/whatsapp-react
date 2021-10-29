@@ -1,18 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import StatusItem from '../../components/StatusItem'
 import { UserContext } from '../../Helpers/UserContext'
 import { SortByKeyLast } from '../../Helpers/Sort'
+import ChangeImage from '../../Helpers/ChangeImage'
 function StatusListSlide() {
   const appState = useContext(UserContext)
+  const [imageSrc, setImageSrc] = useState('default.jpg')
+  useEffect(() => {
+    setTimeout(() => {
+      const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
+      setImageSrc(metaData.profile)
+    }, 500)
+  }, [])
 
-  const sortedStatus = SortByKeyLast(appState, ['status', 'time'], false)
+  const filteredList = appState.filter((user) => user.status.length > 0)
+  const sortedStatus = SortByKeyLast(filteredList, ['status', 'time'], false)
 
   return (
     <div className="slide-item status-screen">
       <label htmlFor="camerainput">
         <div className="add-status">
           <div className="image">
-            <img src="/img/user.jpg" alt="status" />
+            <img src={ChangeImage(imageSrc)} alt="status" />
             <i className="fas fa-plus"></i>
           </div>
           <div className="container">

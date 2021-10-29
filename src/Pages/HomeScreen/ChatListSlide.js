@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect, useCallback } from 'react'
+import React, { useContext, useEffect, useCallback } from 'react'
 import { UserContext } from '../../Helpers/UserContext'
 import ChatItem from '../../components/ChatItem'
 import { SortByKeyLast } from '../../Helpers/Sort'

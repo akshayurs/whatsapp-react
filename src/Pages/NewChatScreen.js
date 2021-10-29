@@ -2,8 +2,10 @@ import React, { useContext } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
 import ContactItem from '../components/ContactItem'
+import { SortByKey } from '../Helpers/Sort'
 function NewChatScreen(props) {
   const appState = useContext(UserContext)
+  const sortedList = SortByKey(appState, ['name'], true)
   return (
     <div className="new-chat-screen">
       <header>
@@ -19,7 +21,7 @@ function NewChatScreen(props) {
           <div className="container">
             <h2>Select Contact</h2>
             <h3 className="contacts-total">
-              <span>2</span> contacts
+              <span>{appState.length}</span> contacts
             </h3>
           </div>
         </div>
@@ -34,15 +36,15 @@ function NewChatScreen(props) {
         <i className="fas fa-2x fa-user-friends user-icon"></i>
         <h2>New Group</h2>
       </div>
-      <div className="item new-contact">
+      <Link to="/addnewuser/" className="item new-contact">
         <i className="fas fa-2x fa-user-plus user-icon"></i>
         <h2>New Contact</h2>
         <label htmlFor="camerainput">
           <i className="fas fa-2x fa-qrcode qrcode"></i>
         </label>
-      </div>
+      </Link>
       <div className="contacts-list-container">
-        {appState.map((user) => (
+        {sortedList.map((user) => (
           <ContactItem user={user} key={user.userIndex} />
         ))}
       </div>

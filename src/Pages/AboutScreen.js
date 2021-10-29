@@ -19,7 +19,7 @@ function AboutScreen(props) {
         <h1 className="title">ABOUT</h1>
         <div className="item whatsapp">
           <div className="left">
-            <i class="fab fa-react"></i>
+            <i className="fab fa-react"></i>
           </div>
           <div className="right">Whatsapp Clone With React</div>
         </div>

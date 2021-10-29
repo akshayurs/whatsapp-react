@@ -398,6 +398,7 @@ a * {
 
 .chatscreen .header .left img {
   width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -829,6 +830,274 @@ a * {
 
 .chatscreen .message-container .message .tick .active.blue {
   color: #4fc3f7;
+}
+
+.edituserscreen {
+  font-size: 1.5rem;
+  font-family: Merienda;
+  background-color: #77aa77;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2377aa77'/%3E%3Cstop offset='1' stop-color='%234fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.edituserscreen header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.479);
+  margin-bottom: 4rem;
+  color: white;
+}
+
+.edituserscreen header i {
+  -webkit-text-stroke: 2px rgba(36, 51, 39, 0.788);
+  font-size: 2.4rem;
+}
+
+.edituserscreen header p {
+  font-size: 1.8rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+}
+
+.edituserscreen img {
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.edituserscreen form {
+  width: 85vw;
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: rgba(238, 238, 238, 0.452);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  border-radius: 2rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.219);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.219);
+  -webkit-animation: fadein 0.5s;
+          animation: fadein 0.5s;
+}
+
+.edituserscreen form fieldset {
+  padding: 1rem;
+}
+
+.edituserscreen form fieldset label:first-of-type {
+  margin-top: 0;
+}
+
+.edituserscreen form .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.edituserscreen form button {
+  font-family: Merienda;
+  display: block;
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
+  margin: 0 1rem;
+  margin-top: 1rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+  border: 1px solid;
+}
+
+.edituserscreen form label {
+  font-size: 1.6rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.edituserscreen form input,
+.edituserscreen form textarea {
+  padding: 0.5rem;
+}
+
+.edituserscreen form .onlineRadioContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+}
+
+.edituserscreen form .onlineRadioContainer label,
+.edituserscreen form .onlineRadioContainer input {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.edituserscreen form .onlineRadioContainer input:first-of-type {
+  margin-right: 4rem;
+}
+
+.edituserscreen input,
+.edituserscreen label,
+.edituserscreen textarea {
+  display: block;
+  width: 100%;
+}
+
+.editdatascreen {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3Crect stroke='%23ffffff' stroke-width='0.3' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='3' height='3' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cuse fill='%23fcfcfc' href='%23s' y='2'/%3E%3Cuse fill='%23fcfcfc' href='%23s' x='1' y='2'/%3E%3Cuse fill='%23fafafa' href='%23s' x='2' y='2'/%3E%3Cuse fill='%23fafafa' href='%23s'/%3E%3Cuse fill='%23f7f7f7' href='%23s' x='2'/%3E%3Cuse fill='%23f7f7f7' href='%23s' x='1' y='1'/%3E%3C/pattern%3E%3Cpattern id='b' width='7' height='11' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23f5f5f5'%3E%3Cuse href='%23s'/%3E%3Cuse href='%23s' y='5' /%3E%3Cuse href='%23s' x='1' y='10'/%3E%3Cuse href='%23s' x='2' y='1'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='8'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='5' y='2'/%3E%3Cuse href='%23s' x='5' y='6'/%3E%3Cuse href='%23s' x='6' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='h' width='5' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23f5f5f5'%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' y='8'/%3E%3Cuse href='%23s' x='1' y='1'/%3E%3Cuse href='%23s' x='1' y='9'/%3E%3Cuse href='%23s' x='1' y='12'/%3E%3Cuse href='%23s' x='2'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='2'/%3E%3Cuse href='%23s' x='3' y='6'/%3E%3Cuse href='%23s' x='3' y='11'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='4' y='10'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='17' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23f2f2f2'%3E%3Cuse href='%23s' y='11'/%3E%3Cuse href='%23s' x='2' y='9'/%3E%3Cuse href='%23s' x='5' y='12'/%3E%3Cuse href='%23s' x='9' y='4'/%3E%3Cuse href='%23s' x='12' y='1'/%3E%3Cuse href='%23s' x='16' y='6'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='19' height='17' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23ffffff'%3E%3Cuse href='%23s' y='9'/%3E%3Cuse href='%23s' x='16' y='5'/%3E%3Cuse href='%23s' x='14' y='2'/%3E%3Cuse href='%23s' x='11' y='11'/%3E%3Cuse href='%23s' x='6' y='14'/%3E%3C/g%3E%3Cg fill='%23efefef'%3E%3Cuse href='%23s' x='3' y='13'/%3E%3Cuse href='%23s' x='9' y='7'/%3E%3Cuse href='%23s' x='13' y='10'/%3E%3Cuse href='%23s' x='15' y='4'/%3E%3Cuse href='%23s' x='18' y='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='53' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='2' y='5'/%3E%3Cuse href='%23s' x='16' y='38'/%3E%3Cuse href='%23s' x='46' y='42'/%3E%3Cuse href='%23s' x='29' y='20'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='59' height='71' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='33' y='13'/%3E%3Cuse href='%23s' x='27' y='54'/%3E%3Cuse href='%23s' x='55' y='55'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='g' width='139' height='97' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='11' y='8'/%3E%3Cuse href='%23s' x='51' y='13'/%3E%3Cuse href='%23s' x='17' y='73'/%3E%3Cuse href='%23s' x='99' y='57'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23b)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23h)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23c)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23d)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23e)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23f)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.editdatascreen header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: lightcoral;
+}
+
+.editdatascreen header i {
+  margin-left: 1rem;
+}
+
+.editdatascreen header p {
+  font-size: 2rem;
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.editdatascreen .addnewcontact {
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: lightcoral;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+}
+
+.editdatascreen .addnewcontact i {
+  padding: 0 0.4rem;
+}
+
+.editdatascreen .user-item {
+  background: #eee;
+  margin: 2rem auto;
+  border-radius: 2rem;
+  width: 80vw;
+  max-width: 40rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.308);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.308);
+}
+
+.editdatascreen .user-item:hover {
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
+}
+
+.editdatascreen .user-item .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 2rem 0 0 2rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: lightcoral;
+}
+
+.editdatascreen .user-item .top img {
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.editdatascreen .user-item .top .name,
+.editdatascreen .user-item .top img {
+  font-size: 1.8rem;
+  margin: 0.7rem 2rem;
+}
+
+.editdatascreen .user-item .bottom {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 1rem;
+}
+
+.editdatascreen .user-item .bottom a,
+.editdatascreen .user-item .bottom div {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  background: lightcoral;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+}
+
+.editdatascreen .user-item .bottom a:hover,
+.editdatascreen .user-item .bottom div:hover {
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
 }
 
 .contactscreen {
@@ -1527,6 +1796,8 @@ a * {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .status-screen .add-status .image i {
@@ -1701,6 +1972,8 @@ a * {
   height: 4rem;
   border-radius: 50%;
   margin: 0 1rem;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .status-view .header .bottom .left .container {
@@ -2302,7 +2575,10 @@ a * {
 
 .chats-list .chat-item .profile-picture img {
   width: 5rem;
+  height: 5rem;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .chats-list .chat-item .profile-picture.online::after {
@@ -2401,6 +2677,8 @@ a * {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .new-chat-screen .contact .container,
@@ -2553,6 +2831,8 @@ a * {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .calls-list .call-item .container {

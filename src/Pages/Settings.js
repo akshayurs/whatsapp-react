@@ -1,7 +1,10 @@
 import React from 'react'
-import {  withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import ChangeImage from '../Helpers/ChangeImage'
 
 function Settings(props) {
+  const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
+
   return (
     <>
       <div className="settings">
@@ -16,18 +19,18 @@ function Settings(props) {
           ></i>
           <h1>Settings</h1>
         </div>
-        <div className="profile">
+        <Link to="/editdata" className="profile">
           <div className="left">
-            <img src="/img/user.jpg" alt="" />
+            <img src={ChangeImage(metaData.profile)} alt="" />
             <div className="container">
-              <div className="name">Akshay</div>
-              <div className="about">Busy</div>
+              <div className="name">{metaData.name}</div>
+              <div className="about">{metaData.about}</div>
             </div>
           </div>
           <div className="right">
             <i className="fas fa-2x fa-qrcode"></i>
           </div>
-        </div>
+        </Link>
         <div className="item">
           <i className="fas fa-2x fa-key"></i>
           <div className="container">

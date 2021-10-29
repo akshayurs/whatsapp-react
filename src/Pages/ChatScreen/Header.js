@@ -60,13 +60,17 @@ function Header(props) {
       <>
         {openMenu && (
           <DropDown setOpenMenu={setOpenMenu}>
-            <div
-              onClick={() => {
-                OpenFullScreen()
-              }}
-            >
-              FullScreen
-            </div>
+            {!window.matchMedia('(display-mode: standalone)').matches ? (
+              <div
+                onClick={() => {
+                  OpenFullScreen()
+                }}
+              >
+                FullScreen
+              </div>
+            ) : (
+              ''
+            )}
           </DropDown>
         )}
         <div className="header">
@@ -140,13 +144,17 @@ function Header(props) {
     <>
       {openMenu && (
         <DropDown setOpenMenu={setOpenMenu}>
-          <div
-            onClick={() => {
-              OpenFullScreen()
-            }}
-          >
-            FullScreen
-          </div>
+          {!window.matchMedia('(display-mode: standalone)').matches ? (
+            <div
+              onClick={() => {
+                OpenFullScreen()
+              }}
+            >
+              FullScreen
+            </div>
+          ) : (
+            ''
+          )}
           <Link to={'/contactabout/' + userid}>View Contact</Link>
           <div
             onClick={() => {
@@ -169,6 +177,7 @@ function Header(props) {
           >
             Export Chat
           </div>
+          <Link to={`/edituser/${userid}`}>Edit contact</Link>
         </DropDown>
       )}
       <div className="header">

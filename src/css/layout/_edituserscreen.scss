@@ -1,0 +1,95 @@
+.edituserscreen {
+  font-size: 1.5rem;
+  font-family: Merienda;
+  background-color: #77aa77;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2377aa77'/%3E%3Cstop offset='1' stop-color='%234fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.479);
+    margin-bottom: 4rem;
+    color: white;
+    i {
+      -webkit-text-stroke: 2px rgba(36, 51, 39, 0.788);
+      font-size: 2.4rem;
+    }
+    p {
+      font-size: 1.8rem;
+      flex: 1;
+      text-align: center;
+    }
+  }
+  img {
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
+  form {
+    width: 85vw;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 3rem;
+    background-color: rgba(238, 238, 238, 0.452);
+    backdrop-filter: blur(2px);
+    border-radius: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.219);
+    animation: fadein 0.5s;
+    fieldset {
+      padding: 1rem;
+      label:first-of-type {
+        margin-top: 0;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+    }
+    button {
+      font-family: Merienda;
+      display: block;
+      padding: 0.8rem 2rem;
+      border-radius: 1rem;
+      margin: 0 1rem;
+      margin-top: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+      border: 1px solid;
+    }
+    label {
+      font-size: 1.6rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+    input,
+    textarea {
+      padding: 0.5rem;
+    }
+    .onlineRadioContainer {
+      display: flex;
+      align-items: center;
+      margin: 1rem;
+      label,
+      input {
+        width: max-content;
+        padding: 0.5rem;
+        margin: 0;
+      }
+      input:first-of-type {
+        margin-right: 4rem;
+      }
+    }
+  }
+  input,
+  label,
+  textarea {
+    display: block;
+    width: 100%;
+  }
+}
