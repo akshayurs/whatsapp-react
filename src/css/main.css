@@ -965,21 +965,23 @@ a * {
 }
 
 .editdatascreen {
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3Crect stroke='%23ffffff' stroke-width='0.3' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='3' height='3' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cuse fill='%23fcfcfc' href='%23s' y='2'/%3E%3Cuse fill='%23fcfcfc' href='%23s' x='1' y='2'/%3E%3Cuse fill='%23fafafa' href='%23s' x='2' y='2'/%3E%3Cuse fill='%23fafafa' href='%23s'/%3E%3Cuse fill='%23f7f7f7' href='%23s' x='2'/%3E%3Cuse fill='%23f7f7f7' href='%23s' x='1' y='1'/%3E%3C/pattern%3E%3Cpattern id='b' width='7' height='11' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23f5f5f5'%3E%3Cuse href='%23s'/%3E%3Cuse href='%23s' y='5' /%3E%3Cuse href='%23s' x='1' y='10'/%3E%3Cuse href='%23s' x='2' y='1'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='8'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='5' y='2'/%3E%3Cuse href='%23s' x='5' y='6'/%3E%3Cuse href='%23s' x='6' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='h' width='5' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23f5f5f5'%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' y='8'/%3E%3Cuse href='%23s' x='1' y='1'/%3E%3Cuse href='%23s' x='1' y='9'/%3E%3Cuse href='%23s' x='1' y='12'/%3E%3Cuse href='%23s' x='2'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='2'/%3E%3Cuse href='%23s' x='3' y='6'/%3E%3Cuse href='%23s' x='3' y='11'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='4' y='10'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='17' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23f2f2f2'%3E%3Cuse href='%23s' y='11'/%3E%3Cuse href='%23s' x='2' y='9'/%3E%3Cuse href='%23s' x='5' y='12'/%3E%3Cuse href='%23s' x='9' y='4'/%3E%3Cuse href='%23s' x='12' y='1'/%3E%3Cuse href='%23s' x='16' y='6'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='19' height='17' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23ffffff'%3E%3Cuse href='%23s' y='9'/%3E%3Cuse href='%23s' x='16' y='5'/%3E%3Cuse href='%23s' x='14' y='2'/%3E%3Cuse href='%23s' x='11' y='11'/%3E%3Cuse href='%23s' x='6' y='14'/%3E%3C/g%3E%3Cg fill='%23efefef'%3E%3Cuse href='%23s' x='3' y='13'/%3E%3Cuse href='%23s' x='9' y='7'/%3E%3Cuse href='%23s' x='13' y='10'/%3E%3Cuse href='%23s' x='15' y='4'/%3E%3Cuse href='%23s' x='18' y='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='53' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='2' y='5'/%3E%3Cuse href='%23s' x='16' y='38'/%3E%3Cuse href='%23s' x='46' y='42'/%3E%3Cuse href='%23s' x='29' y='20'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='59' height='71' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='33' y='13'/%3E%3Cuse href='%23s' x='27' y='54'/%3E%3Cuse href='%23s' x='55' y='55'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='g' width='139' height='97' patternUnits='userSpaceOnUse' patternTransform='scale(19.2) translate(-947.92 -710.94)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='11' y='8'/%3E%3Cuse href='%23s' x='51' y='13'/%3E%3Cuse href='%23s' x='17' y='73'/%3E%3Cuse href='%23s' x='99' y='57'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23b)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23h)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23c)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23d)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23e)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23f)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
-  background-size: cover;
+  background-image: radial-gradient(circle at 44% 13%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 98%, transparent 98%, transparent 100%), radial-gradient(circle at 87% 84%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 46%, transparent 46%, transparent 100%), radial-gradient(circle at 84% 60%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 40%, transparent 100%), radial-gradient(circle at 21% 32%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 28%, transparent 28%, transparent 100%), radial-gradient(circle at 57% 12%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 34%, transparent 34%, transparent 100%), radial-gradient(circle at 33% 60%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 29%, transparent 29%, transparent 100%), radial-gradient(circle at 3% 11%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 60%, transparent 60%, transparent 100%), radial-gradient(circle at 0% 74%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 87%, transparent 87%, transparent 100%), linear-gradient(45deg, #6369be, #6346cd);
   min-height: 100vh;
+  padding-bottom: 1rem;
 }
 
 .editdatascreen header {
+  font-family: Merienda;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 1rem;
+  padding: 1.5rem 0.5rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: lightcoral;
+  color: #6369be;
+  -webkit-text-stroke: 0.3px black;
+  background: rgba(255, 255, 255, 0.918);
 }
 
 .editdatascreen header i {
@@ -987,6 +989,8 @@ a * {
 }
 
 .editdatascreen header p {
+  -webkit-transform: translateX(-3%);
+          transform: translateX(-3%);
   font-size: 2rem;
   text-align: center;
   -webkit-box-flex: 1;
@@ -994,11 +998,22 @@ a * {
           flex: 1;
 }
 
+.editdatascreen img {
+  display: block;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+  width: 6rem;
+  height: 6rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
 .editdatascreen .addnewcontact {
   display: block;
   margin: 1rem auto;
   padding: 1rem;
-  background: lightcoral;
+  background: rgba(255, 255, 255, 0.664);
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1010,10 +1025,73 @@ a * {
   padding: 0 0.4rem;
 }
 
-.editdatascreen .user-item {
-  background: #eee;
-  margin: 2rem auto;
-  border-radius: 2rem;
+.editdatascreen .title {
+  font-size: 1.8rem;
+  padding: 1rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0.5rem auto;
+  color: white;
+  -webkit-text-stroke: 0.5px black;
+  font-family: Merienda;
+}
+
+.editdatascreen .user-container {
+  background: -webkit-gradient(linear, left top, right top, from(#dbdbdb9c), color-stop(#f2f2f29d), to(#eaeaeaa2));
+  background: linear-gradient(to right, #dbdbdb9c, #f2f2f29d, #eaeaeaa2);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  width: 80vw;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.377);
+  margin-bottom: 2rem;
+}
+
+.editdatascreen .user-container > * {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.editdatascreen .user-container .name {
+  font-size: 1.6rem;
+  padding: 0.5rem;
+}
+
+.editdatascreen .user-container .about {
+  font-size: 1.4rem;
+}
+
+.editdatascreen .user-container a {
+  display: block;
+  background-color: rgba(250, 250, 250, 0.822);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
+.editdatascreen .user-container a i {
+  margin-right: 0.8rem;
+}
+
+.editdatascreen .contacts-container .user-item {
+  background: -webkit-gradient(linear, left top, right top, from(#dbdbdb9c), color-stop(#f2f2f29d), to(#eaeaeaa2));
+  background: linear-gradient(to right, #dbdbdb9c, #f2f2f29d, #eaeaeaa2);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  margin: 0 auto 2rem auto;
+  border-radius: 1.5rem;
   width: 80vw;
   max-width: 40rem;
   display: -webkit-box;
@@ -1027,12 +1105,12 @@ a * {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.308);
 }
 
-.editdatascreen .user-item:hover {
+.editdatascreen .contacts-container .user-item:hover {
   -webkit-transform: scale(1.04);
           transform: scale(1.04);
 }
 
-.editdatascreen .user-item .top {
+.editdatascreen .contacts-container .user-item .top {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1050,42 +1128,33 @@ a * {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: lightcoral;
+  color: black;
 }
 
-.editdatascreen .user-item .top img {
-  display: block;
-  width: 6rem;
-  height: 6rem;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 50%;
-}
-
-.editdatascreen .user-item .top .name,
-.editdatascreen .user-item .top img {
+.editdatascreen .contacts-container .user-item .top .name,
+.editdatascreen .contacts-container .user-item .top img {
   font-size: 1.8rem;
   margin: 0.7rem 2rem;
 }
 
-.editdatascreen .user-item .bottom {
+.editdatascreen .contacts-container .user-item .bottom {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   padding: 1rem;
+  border-radius: 0 1rem 1rem 0;
 }
 
-.editdatascreen .user-item .bottom a,
-.editdatascreen .user-item .bottom div {
+.editdatascreen .contacts-container .user-item .bottom a,
+.editdatascreen .contacts-container .user-item .bottom div {
   display: block;
+  text-align: center;
   padding: 0.5rem 1rem;
   font-size: 1.6rem;
-  background: lightcoral;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  background: white;
+  min-width: 13rem;
   margin: 1rem auto;
-  border-radius: 1rem;
+  border-radius: 0.6rem;
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
@@ -1094,10 +1163,15 @@ a * {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
 }
 
-.editdatascreen .user-item .bottom a:hover,
-.editdatascreen .user-item .bottom div:hover {
+.editdatascreen .contacts-container .user-item .bottom a:hover,
+.editdatascreen .contacts-container .user-item .bottom div:hover {
   -webkit-transform: scale(1.04);
           transform: scale(1.04);
+}
+
+.editdatascreen .contacts-container .user-item .bottom a i,
+.editdatascreen .contacts-container .user-item .bottom div i {
+  margin-right: 0.8rem;
 }
 
 .contactscreen {

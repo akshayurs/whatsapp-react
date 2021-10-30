@@ -68,6 +68,7 @@ export default function reducer(state, action) {
     case 'UPDATE_USER_DATA': {
       const { userIndex, user } = action.value
       const draft = [...state]
+      console.log('reducer', new Date(user.lastSeen))
       draft[userIndex] = {
         ...draft[userIndex],
         ...user,

@@ -24,7 +24,7 @@ function UserItem(props) {
           <Link to={`/editcalls/${user.userIndex}`}>
             <i className="fas fa-phone-alt"></i>Edit Calls
           </Link>
-          <Link to={`/editcalls/${user.userIndex}`}>
+          <Link to={`/editstatus/${user.userIndex}`}>
             <i className="fas fa-photo-video"></i>Edit Status
           </Link>
           <div

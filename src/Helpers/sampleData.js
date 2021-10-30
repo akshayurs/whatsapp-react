@@ -9,6 +9,7 @@ export const UsersList = [
     openedStatus: -1,
     statusViewed: false,
     messageIndex: 4,
+    statusIndex: 4,
     userIndex: 0,
     chatsList: [
       {
@@ -66,22 +67,26 @@ export const UsersList = [
     ],
     status: [
       {
+        index: 1,
         src: 'welcome.jpg',
         caption: 'Welcome to All',
         time: 1635149553928,
       },
       {
+        index: 2,
         src: 'background.png',
         caption: 'this is background',
         time: 1635149553928,
       },
       {
+        index: 3,
         isVideo: true,
         src: 'samplemusic.mp4',
         caption: 'im video',
         time: 1635159553928,
       },
       {
+        index: 4,
         src: 'githubbackground.jpg',
         caption: 'Code available on Github',
         time: 1635949523928,
@@ -101,6 +106,7 @@ export const UsersList = [
     statusViewed: false,
     userIndex: 1,
     messageIndex: 0,
+    statusIndex: 0,
     calls: [
       {
         time: 1635149553928,
@@ -111,6 +117,7 @@ export const UsersList = [
     ],
     status: [
       {
+        index: 0,
         src: 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg',
         caption: 'im unknown',
         time: 1635149453928,

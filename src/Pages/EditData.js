@@ -22,18 +22,26 @@ function EditData(props) {
         ></i>
         <p>App Data</p>
       </header>
-      <div className="user-container"></div>
+      <h1 className="title">Your Data</h1>
+      <div className="user-container">
+        <img src={ChangeImage(metaData.profile)} alt="" />
+        <div className="name">{metaData.name}</div>
+        <div className="about">{metaData.about}</div>
+        <Link to="/editmetadata/">
+          <i className="fas fa-pencil-alt"></i>Edit
+        </Link>
+      </div>
+
+      <div className="contacts-container">
+        <h1 className="title">Contacts</h1>
+        {appState.map((user) => (
+          <UserItem user={user} key={user.userIndex} />
+        ))}
+      </div>
       <Link to="/addnewuser/" className="addnewcontact">
         <i className="fas fa-plus"></i>
         New contact
       </Link>
-      <div className="contacts-container">
-        {appState.map((user) => (
-          <>
-            <UserItem user={user} key={user.userIndex} />
-          </>
-        ))}
-      </div>
     </div>
   )
 }

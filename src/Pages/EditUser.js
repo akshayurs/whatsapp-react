@@ -10,32 +10,34 @@ function EditUser(props) {
   const appState = useContext(UserContext)
   const appDispatch = useContext(DispatchContext)
 
-  const userIndex = GetUserIndex(appState, parseInt(userid))
-  const user = appState[userIndex]
-
   const [isOnline, setIsOnline] = useState(true)
-  const [lastSeenDate, setLastSeenDate] = useState(0)
   const [lastSeenTime, setLastSeenTime] = useState(0)
   const [name, setName] = useState('')
+  const [originalName, setOriginalName] = useState('')
   const [about, setAbout] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [profile, setProfile] = useState('default.jpg')
   const [aboutUpdatedTime, setAboutUpdatedTime] = useState(0)
 
   useEffect(() => {
+    const userIndex = GetUserIndex(appState, parseInt(userid))
+    const user = appState[userIndex]
     if (user && !addNewContact && !isyourData) {
-      console.log('set', user.isOnline)
+      setOriginalName(user.name)
       setName(user.name)
       setProfile(user.profile)
       setAbout(user.about)
-      setAboutUpdatedTime(
-        new Date(user.aboutUpdatedTime).toISOString().slice(0, 10)
-      )
+      setAboutUpdatedTime(() => {
+        let date = new Date(user.aboutUpdatedTime)
+        date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
+        return date.toISOString().slice(0, 10)
+      })
       setIsOnline(user.isOnline)
       setPhoneNumber(user.phoneNumber)
       if (!user.isOnline) {
-        setLastSeenDate(new Date(user.lastSeen).toISOString().slice(0, 10))
-        setLastSeenTime(new Date(user.lastSeen).toISOString().slice(11, 23))
+        let date = new Date(user.lastSeen)
+        date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
+        setLastSeenTime(date.toISOString().slice(0, 16))
       }
     }
     if (isyourData) {
@@ -47,7 +49,7 @@ function EditUser(props) {
         new Date(metaData.aboutUpdatedTime).toISOString().slice(0, 10)
       )
     }
-  }, [user, isyourData, addNewContact])
+  }, [appState])
 
   return (
     <div className="edituserscreen">
@@ -82,6 +84,7 @@ function EditUser(props) {
               },
             })
             props.history.go(-1)
+            return
           }
           let userObj = {
             isOnline,
@@ -94,7 +97,7 @@ function EditUser(props) {
           if (!isOnline) {
             userObj = {
               ...userObj,
-              lastSeen: new Date(`${lastSeenDate} ${lastSeenTime}`).getTime(),
+              lastSeen: new Date(lastSeenTime).getTime(),
             }
           }
           if (addNewContact) {
@@ -109,7 +112,7 @@ function EditUser(props) {
               type: 'UPDATE_USER_DATA',
               value: {
                 user: userObj,
-                userIndex,
+                userIndex: parseInt(userid),
               },
             })
           }
@@ -188,23 +191,14 @@ function EditUser(props) {
               <>
                 <fieldset>
                   <legend>Lastseen</legend>
-                  <label htmlFor="lastseendate">Date</label>
                   <input
-                    type="date"
-                    id="lastseendate"
-                    value={lastSeenDate}
-                    placeholder="Date"
-                    onChange={(e) => setLastSeenDate(e.target.value)}
-                    required
-                  />
-                  <label htmlFor="lastseentime">Time</label>
-
-                  <input
-                    type="time"
+                    type="datetime-local"
                     id="lastseentime"
                     value={lastSeenTime}
                     placeholder="Time"
-                    onChange={(e) => setLastSeenTime(e.target.value)}
+                    onChange={(e) => {
+                      setLastSeenTime(e.target.value)
+                    }}
                     required
                   />
                 </fieldset>
@@ -219,8 +213,8 @@ function EditUser(props) {
           {!addNewContact && (
             <button
               onClick={() => {
-                if (window.confirm('Do you want to delete ' + user.name)) {
-                  appDispatch({ type: 'DELETE_USER', value: user.userIndex })
+                if (window.confirm('Do you want to delete ' + originalName)) {
+                  appDispatch({ type: 'DELETE_USER', value: parseInt(userid) })
                   props.history.go(-1)
                 }
               }}
