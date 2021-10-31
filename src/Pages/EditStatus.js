@@ -30,74 +30,99 @@ function EditStatus(props) {
           className="fas fa-2x fa-arrow-left"
         ></i>
         <p>Edit Status</p>
-        {status.map((item) => {
-          let date = new Date(item.time)
-          date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
-          return (
-            <div className="status-item" key={item.index}>
-              {item.isVideo ? (
-                <video
-                  src={ChangeImage(item.src)}
-                  className="status-media"
-                  controls
-                ></video>
-              ) : (
-                <img
-                  src={ChangeImage(item.src)}
-                  alt="status media"
-                  className="status-media"
-                />
-              )}
-              <input
-                type="text"
-                value={item.src}
-                onChange={(e) => {
-                  e.persist()
-                  setStatus((prev) => {
-                    return prev.map((status) => {
-                      if (status.index === item.index) {
-                        return {
-                          ...status,
-                          src: e.target.value,
-                        }
-                      }
-                      return status
-                    })
-                  })
-                }}
-              />
-              <input
-                type="datetime-local"
-                value={date.toISOString().slice(0, 16)}
-                onChange={(e) => {
-                  e.persist()
-                  setStatus((prev) => {
-                    return prev.map((status) => {
-                      if (status.index === item.index) {
-                        return {
-                          ...status,
-                          time: new Date(e.target.value).getTime(),
-                        }
-                      }
-                      return status
-                    })
-                  })
-                }}
-              />
-              <button
-                onClick={(e) => {
-                  e.persist()
-                  setStatus((prev) => {
-                    return prev.filter((status) => status.index !== item.index)
-                  })
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          )
-        })}
       </header>
+      {status.map((item) => {
+        let date = new Date(item.time)
+        date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
+        return (
+          <div className="status-item" key={item.index}>
+            {item.isVideo ? (
+              <video
+                src={ChangeImage(item.src)}
+                className="status-media"
+                controls
+              ></video>
+            ) : (
+              <img
+                src={ChangeImage(item.src)}
+                alt="status media"
+                className="status-media"
+              />
+            )}
+            <label htmlFor="url">Url :</label>
+            <input
+              type="text"
+              id="url"
+              value={item.src}
+              placeholder="http://example.com/video.mp4"
+              onChange={(e) => {
+                e.persist()
+                setStatus((prev) => {
+                  return prev.map((status) => {
+                    if (status.index === item.index) {
+                      return {
+                        ...status,
+                        src: e.target.value,
+                      }
+                    }
+                    return status
+                  })
+                })
+              }}
+            />
+            <label htmlFor="caption">Caption :</label>
+            <input
+              type="text"
+              id="caption"
+              value={item.caption}
+              onChange={(e) => {
+                e.persist()
+                setStatus((prev) => {
+                  return prev.map((status) => {
+                    if (status.index === item.index) {
+                      return {
+                        ...status,
+                        caption: e.target.value,
+                      }
+                    }
+                    return status
+                  })
+                })
+              }}
+            />
+            <label htmlFor="uploaddate">Uploaded on :</label>
+            <input
+              type="datetime-local"
+              id="uploaddate"
+              value={date.toISOString().slice(0, 16)}
+              onChange={(e) => {
+                e.persist()
+                setStatus((prev) => {
+                  return prev.map((status) => {
+                    if (status.index === item.index) {
+                      return {
+                        ...status,
+                        time: new Date(e.target.value).getTime(),
+                      }
+                    }
+                    return status
+                  })
+                })
+              }}
+            />
+            <button
+              onClick={(e) => {
+                e.persist()
+                setStatus((prev) => {
+                  return prev.filter((status) => status.index !== item.index)
+                })
+              }}
+            >
+              <i className="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        )
+      })}
     </div>
   )
 }

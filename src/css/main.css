@@ -1174,6 +1174,61 @@ a * {
   margin-right: 0.8rem;
 }
 
+.editstatusscreen header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1.5rem 1rem;
+  color: white;
+  background-color: var(--dark-green);
+}
+
+.editstatusscreen header p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.editstatusscreen .status-item {
+  max-width: 95vw;
+  background: #eee;
+  margin: 2rem auto 4rem auto;
+  padding: 1.5rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+  border-radius: 1rem;
+}
+
+.editstatusscreen .status-item > * {
+  display: block;
+}
+
+.editstatusscreen .status-item img,
+.editstatusscreen .status-item video {
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 60vh;
+}
+
+.editstatusscreen .status-item label,
+.editstatusscreen .status-item input {
+  padding: 0.4rem;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.editstatusscreen .status-item label {
+  margin: 1rem 0 0rem 0;
+}
+
+.editstatusscreen .status-item button {
+  margin: 1rem auto;
+  padding: 0.8rem 2rem;
+  border-radius: 0.3rem;
+}
+
 .contactscreen {
   width: 100vw;
   min-height: 100vh;
