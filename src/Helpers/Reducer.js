@@ -55,6 +55,14 @@ export default function reducer(state, action) {
       saveData(draft)
       return draft
     }
+    case 'UPDATE_CALLS': {
+      const draft = [...state]
+      const userIndex = GetUserIndex(state, parseInt(action.value.userid))
+      draft[userIndex].callsIndex = action.value.callsIndex
+      draft[userIndex].calls = action.value.calls
+      saveData(draft)
+      return draft
+    }
     case 'DELETE_MESSAGES': {
       const draft = [...state]
       const userIndex = GetUserIndex(state, parseInt(action.value.userid))
@@ -97,6 +105,8 @@ export default function reducer(state, action) {
         statusViewed: false,
         userIndex: ++metaData.lastUserIndex,
         messageIndex: -1,
+        statusIndex: -1,
+        callsIndex: -1,
       })
       saveData(draft)
       localStorage.setItem('metaDataWhatsapp', JSON.stringify(metaData))

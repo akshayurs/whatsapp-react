@@ -832,6 +832,148 @@ a * {
   color: #4fc3f7;
 }
 
+.editcallsscreen {
+  background-color: #eee;
+  min-height: 100vh;
+  font-family: Merienda;
+}
+
+.editcallsscreen header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1.5rem 1rem;
+  color: white;
+  background-color: var(--dark-green);
+}
+
+.editcallsscreen header i {
+  padding-left: 0.5rem;
+}
+
+.editcallsscreen header p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.editcallsscreen form {
+  padding-bottom: 2rem;
+}
+
+.editcallsscreen .count {
+  margin: 1rem auto 0 auto;
+  padding: 1rem 2rem;
+  background: white;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 1rem;
+  font-size: 1.7rem;
+}
+
+.editcallsscreen button {
+  display: block;
+  font-family: Merienda;
+  color: white;
+  border: none;
+  margin: 1rem auto;
+  padding: 0.8rem 2rem;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.318);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.318);
+}
+
+.editcallsscreen .save {
+  background: #379437;
+}
+
+.editcallsscreen .save:disabled {
+  background: #c2c2c2;
+}
+
+.editcallsscreen .addnewcall {
+  margin-bottom: 3rem;
+  background: lightcoral;
+}
+
+.editcallsscreen .addnewcall i {
+  padding-right: 0.4rem;
+}
+
+.editcallsscreen .call-item {
+  max-width: 95vw;
+  background: whitesmoke;
+  margin: 2rem auto 4rem auto;
+  padding: 1.5rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+  border-radius: 1rem;
+}
+
+.editcallsscreen .call-item > * {
+  display: block;
+}
+
+.editcallsscreen .call-item label,
+.editcallsscreen .call-item input {
+  padding: 0.4rem;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.editcallsscreen .call-item label {
+  margin: 1rem 0 0rem 0;
+}
+
+.editcallsscreen .call-item .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.editcallsscreen .call-item .container .incomming-label i {
+  display: inline-block;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  margin-right: 0.7rem;
+}
+
+.editcallsscreen .call-item .container .outgoing-label i {
+  margin-right: 0.7rem;
+  display: inline-block;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.editcallsscreen .call-item .container label,
+.editcallsscreen .call-item .container input {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.editcallsscreen .call-item .container input:first-of-type {
+  margin-right: 4rem;
+}
+
+.editcallsscreen .call-item .delete {
+  background: rgba(180, 44, 44, 0.884);
+}
+
 .edituserscreen {
   font-size: 1.5rem;
   font-family: Merienda;
@@ -853,7 +995,7 @@ a * {
 }
 
 .edituserscreen header i {
-  -webkit-text-stroke: 2px rgba(36, 51, 39, 0.788);
+  -webkit-text-stroke: 1px var(--dark-green);
   font-size: 2.4rem;
 }
 
@@ -920,11 +1062,11 @@ a * {
 }
 
 .edituserscreen form button.save {
-  background: rgba(0, 146, 0, 0.815);
+  background: #087208;
 }
 
 .edituserscreen form button.delete {
-  background: rgba(255, 55, 55, 0.877);
+  background: rgba(197, 54, 54, 0.877);
 }
 
 .edituserscreen form label {
@@ -985,11 +1127,9 @@ a * {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-text-stroke: 0.3px black;
 }
 
 .editdatascreen header i {
-  margin-left: 1rem;
   padding: 1rem;
 }
 
@@ -1024,6 +1164,8 @@ a * {
   width: fit-content;
   border-radius: 1rem;
   font-size: 1.5rem;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.305);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.305);
 }
 
 .editdatascreen .addnewcontact i {
@@ -1106,12 +1248,7 @@ a * {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.308);
 }
 
-.editdatascreen .contacts-container .user-item:hover {
-  -webkit-transform: scale(1.04);
-          transform: scale(1.04);
-}
-
-.editdatascreen .contacts-container .user-item .top {
+.editdatascreen .contacts-container .user-item .left {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1132,13 +1269,13 @@ a * {
   color: black;
 }
 
-.editdatascreen .contacts-container .user-item .top .name,
-.editdatascreen .contacts-container .user-item .top img {
+.editdatascreen .contacts-container .user-item .left .name,
+.editdatascreen .contacts-container .user-item .left img {
   font-size: 1.8rem;
   margin: 0.7rem 2rem;
 }
 
-.editdatascreen .contacts-container .user-item .bottom {
+.editdatascreen .contacts-container .user-item .right {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -1146,8 +1283,28 @@ a * {
   border-radius: 0 1rem 1rem 0;
 }
 
-.editdatascreen .contacts-container .user-item .bottom a,
-.editdatascreen .contacts-container .user-item .bottom div {
+.editdatascreen .contacts-container .user-item .right .fa-address-book {
+  color: #00a4af;
+}
+
+.editdatascreen .contacts-container .user-item .right .fa-comment-alt {
+  color: var(--dark-green);
+}
+
+.editdatascreen .contacts-container .user-item .right .fa-phone-alt {
+  color: #585858;
+}
+
+.editdatascreen .contacts-container .user-item .right .fa-photo-video {
+  color: #881156;
+}
+
+.editdatascreen .contacts-container .user-item .right .fa-trash {
+  color: #ad1010;
+}
+
+.editdatascreen .contacts-container .user-item .right a,
+.editdatascreen .contacts-container .user-item .right div {
   display: block;
   text-align: center;
   padding: 0.5rem 1rem;
@@ -1160,24 +1317,19 @@ a * {
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.305);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.305);
 }
 
-.editdatascreen .contacts-container .user-item .bottom a:hover,
-.editdatascreen .contacts-container .user-item .bottom div:hover {
-  -webkit-transform: scale(1.04);
-          transform: scale(1.04);
-}
-
-.editdatascreen .contacts-container .user-item .bottom a i,
-.editdatascreen .contacts-container .user-item .bottom div i {
+.editdatascreen .contacts-container .user-item .right a i,
+.editdatascreen .contacts-container .user-item .right div i {
   margin-right: 0.8rem;
 }
 
 .editstatusscreen {
   background-color: #eee;
   min-height: 100vh;
+  font-family: Merienda;
 }
 
 .editstatusscreen header {
@@ -1187,6 +1339,10 @@ a * {
   padding: 1.5rem 1rem;
   color: white;
   background-color: var(--dark-green);
+}
+
+.editstatusscreen header i {
+  padding-left: 0.5rem;
 }
 
 .editstatusscreen header p {
@@ -1257,10 +1413,13 @@ a * {
 .editstatusscreen button {
   display: block;
   color: white;
+  font-family: Merienda;
   border: none;
   margin: 1rem auto;
   padding: 0.8rem 2rem;
   border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.318);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.318);
 }
 
 .editstatusscreen .save {
@@ -2893,6 +3052,9 @@ a * {
   background: #eee;
   z-index: 9999;
   border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.144);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.301);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.301);
   -webkit-animation: flashPopup 2s;
           animation: flashPopup 2s;
   -webkit-animation-fill-mode: forwards;

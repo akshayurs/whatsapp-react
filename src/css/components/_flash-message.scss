@@ -8,6 +8,8 @@
   background: #eee;
   z-index: 9999;
   border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.144);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.301);
   animation: flashPopup 2s;
   animation-fill-mode: forwards;
   transform-origin: center;

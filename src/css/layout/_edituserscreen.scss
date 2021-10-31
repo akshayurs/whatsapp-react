@@ -11,7 +11,7 @@
     margin-bottom: 4rem;
     color: white;
     i {
-      -webkit-text-stroke: 2px rgba(36, 51, 39, 0.788);
+      -webkit-text-stroke: 1px var(--dark-green);
       font-size: 2.4rem;
     }
     p {
@@ -59,10 +59,10 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
       border: 1px solid;
       &.save {
-        background: rgba(0, 146, 0, 0.815);
+        background: #087208;
       }
       &.delete {
-        background: rgba(255, 55, 55, 0.877);
+        background: rgba(197, 54, 54, 0.877);
       }
     }
     label {

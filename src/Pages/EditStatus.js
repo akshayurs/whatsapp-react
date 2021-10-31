@@ -28,7 +28,6 @@ function EditStatus(props) {
     clearTimeout(flashTimeout.current)
     flashTimeout.current = setTimeout(() => {
       setFlashMsg('')
-      console.log('cleared')
     }, 2100)
   }
   function handleChange(index, key, value) {
@@ -64,7 +63,7 @@ function EditStatus(props) {
           }}
           className="fas fa-2x fa-arrow-left"
         ></i>
-        <p>Edit Status</p>
+        <p>Edit Status - {user.name}</p>
       </header>
       <div className="count">Count: {status.length}</div>
       <form
@@ -74,7 +73,8 @@ function EditStatus(props) {
             type: 'UPDATE_STATUS',
             value: { statusIndex: user.statusIndex, status, userid },
           })
-          props.history.go(-1)
+          setFlashMsg('Saved')
+          clearflash()
         }}
       >
         {sotredStatus.map((item) => {

@@ -10,7 +10,6 @@
     padding: 1rem 0.5rem;
     align-items: center;
     i {
-      margin-left: 1rem;
       padding: 1rem;
     }
     p {
@@ -19,7 +18,6 @@
       text-align: center;
       flex: 1;
     }
-    -webkit-text-stroke: 0.3px black;
   }
   img {
     display: block;
@@ -37,6 +35,8 @@
     width: fit-content;
     border-radius: 1rem;
     font-size: 1.5rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.305);
+
     i {
       padding: 0 0.4rem;
     }
@@ -95,10 +95,7 @@
       display: flex;
       transition: transform 0.3s;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.308);
-      &:hover {
-        transform: scale(1.04);
-      }
-      .top {
+      .left {
         display: flex;
         flex-direction: column;
         border-radius: 2rem 0 0 2rem;
@@ -112,10 +109,25 @@
           margin: 0.7rem 2rem;
         }
       }
-      .bottom {
+      .right {
         flex: 1;
         padding: 1rem;
         border-radius: 0 1rem 1rem 0;
+        .fa-address-book {
+          color: rgb(0, 164, 175);
+        }
+        .fa-comment-alt {
+          color: var(--dark-green);
+        }
+        .fa-phone-alt {
+          color: rgb(88, 88, 88);
+        }
+        .fa-photo-video {
+          color: rgb(136, 17, 86);
+        }
+        .fa-trash {
+          color: rgb(173, 16, 16);
+        }
         a,
         div {
           display: block;
@@ -127,10 +139,7 @@
           margin: 1rem auto;
           border-radius: 0.6rem;
           transition: transform 0.5s;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
-          &:hover {
-            transform: scale(1.04);
-          }
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.305);
           i {
             margin-right: 0.8rem;
           }

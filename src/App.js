@@ -12,6 +12,7 @@ import VoiceCall from './Pages/VoiceCall'
 import AboutScreen from './Pages/AboutScreen'
 import EditData from './Pages/EditData'
 import EditStatus from './Pages/EditStatus'
+import EditCalls from './Pages/EditCalls'
 import { UsersList as sampleData, metaData } from './Helpers/sampleData'
 import { UserContext } from './Helpers/UserContext'
 import { DispatchContext } from './Helpers/DispatchContext'
@@ -65,6 +66,9 @@ function App() {
               </Route>
               <Route path="/editstatus/:userid" exact>
                 <EditStatus />
+              </Route>
+              <Route path="/editcalls/:userid" exact>
+                <EditCalls />
               </Route>
               <Route path="/addnewuser/" exact>
                 <EditUser addNewContact={true} />

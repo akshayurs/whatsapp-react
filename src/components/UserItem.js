@@ -10,11 +10,11 @@ function UserItem(props) {
   return (
     <>
       <div className="user-item" key={user.userIndex}>
-        <div className="top">
+        <div className="left">
           <img src={ChangeImage(user.profile)} alt="" />
           <div className="name">{user.name}</div>
         </div>
-        <div className="bottom">
+        <div className="right">
           <Link to={`/edituser/${user.userIndex}`}>
             <i className="fas fa-address-book"></i> Edit Contact
           </Link>

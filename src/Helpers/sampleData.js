@@ -11,6 +11,7 @@ export const UsersList = [
     messageIndex: 4,
     statusIndex: 4,
     userIndex: 0,
+    callsIndex: 1,
     chatsList: [
       {
         index: 0,
@@ -54,12 +55,14 @@ export const UsersList = [
     ],
     calls: [
       {
+        index: 0,
         time: 1635149552928,
         isIncomming: true,
         isVideo: true,
         isMissed: true,
       },
       {
+        index: 1,
         time: 1635149853928,
         isIncomming: false,
         isVideo: false,
@@ -107,8 +110,10 @@ export const UsersList = [
     userIndex: 1,
     messageIndex: 0,
     statusIndex: 0,
+    callsIndex: 0,
     calls: [
       {
+        index: 0,
         time: 1635149553928,
         isIncomming: true,
         isVideo: false,
