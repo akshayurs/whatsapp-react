@@ -12,14 +12,14 @@ function EditData(props) {
   return (
     <div className="editdatascreen">
       <header>
-        <i
-          onClick={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
+        <div
+          onClick={() => {
+            console.log('back')
             props.history.go(-1)
           }}
-          className="fas fa-2x fa-arrow-left"
-        ></i>
+        >
+          <i className="fas fa-2x fa-arrow-left"></i>
+        </div>
         <p>App Data</p>
       </header>
       <h1 className="title">Your Data</h1>

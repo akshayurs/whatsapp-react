@@ -44,14 +44,14 @@ function StatusListSlide() {
           )
         )}
       </div>
-      {appState.some((user) => user.statusViewed) ? (
+      {filteredList.some((user) => user.statusViewed) ? (
         <h2 className="title viewed-status-title">Viewed updates</h2>
       ) : (
         ''
       )}
 
       <div className="viewed-status-container">
-        {appState.map((user) =>
+        {filteredList.map((user) =>
           user.statusViewed ? (
             <StatusItem key={user.userIndex} user={user} />
           ) : (

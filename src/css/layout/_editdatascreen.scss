@@ -1,70 +1,17 @@
 .editdatascreen {
-  background-image: radial-gradient(
-      circle at 44% 13%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 98%,
-      transparent 98%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 87% 84%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 46%,
-      transparent 46%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 84% 60%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 40%,
-      transparent 40%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 21% 32%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 28%,
-      transparent 28%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 57% 12%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 34%,
-      transparent 34%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 33% 60%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 29%,
-      transparent 29%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 3% 11%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 60%,
-      transparent 60%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 0% 74%,
-      hsla(237, 0%, 100%, 0.05) 0%,
-      hsla(237, 0%, 100%, 0.05) 87%,
-      transparent 87%,
-      transparent 100%
-    ),
-    linear-gradient(45deg, rgb(99, 105, 190), rgb(99, 70, 205));
+  background: #eee;
   min-height: 100vh;
   padding-bottom: 1rem;
   header {
+    background: var(--dark-green);
+    color: white;
     font-family: Merienda;
     display: flex;
-    padding: 1.5rem 0.5rem;
+    padding: 1rem 0.5rem;
     align-items: center;
     i {
       margin-left: 1rem;
+      padding: 1rem;
     }
     p {
       transform: translateX(-3%);
@@ -72,10 +19,7 @@
       text-align: center;
       flex: 1;
     }
-    color: rgb(99, 105, 190);
     -webkit-text-stroke: 0.3px black;
-    background: rgba(255, 255, 255, 0.918);
-    // background: rgba(255, 255, 255, 0.747);
   }
   img {
     display: block;
@@ -89,7 +33,7 @@
     display: block;
     margin: 1rem auto;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.664);
+    background: white;
     width: fit-content;
     border-radius: 1rem;
     font-size: 1.5rem;
@@ -102,12 +46,10 @@
     padding: 1rem;
     width: fit-content;
     margin: 0.5rem auto;
-    color: white;
-    -webkit-text-stroke: 0.5px black;
     font-family: Merienda;
   }
   .user-container {
-    background: linear-gradient(to right, #dbdbdb9c, #f2f2f29d, #eaeaeaa2);
+    background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
     backdrop-filter: blur(1px);
     width: 80vw;
@@ -144,7 +86,7 @@
   }
   .contacts-container {
     .user-item {
-      background: linear-gradient(to right, #dbdbdb9c, #f2f2f29d, #eaeaeaa2);
+      background: white;
       backdrop-filter: blur(1px);
       margin: 0 auto 2rem auto;
       border-radius: 1.5rem;

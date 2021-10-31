@@ -176,6 +176,7 @@ function StatusView(props) {
           )}
           <Link to={`/chatscreen/${userid}`}>Open Chat</Link>
           <Link to={`/contactabout/${userid}`}>Open Contact</Link>
+          <Link to={`/editstatus/${userid}`}>Edit Status</Link>
           <a href={ChangeImage(status.src)} download>
             Download
           </a>

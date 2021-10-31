@@ -1,16 +1,49 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { useParams, withRouter } from 'react-router'
 import ChangeImage from '../Helpers/ChangeImage'
 import GetUserIndex from '../Helpers/GetUserIndex'
 import { UserContext } from '../Helpers/UserContext'
 import { DispatchContext } from '../Helpers/DispatchContext'
-
+import { SortByKey } from '../Helpers/Sort'
+import FlashMsg from '../components/flashMsg'
 function EditStatus(props) {
   const { userid } = useParams()
   const appState = useContext(UserContext)
   const appDispatch = useContext(DispatchContext)
   const [status, setStatus] = useState([])
   const [user, setUser] = useState({})
+  const [flashMsg, setFlashMsg] = useState('')
+  const flashTimeout = useRef(null)
+  let flashEle = ''
+  if (flashMsg !== '') {
+    flashEle = <FlashMsg message={flashMsg} />
+  }
+  useEffect(() => {
+    return () => {
+      clearTimeout(flashTimeout.current)
+      setFlashMsg('')
+    }
+  }, [])
+  function clearflash() {
+    clearTimeout(flashTimeout.current)
+    flashTimeout.current = setTimeout(() => {
+      setFlashMsg('')
+      console.log('cleared')
+    }, 2100)
+  }
+  function handleChange(index, key, value) {
+    setStatus((prev) => {
+      return prev.map((status) => {
+        if (status.index === index) {
+          return {
+            ...status,
+            [key]: value,
+          }
+        }
+        return status
+      })
+    })
+  }
   useEffect(() => {
     if (appState.length !== 0) {
       const index = GetUserIndex(appState, parseInt(userid))
@@ -18,8 +51,10 @@ function EditStatus(props) {
       setStatus(appState[index].status)
     }
   }, [appState, userid])
+  const sotredStatus = SortByKey(status, ['time'], true)
   return (
     <div className="editstatusscreen">
+      {flashEle}
       <header>
         <i
           onClick={(e) => {
@@ -31,98 +66,125 @@ function EditStatus(props) {
         ></i>
         <p>Edit Status</p>
       </header>
-      {status.map((item) => {
-        let date = new Date(item.time)
-        date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
-        return (
-          <div className="status-item" key={item.index}>
-            {item.isVideo ? (
-              <video
-                src={ChangeImage(item.src)}
-                className="status-media"
-                controls
-              ></video>
-            ) : (
-              <img
-                src={ChangeImage(item.src)}
-                alt="status media"
-                className="status-media"
+      <div className="count">Count: {status.length}</div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          appDispatch({
+            type: 'UPDATE_STATUS',
+            value: { statusIndex: user.statusIndex, status, userid },
+          })
+          props.history.go(-1)
+        }}
+      >
+        {sotredStatus.map((item) => {
+          let date = new Date(item.time)
+          date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
+          return (
+            <div className="status-item" key={item.index}>
+              {item.isVideo ? (
+                <video
+                  src={ChangeImage(item.src)}
+                  className="status-media"
+                  controls
+                ></video>
+              ) : (
+                <img
+                  src={ChangeImage(item.src)}
+                  alt="status media"
+                  className="status-media"
+                />
+              )}
+              <label htmlFor={'url-' + item.index}>Url :</label>
+              <input
+                type="text"
+                id={'url-' + item.index}
+                value={item.src}
+                placeholder="http://example.com/video.mp4"
+                required
+                onChange={(e) => {
+                  e.persist()
+                  handleChange(item.index, 'src', e.target.value)
+                }}
               />
-            )}
-            <label htmlFor="url">Url :</label>
-            <input
-              type="text"
-              id="url"
-              value={item.src}
-              placeholder="http://example.com/video.mp4"
-              onChange={(e) => {
-                e.persist()
-                setStatus((prev) => {
-                  return prev.map((status) => {
-                    if (status.index === item.index) {
-                      return {
-                        ...status,
-                        src: e.target.value,
-                      }
-                    }
-                    return status
+              <label htmlFor={'caption-' + item.index}>
+                Caption (optional) :
+              </label>
+              <input
+                type="text"
+                id={'caption-' + item.index}
+                value={item.caption}
+                onChange={(e) => {
+                  e.persist()
+                  handleChange(item.index, 'caption', e.target.value)
+                }}
+              />
+              <label htmlFor={'uploaddate-' + item.index}>Uploaded on :</label>
+              <input
+                type="datetime-local"
+                id={'uploaddate-' + item.index}
+                required
+                value={date.toISOString().slice(0, 16)}
+                onChange={(e) => {
+                  e.persist()
+                  handleChange(
+                    item.index,
+                    'time',
+                    new Date(e.target.value).getTime()
+                  )
+                }}
+              />
+              <button
+                className="delete"
+                onClick={(e) => {
+                  e.persist()
+                  setStatus((prev) => {
+                    return prev.filter((status) => status.index !== item.index)
                   })
-                })
-              }}
-            />
-            <label htmlFor="caption">Caption :</label>
-            <input
-              type="text"
-              id="caption"
-              value={item.caption}
-              onChange={(e) => {
-                e.persist()
-                setStatus((prev) => {
-                  return prev.map((status) => {
-                    if (status.index === item.index) {
-                      return {
-                        ...status,
-                        caption: e.target.value,
-                      }
-                    }
-                    return status
-                  })
-                })
-              }}
-            />
-            <label htmlFor="uploaddate">Uploaded on :</label>
-            <input
-              type="datetime-local"
-              id="uploaddate"
-              value={date.toISOString().slice(0, 16)}
-              onChange={(e) => {
-                e.persist()
-                setStatus((prev) => {
-                  return prev.map((status) => {
-                    if (status.index === item.index) {
-                      return {
-                        ...status,
-                        time: new Date(e.target.value).getTime(),
-                      }
-                    }
-                    return status
-                  })
-                })
-              }}
-            />
-            <button
-              onClick={(e) => {
-                e.persist()
-                setStatus((prev) => {
-                  return prev.filter((status) => status.index !== item.index)
-                })
-              }}
-            >
-              <i className="fas fa-trash"></i> Delete
-            </button>
-          </div>
-        )
-      })}
+                  setFlashMsg('Status Deleted')
+                  clearflash()
+                }}
+              >
+                <i className="fas fa-trash"></i> Delete
+              </button>
+            </div>
+          )
+        })}
+        <button
+          className="addnewstatus"
+          onClick={(e) => {
+            e.preventDefault()
+            setStatus((prev) => {
+              return prev.concat({
+                src: 'default.jpg',
+                time: Date.now(),
+                caption: '',
+                index: user.statusIndex + 1,
+              })
+            })
+            setUser((prev) => {
+              return { ...prev, statusIndex: prev.statusIndex + 1 }
+            })
+            setFlashMsg('New Status Added')
+            clearflash()
+          }}
+        >
+          <i className="fas fa-plus"></i>
+          Add New Status
+        </button>
+        {user.status?.length !== 0 ||
+        JSON.stringify(user.status) !== JSON.stringify(status) ? (
+          <button
+            type="submit"
+            className="save"
+            disabled={JSON.stringify(user.status) === JSON.stringify(status)}
+          >
+            Save Changes
+          </button>
+        ) : (
+          ''
+        )}
+      </form>
     </div>
   )
 }

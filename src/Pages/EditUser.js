@@ -210,8 +210,9 @@ function EditUser(props) {
         )}
 
         <div className="buttons">
-          {!addNewContact && (
+          {!addNewContact && !isyourData && (
             <button
+              className="delete"
               onClick={() => {
                 if (window.confirm('Do you want to delete ' + originalName)) {
                   appDispatch({ type: 'DELETE_USER', value: parseInt(userid) })
@@ -223,7 +224,9 @@ function EditUser(props) {
             </button>
           )}
 
-          <button type="submit">SAVE</button>
+          <button type="submit" className="save">
+            {addNewContact ? 'Create' : 'Save'}
+          </button>
         </div>
       </form>
     </div>

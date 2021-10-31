@@ -47,6 +47,14 @@ export default function reducer(state, action) {
       saveData(draft)
       return draft
     }
+    case 'UPDATE_STATUS': {
+      const draft = [...state]
+      const userIndex = GetUserIndex(state, parseInt(action.value.userid))
+      draft[userIndex].statusIndex = action.value.statusIndex
+      draft[userIndex].status = action.value.status
+      saveData(draft)
+      return draft
+    }
     case 'DELETE_MESSAGES': {
       const draft = [...state]
       const userIndex = GetUserIndex(state, parseInt(action.value.userid))
