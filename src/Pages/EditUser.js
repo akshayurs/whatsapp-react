@@ -3,6 +3,7 @@ import { useParams, withRouter } from 'react-router'
 import ChangeImage from '../Helpers/ChangeImage'
 import GetUserIndex from '../Helpers/GetUserIndex'
 import { UserContext } from '../Helpers/UserContext'
+import { resizeFile } from '../Helpers/imageResize'
 import { DispatchContext } from '../Helpers/DispatchContext'
 function EditUser(props) {
   const { userid } = useParams()
@@ -10,6 +11,7 @@ function EditUser(props) {
   const appState = useContext(UserContext)
   const appDispatch = useContext(DispatchContext)
 
+  const [uploadType, setUploadType] = useState({ type: 0 })
   const [isOnline, setIsOnline] = useState(true)
   const [lastSeenTime, setLastSeenTime] = useState(0)
   const [name, setName] = useState('')
@@ -22,6 +24,9 @@ function EditUser(props) {
   useEffect(() => {
     const userIndex = GetUserIndex(appState, parseInt(userid))
     const user = appState[userIndex]
+    if (addNewContact) {
+      setUploadType({ type: 1 })
+    }
     if (user && !addNewContact && !isyourData) {
       setOriginalName(user.name)
       setName(user.name)
@@ -119,16 +124,7 @@ function EditUser(props) {
           props.history.go(-1)
         }}
       >
-        <img src={ChangeImage(profile)} alt="profile icon" />
-        <label htmlFor="profile">Profile picture URL:</label>
-        <input
-          type="text"
-          id="profile"
-          value={profile}
-          required
-          placeholder="http://example.com/image.jpg"
-          onChange={(e) => setProfile(e.target.value)}
-        />
+        <img src={ChangeImage(profile)} alt="profile picture" />
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -138,6 +134,60 @@ function EditUser(props) {
           onChange={(e) => setName(e.target.value)}
           maxLength="20"
         />
+        <div className="image-upload-container">
+          <label htmlFor="localstorage">Upload Image from Storage</label>
+          <input
+            type="radio"
+            name="upload"
+            id="localstorage"
+            required
+            checked={uploadType.type === 0}
+            onChange={() => {
+              setUploadType({ type: 0 })
+              setProfile('')
+            }}
+          />
+          <label htmlFor="fromurl">Upload Image from URL</label>
+          <input
+            type="radio"
+            name="upload"
+            id="fromurl"
+            required
+            checked={uploadType.type === 1}
+            onChange={() => {
+              setUploadType({ type: 1 })
+              setProfile('')
+            }}
+          />
+        </div>
+        {uploadType.type === 0 ? (
+          <input
+            type="file"
+            onChange={async (e) => {
+              try {
+                const image = await resizeFile(e.target.files[0], 200, 200)
+                console.log(image)
+                setProfile(image)
+              } catch (err) {
+                alert(err)
+                e.target.value = ''
+              }
+            }}
+          />
+        ) : (
+          <>
+            <label htmlFor="profile">Profile picture URL:</label>
+            <input
+              type="text"
+              id="profile"
+              value={profile}
+              required
+              placeholder="http://example.com/image.jpg"
+              onChange={(e) => setProfile(e.target.value)}
+            />
+          </>
+        )}
+
         <label htmlFor="about">About:</label>
         <textarea
           type="text"

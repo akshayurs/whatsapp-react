@@ -74,7 +74,11 @@
     textarea {
       padding: 0.5rem;
     }
-    .onlineRadioContainer {
+    .image-upload-container label {
+      font-size: 1.3rem;
+    }
+    .onlineRadioContainer,
+    .image-upload-container {
       display: flex;
       align-items: center;
       margin: 1rem;

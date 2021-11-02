@@ -7,6 +7,7 @@ import NewChatScreen from './Pages/NewChatScreen'
 import ChatScreen from './Pages/ChatScreen/ChatScreen'
 import StatusView from './Pages/StatusView'
 import EditUser from './Pages/EditUser'
+import EditChats from './Pages/EditChats'
 import VideoCall from './Pages/VideoCall'
 import VoiceCall from './Pages/VoiceCall'
 import AboutScreen from './Pages/AboutScreen'
@@ -69,6 +70,9 @@ function App() {
               </Route>
               <Route path="/editcalls/:userid" exact>
                 <EditCalls />
+              </Route>
+              <Route path="/editchats/:userid" exact>
+                <EditChats />
               </Route>
               <Route path="/addnewuser/" exact>
                 <EditUser addNewContact={true} />

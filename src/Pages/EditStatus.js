@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 import { useParams, withRouter } from 'react-router'
 import ChangeImage from '../Helpers/ChangeImage'
 import GetUserIndex from '../Helpers/GetUserIndex'
+import { resizeFile } from '../Helpers/imageResize'
 import { UserContext } from '../Helpers/UserContext'
 import { DispatchContext } from '../Helpers/DispatchContext'
 import { SortByKey } from '../Helpers/Sort'
@@ -80,6 +81,10 @@ function EditStatus(props) {
         {sotredStatus.map((item) => {
           let date = new Date(item.time)
           date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
+          let uploadType = 1
+          if (item.uploadType === 0) {
+            uploadType = 0
+          }
           return (
             <div className="status-item" key={item.index}>
               {item.isVideo ? (
@@ -95,18 +100,72 @@ function EditStatus(props) {
                   className="status-media"
                 />
               )}
-              <label htmlFor={'url-' + item.index}>Url :</label>
-              <input
-                type="text"
-                id={'url-' + item.index}
-                value={item.src}
-                placeholder="http://example.com/video.mp4"
-                required
-                onChange={(e) => {
-                  e.persist()
-                  handleChange(item.index, 'src', e.target.value)
-                }}
-              />
+              <label>Upolad Image/Video:</label>
+              <div className="image-upload-container">
+                <label htmlFor={'localstorage-' + item.index}>
+                  Storage (images only)
+                </label>
+                <input
+                  type="radio"
+                  name={'upload-' + item.index}
+                  id={'localstorage-' + item.index}
+                  required
+                  checked={uploadType === 0}
+                  onChange={() => {
+                    handleChange(item.index, 'uploadType', 0)
+                    handleChange(item.index, 'src', '')
+                  }}
+                />
+                <label htmlFor={'fromurl-' + item.index}>
+                  URL (images + Video)
+                </label>
+                <input
+                  type="radio"
+                  name={'upload-' + item.index}
+                  id={'fromurl-' + item.index}
+                  required
+                  checked={uploadType === 1}
+                  onChange={() => {
+                    handleChange(item.index, 'uploadType', 1)
+                    handleChange(item.index, 'src', '')
+                  }}
+                />
+              </div>
+              {uploadType === 0 ? (
+                <input
+                  type="file"
+                  onChange={async (e) => {
+                    try {
+                      const image = await resizeFile(
+                        e.target.files[0],
+                        600,
+                        800
+                      )
+                      console.log(image)
+                      handleChange(item.index, 'src', image)
+                    } catch (err) {
+                      alert(err)
+                      e.target.value = ''
+                    }
+                  }}
+                />
+              ) : (
+                <>
+                  <label htmlFor={'url-' + item.index}>Url :</label>
+                  <input
+                    type="text"
+                    id={'url-' + item.index}
+                    value={item.src}
+                    placeholder="http://example.com/video.mp4"
+                    required
+                    onChange={(e) => {
+                      e.persist()
+                      handleChange(item.index, 'src', e.target.value)
+                    }}
+                  />
+                </>
+              )}
+
               <label htmlFor={'caption-' + item.index}>
                 Caption (optional) :
               </label>

@@ -1,21 +1,19 @@
-.chatscreen {
-  .message-container {
-    .content-date {
-      position: sticky;
-      top: 0%;
-      padding: 0.8rem 1.2rem;
-      background: var(--light-blue);
-      align-self: center;
-      border-radius: 1rem;
-      font-size: 1.2rem;
-      margin: 0.5rem;
-      z-index: 1000;
-      min-width: 7.5rem;
-      display: flex;
-      justify-content: center;
-      &:only-child {
-        display: none;
-      }
+.message-container {
+  .content-date {
+    position: sticky;
+    top: 0%;
+    padding: 0.8rem 1.2rem;
+    background: var(--light-blue);
+    align-self: center;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    z-index: 1000;
+    min-width: 7.5rem;
+    display: flex;
+    justify-content: center;
+    &:only-child {
+      display: none;
     }
   }
 }

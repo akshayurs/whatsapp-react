@@ -47,6 +47,13 @@ export default function reducer(state, action) {
       saveData(draft)
       return draft
     }
+    case 'UPDATE_CHATS': {
+      const draft = [...state]
+      const userIndex = GetUserIndex(state, parseInt(action.value.userid))
+      draft[userIndex].messageIndex = action.value.messageIndex
+      draft[userIndex].chatsList = action.value.chats
+      return draft
+    }
     case 'UPDATE_STATUS': {
       const draft = [...state]
       const userIndex = GetUserIndex(state, parseInt(action.value.userid))

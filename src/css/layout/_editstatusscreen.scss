@@ -60,6 +60,21 @@
     .delete {
       background: rgba(180, 44, 44, 0.884);
     }
+    .image-upload-container {
+      display: flex;
+      align-items: center;
+      margin: 1rem;
+      label,
+      input {
+        font-size: 1.3rem;
+        width: max-content;
+        padding: 0.5rem;
+        margin: 0;
+      }
+      input:first-of-type {
+        margin-right: 4rem;
+      }
+    }
   }
   button {
     display: block;

@@ -1,108 +1,106 @@
-.chatscreen {
-  .scroll-down {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.964);
-    border: 1px solid rgba(233, 233, 233, 0.964);
-    color: #7e7e7e;
-    -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.9);
-    bottom: 7rem;
-    width: 3.5rem;
-    height: 3.5rem;
-    right: 2.5rem;
-    border-radius: 50%;
-    animation: fadein 0.3s;
+.scroll-down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.964);
+  border: 1px solid rgba(233, 233, 233, 0.964);
+  color: #7e7e7e;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.9);
+  bottom: 7rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  right: 2.5rem;
+  border-radius: 50%;
+  animation: fadein 0.3s;
+}
+.message-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-size: cover !important;
+  padding-top: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+
+  .to + .from,
+  .from + .to,
+  .content-date + .to,
+  .content-date + .from {
+    margin-top: 0.7rem;
+    .triangle {
+      display: block;
+    }
+    .received {
+      border-top-left-radius: 0;
+    }
+    .sent {
+      border-top-right-radius: 0;
+    }
   }
-  .message-container {
-    flex: 1;
+
+  .message {
     display: flex;
     flex-direction: column;
-    background-size: cover !important;
-    padding-top: 1rem;
-    overflow-y: auto;
-    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.4rem;
     position: relative;
-    scroll-behavior: smooth;
-
-    .to + .from,
-    .from + .to,
-    .content-date + .to,
-    .content-date + .from {
-      margin-top: 0.7rem;
-      .triangle {
-        display: block;
-      }
+    transform: translateX(0);
+    transition: all 0.1s;
+    position: relative;
+    padding: 0.3rem 0;
+    &.selected::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 100%;
+      --blue: rgba(0, 128, 233, 0.18);
+      background: var(--blue);
+    }
+    &.temp-selected {
+      background: rgba(181, 216, 255, 0.315);
+      animation: fadein 0.2s;
+    }
+    &:active {
+      .sent,
       .received {
-        border-top-left-radius: 0;
+        background: lightblue;
       }
-      .sent {
-        border-top-right-radius: 0;
+      .triangle path {
+        fill: lightblue;
       }
     }
-
-    .message {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 0.4rem;
-      position: relative;
-      transform: translateX(0);
-      transition: all 0.1s;
-      position: relative;
-      padding: 0.3rem 0;
-      &.selected::after {
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 100%;
-        --blue: rgba(0, 128, 233, 0.18);
-        background: var(--blue);
+    .main {
+      .content {
+        font-size: 1.3rem;
+        margin-bottom: 0.3rem;
+        word-break: break-all;
       }
-      &.temp-selected {
-        background: rgba(181, 216, 255, 0.315);
-        animation: fadein 0.2s;
-      }
-      &:active {
-        .sent,
-        .received {
-          background: lightblue;
-        }
-        .triangle path {
-          fill: lightblue;
-        }
-      }
-      .main {
-        .content {
-          font-size: 1.3rem;
-          margin-bottom: 0.3rem;
-          word-break: break-all;
-        }
-      }
-      .triangle {
-        display: none;
-      }
-      .reply-logo {
-        position: absolute;
-        background-color: rgba(102, 102, 102, 0.314);
-        padding: 0.5rem;
-        color: white;
-        border-radius: 50%;
-        top: 50%;
-        left: -4rem;
-        transform: translateY(-50%);
-      }
-      .tick > *:not(.active) {
-        display: none;
-      }
-      .tick .active {
-        display: block;
-        color: rgba(0, 0, 0, 0.3);
-        &.blue {
-          color: #4fc3f7;
-        }
+    }
+    .triangle {
+      display: none;
+    }
+    .reply-logo {
+      position: absolute;
+      background-color: rgba(102, 102, 102, 0.314);
+      padding: 0.5rem;
+      color: white;
+      border-radius: 50%;
+      top: 50%;
+      left: -4rem;
+      transform: translateY(-50%);
+    }
+    .tick > *:not(.active) {
+      display: none;
+    }
+    .tick .active {
+      display: block;
+      color: rgba(0, 0, 0, 0.3);
+      &.blue {
+        color: #4fc3f7;
       }
     }
   }

@@ -678,7 +678,7 @@ a * {
           transform: translateX(4rem);
 }
 
-.chatscreen .scroll-down {
+.scroll-down {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -702,7 +702,7 @@ a * {
           animation: fadein 0.3s;
 }
 
-.chatscreen .message-container {
+.message-container {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -721,35 +721,35 @@ a * {
   scroll-behavior: smooth;
 }
 
-.chatscreen .message-container .to + .from,
-.chatscreen .message-container .from + .to,
-.chatscreen .message-container .content-date + .to,
-.chatscreen .message-container .content-date + .from {
+.message-container .to + .from,
+.message-container .from + .to,
+.message-container .content-date + .to,
+.message-container .content-date + .from {
   margin-top: 0.7rem;
 }
 
-.chatscreen .message-container .to + .from .triangle,
-.chatscreen .message-container .from + .to .triangle,
-.chatscreen .message-container .content-date + .to .triangle,
-.chatscreen .message-container .content-date + .from .triangle {
+.message-container .to + .from .triangle,
+.message-container .from + .to .triangle,
+.message-container .content-date + .to .triangle,
+.message-container .content-date + .from .triangle {
   display: block;
 }
 
-.chatscreen .message-container .to + .from .received,
-.chatscreen .message-container .from + .to .received,
-.chatscreen .message-container .content-date + .to .received,
-.chatscreen .message-container .content-date + .from .received {
+.message-container .to + .from .received,
+.message-container .from + .to .received,
+.message-container .content-date + .to .received,
+.message-container .content-date + .from .received {
   border-top-left-radius: 0;
 }
 
-.chatscreen .message-container .to + .from .sent,
-.chatscreen .message-container .from + .to .sent,
-.chatscreen .message-container .content-date + .to .sent,
-.chatscreen .message-container .content-date + .from .sent {
+.message-container .to + .from .sent,
+.message-container .from + .to .sent,
+.message-container .content-date + .to .sent,
+.message-container .content-date + .from .sent {
   border-top-right-radius: 0;
 }
 
-.chatscreen .message-container .message {
+.message-container .message {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -773,7 +773,7 @@ a * {
   padding: 0.3rem 0;
 }
 
-.chatscreen .message-container .message.selected::after {
+.message-container .message.selected::after {
   position: absolute;
   content: '';
   width: 100%;
@@ -782,32 +782,32 @@ a * {
   background: var(--blue);
 }
 
-.chatscreen .message-container .message.temp-selected {
+.message-container .message.temp-selected {
   background: rgba(181, 216, 255, 0.315);
   -webkit-animation: fadein 0.2s;
           animation: fadein 0.2s;
 }
 
-.chatscreen .message-container .message:active .sent,
-.chatscreen .message-container .message:active .received {
+.message-container .message:active .sent,
+.message-container .message:active .received {
   background: lightblue;
 }
 
-.chatscreen .message-container .message:active .triangle path {
+.message-container .message:active .triangle path {
   fill: lightblue;
 }
 
-.chatscreen .message-container .message .main .content {
+.message-container .message .main .content {
   font-size: 1.3rem;
   margin-bottom: 0.3rem;
   word-break: break-all;
 }
 
-.chatscreen .message-container .message .triangle {
+.message-container .message .triangle {
   display: none;
 }
 
-.chatscreen .message-container .message .reply-logo {
+.message-container .message .reply-logo {
   position: absolute;
   background-color: rgba(102, 102, 102, 0.314);
   padding: 0.5rem;
@@ -819,16 +819,16 @@ a * {
           transform: translateY(-50%);
 }
 
-.chatscreen .message-container .message .tick > *:not(.active) {
+.message-container .message .tick > *:not(.active) {
   display: none;
 }
 
-.chatscreen .message-container .message .tick .active {
+.message-container .message .tick .active {
   display: block;
   color: rgba(0, 0, 0, 0.3);
 }
 
-.chatscreen .message-container .message .tick .active.blue {
+.message-container .message .tick .active.blue {
   color: #4fc3f7;
 }
 
@@ -1080,7 +1080,12 @@ a * {
   padding: 0.5rem;
 }
 
-.edituserscreen form .onlineRadioContainer {
+.edituserscreen form .image-upload-container label {
+  font-size: 1.3rem;
+}
+
+.edituserscreen form .onlineRadioContainer,
+.edituserscreen form .image-upload-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1091,7 +1096,9 @@ a * {
 }
 
 .edituserscreen form .onlineRadioContainer label,
-.edituserscreen form .onlineRadioContainer input {
+.edituserscreen form .onlineRadioContainer input,
+.edituserscreen form .image-upload-container label,
+.edituserscreen form .image-upload-container input {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -1099,7 +1106,8 @@ a * {
   margin: 0;
 }
 
-.edituserscreen form .onlineRadioContainer input:first-of-type {
+.edituserscreen form .onlineRadioContainer input:first-of-type,
+.edituserscreen form .image-upload-container input:first-of-type {
   margin-right: 4rem;
 }
 
@@ -1410,6 +1418,30 @@ a * {
   background: rgba(180, 44, 44, 0.884);
 }
 
+.editstatusscreen .status-item .image-upload-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+}
+
+.editstatusscreen .status-item .image-upload-container label,
+.editstatusscreen .status-item .image-upload-container input {
+  font-size: 1.3rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.editstatusscreen .status-item .image-upload-container input:first-of-type {
+  margin-right: 4rem;
+}
+
 .editstatusscreen button {
   display: block;
   color: white;
@@ -1437,6 +1469,276 @@ a * {
 
 .editstatusscreen .addnewstatus i {
   padding-right: 0.4rem;
+}
+
+.editchatsscreen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+}
+
+.editchatsscreen header {
+  background: var(--dark-green);
+  color: white;
+  font-family: Merienda;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.editchatsscreen header .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.editchatsscreen header .top i {
+  padding-left: 1.5rem;
+}
+
+.editchatsscreen header .top p {
+  font-size: 2rem;
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.editchatsscreen header .bottom {
+  padding-top: 0.2rem;
+}
+
+.editchatsscreen header .bottom button {
+  display: block;
+  padding: 0.7rem;
+  margin: 0 auto;
+  background: #00c15e;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.301);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.301);
+  color: white;
+  border: none;
+  border-radius: 0.7rem;
+}
+
+.editchatsscreen header .bottom button i {
+  margin-right: 0.3rem;
+}
+
+.editchatsscreen .message-container {
+  padding-bottom: 2rem;
+}
+
+.editchatsscreen .message-container .addnewchat {
+  text-align: center;
+}
+
+.editchatsscreen .message-container .addnewchat i {
+  padding: 0.5rem;
+  background: #eee;
+  border-radius: 50%;
+}
+
+.editchatsscreen .message-container .addnewchat.selected {
+  background-color: rgba(173, 216, 230, 0.5);
+}
+
+.editchatsscreen .message-container .count {
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  background: white;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 1rem;
+  font-size: 1.7rem;
+}
+
+.editchatsscreen .message-container .triangle {
+  display: block;
+}
+
+.editchatsscreen .message-container .received {
+  border-top-left-radius: 0;
+}
+
+.editchatsscreen .message-container .received .delete-icon {
+  right: -3rem;
+}
+
+.editchatsscreen .message-container .received .reply-icon {
+  right: -6rem;
+}
+
+.editchatsscreen .message-container .sent {
+  border-top-right-radius: 0;
+}
+
+.editchatsscreen .message-container .sent .delete-icon {
+  left: -3rem;
+}
+
+.editchatsscreen .message-container .sent .reply-icon {
+  left: -6rem;
+}
+
+.editchatsscreen .message-container .delete-icon {
+  background: #b41111;
+}
+
+.editchatsscreen .message-container .reply-icon {
+  background: grey;
+}
+
+.editchatsscreen .message-container .delete-icon,
+.editchatsscreen .message-container .reply-icon {
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: white;
+  border-radius: 50%;
+  top: 50%;
+  padding: 0.7rem;
+}
+
+.editchatsscreen footer {
+  background-color: #eee;
+  padding: 0.8rem 1rem 1rem 1rem;
+}
+
+.editchatsscreen footer .position {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.7rem;
+}
+
+.editchatsscreen footer .reply-container {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  max-width: 100%;
+  margin: 0.4rem 0.5rem;
+  padding: 1.5rem;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+  border-left: 3px solid var(--reply-color);
+  border-radius: 0.3rem;
+  -webkit-animation: increaseHeight 0.2s ease;
+          animation: increaseHeight 0.2s ease;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+}
+
+.editchatsscreen footer .reply-container .name {
+  font-size: 1.2rem;
+  padding-bottom: 0.2rem;
+  color: var(--reply-color);
+}
+
+.editchatsscreen footer .reply-container .content {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.editchatsscreen footer .reply-container .cancel {
+  position: absolute;
+  right: 1rem;
+  top: 0.8rem;
+}
+
+.editchatsscreen footer .date-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.editchatsscreen footer .date-container label {
+  font-size: 1.6rem;
+  margin: 0 1.5rem;
+}
+
+.editchatsscreen footer .date-container input {
+  margin-left: 1rem;
+}
+
+.editchatsscreen footer .tick-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 1rem 0;
+}
+
+.editchatsscreen footer .tick-container svg {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.editchatsscreen footer .tick-container .blue {
+  color: #4fc3f7;
+}
+
+.editchatsscreen footer .tick-container input {
+  margin: 0 0.8rem 0 4rem;
+}
+
+.editchatsscreen footer .chat-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.editchatsscreen footer .chat-input-container .textbox {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 2.7rem;
+  border: none;
+  margin: 0 1rem;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-y: visible;
+  max-height: 10rem;
+  resize: none;
+}
+
+.editchatsscreen footer .chat-input-container .textbox:focus {
+  border: none;
+  outline: none;
+}
+
+.editchatsscreen footer .chat-input-container i {
+  font-size: 2rem;
+  background: var(--dark-green);
+  padding: 0.4rem;
+  border-radius: 50%;
+  color: white;
+  -webkit-text-stroke: 2px var(--dark-green);
+}
+
+.editchatsscreen footer .chat-input-container .left {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 .contactscreen {
@@ -2666,7 +2968,7 @@ a * {
           filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.315));
 }
 
-.chatscreen .received {
+.received {
   position: relative;
   -ms-flex-item-align: start;
       align-self: flex-start;
@@ -2681,21 +2983,21 @@ a * {
   min-width: 6rem;
 }
 
-.chatscreen .received .time {
+.received .time {
   position: absolute;
   bottom: 0.2rem;
   right: 0.3rem;
   color: var(--time);
 }
 
-.chatscreen .received svg {
+.received svg {
   display: block;
   position: absolute;
   top: 0;
   left: -0.8rem;
 }
 
-.chatscreen .sent {
+.sent {
   background: var(--sent-green);
   -ms-flex-item-align: end;
       align-self: flex-end;
@@ -2711,21 +3013,21 @@ a * {
   max-width: 65%;
 }
 
-.chatscreen .sent svg {
+.sent svg {
   display: block;
   position: absolute;
   top: 0;
   right: -0.8rem;
 }
 
-.chatscreen .sent .time {
+.sent .time {
   position: absolute;
   bottom: 0.2rem;
   right: 2rem;
   color: var(--time);
 }
 
-.chatscreen .sent .tick {
+.sent .tick {
   position: absolute;
   color: black;
   display: -webkit-box;
@@ -2739,16 +3041,16 @@ a * {
   color: var(--grey);
 }
 
-.chatscreen .sent .tick div {
+.sent .tick div {
   width: 1rem;
   height: 1rem;
 }
 
-.chatscreen .sent .tick img {
+.sent .tick img {
   width: 1.5rem;
 }
 
-.chatscreen .message-container .content-date {
+.message-container .content-date {
   position: -webkit-sticky;
   position: sticky;
   top: 0%;
@@ -2769,7 +3071,7 @@ a * {
           justify-content: center;
 }
 
-.chatscreen .message-container .content-date:only-child {
+.message-container .content-date:only-child {
   display: none;
 }
 
