@@ -1,5 +1,6 @@
 import { UsersList } from './sampleData'
 import GetUserIndex from './GetUserIndex'
+import { act } from 'react-dom/test-utils'
 
 function saveData(state) {
   localStorage.setItem('whatsAppUsersList', JSON.stringify(state))
@@ -59,6 +60,8 @@ export default function reducer(state, action) {
       const userIndex = GetUserIndex(state, parseInt(action.value.userid))
       draft[userIndex].statusIndex = action.value.statusIndex
       draft[userIndex].status = action.value.status
+      draft[userIndex].statusViewed = action.value.statusViewed
+      draft[userIndex].openedStatus = -1
       saveData(draft)
       return draft
     }
@@ -91,7 +94,6 @@ export default function reducer(state, action) {
     case 'UPDATE_USER_DATA': {
       const { userIndex, user } = action.value
       const draft = [...state]
-      console.log('reducer', new Date(user.lastSeen))
       draft[userIndex] = {
         ...draft[userIndex],
         ...user,

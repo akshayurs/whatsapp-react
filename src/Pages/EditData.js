@@ -14,7 +14,6 @@ function EditData(props) {
       <header>
         <div
           onClick={() => {
-            console.log('back')
             props.history.go(-1)
           }}
         >

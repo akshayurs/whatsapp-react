@@ -1,7 +1,7 @@
 .message-container {
   .replied {
     .replay-message-container {
-      display: block;
+      display: flex;
     }
   }
   .replay-message-container {
@@ -11,23 +11,40 @@
     padding: 0.5rem;
     border-radius: 0.2rem;
     border-left: 2px solid var(--reply-color);
-    .name {
-      font-size: 1.3rem;
-      color: var(--reply-color);
+    &.document {
+      min-width: 11rem;
+      padding: 0;
+      .reply-left {
+        padding: 0.5rem;
+      }
     }
-    .content {
-      color: black;
-      font-size: 1.2rem;
-      padding-top: 0rem;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+    .reply-left {
+      flex: 1;
+      .name {
+        font-size: 1.3rem;
+        color: var(--reply-color);
+      }
+      .content {
+        color: black;
+        font-size: 1.2rem;
+        padding-top: 0rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+    .reply-right {
+      img {
+        width: 4rem;
+        height: 4rem;
+        object-fit: cover;
+      }
     }
   }
   .replied {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    padding-top: 0.5rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    padding-top: 0.5rem !important;
     .content {
       padding-top: 0.4rem;
     }

@@ -2,25 +2,12 @@
   background: var(--sent-green);
   align-self: flex-end;
   margin-right: 1.5rem;
-  position: relative;
-  border-radius: 0.5rem;
-  padding: 1rem;
   padding-top: 0.5rem;
-  padding-bottom: 1.5rem;
-  box-shadow: 1px 1px 10px #0000003e;
-  min-width: 7rem;
-  max-width: 65%;
   svg {
-    display: block;
-    position: absolute;
-    top: 0;
     right: -0.8rem;
   }
   .time {
-    position: absolute;
-    bottom: 0.2rem;
     right: 2rem;
-    color: var(--time);
   }
   .tick {
     position: absolute;

@@ -166,7 +166,6 @@ function EditUser(props) {
             onChange={async (e) => {
               try {
                 const image = await resizeFile(e.target.files[0], 200, 200)
-                console.log(image)
                 setProfile(image)
               } catch (err) {
                 alert(err)

@@ -18,6 +18,16 @@
   }
   form {
     padding-bottom: 2rem;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem;
+      font-size: 1.7rem;
+      label {
+        margin-right: 1rem;
+      }
+    }
   }
   .count {
     margin: 1rem auto 0 auto;

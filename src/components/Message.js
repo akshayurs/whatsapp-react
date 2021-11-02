@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import ChangeImage from '../Helpers/ChangeImage'
 import { GetTime, GetDayAndMonth } from '../Helpers/Time'
 function Message(props) {
   const {
@@ -98,8 +99,21 @@ function Message(props) {
         let content = ele
           .querySelector('.main .content')
           .innerHTML.replaceAll(/<br>/g, '\n')
+        let doc = {}
+        if (chat.isDocument) {
+          doc = {
+            isDocument: true,
+            src: chat.src,
+          }
+        }
         inputEle.current.focus()
-        return { active: true, type, content, index: msgIndex }
+        return {
+          active: true,
+          type,
+          content,
+          index: msgIndex,
+          ...doc,
+        }
       })
     }
     toReply.current = false
@@ -122,7 +136,9 @@ function Message(props) {
       <div className="content-date">{GetDayAndMonth(chat.time)}</div>
     )
   }
-
+  if (chat.replyFor) {
+    console.log(chat)
+  }
   return (
     <>
       {contentDate}
@@ -138,7 +154,8 @@ function Message(props) {
         className={
           'message ' +
           (chat.type === 1 ? 'from ' : 'to ') +
-          (selected ? ' selected' : '')
+          (selected ? ' selected' : '') +
+          (chat.isDocument ? ' document ' : '')
         }
         data-message-index={chat.index}
       >
@@ -154,17 +171,29 @@ function Message(props) {
                 e.stopPropagation()
                 gotoMessage(chat.replyFor.index)
               }}
-              className="replay-message-container"
+              className={
+                'replay-message-container ' +
+                (chat.replyFor.isDocument ? ' document' : '')
+              }
             >
-              <div className="name">
-                {chat.replyFor.type === 0 ? user.name : 'You'}
+              <div className="reply-left">
+                <div className="name">
+                  {chat.replyFor.type === 0 ? user.name : 'You'}
+                </div>
+                <div className="content">
+                  {chat.replyFor.content.replaceAll(/\n/g, ' ')}
+                  {chat.replyFor.isDocument && (
+                    <>
+                      <span className="fa">&#xf03e;</span> <span>Photo</span>
+                    </>
+                  )}
+                </div>
               </div>
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{
-                  __html: chat.replyFor.content.replaceAll(/\n/g, ' '),
-                }}
-              ></div>
+              {chat.replyFor.isDocument && (
+                <div className="reply-right">
+                  <img src={ChangeImage(chat.replyFor.src)} alt="" />
+                </div>
+              )}
             </div>
           ) : (
             ''
@@ -204,12 +233,16 @@ function Message(props) {
                 ></path>
               </svg>
             )}
+            {chat.isDocument && (
+              <img className="image" src={ChangeImage(chat.src)} alt="" />
+            )}
             <div
               className="content"
               dangerouslySetInnerHTML={{
                 __html: chat.content.replaceAll(/\n/g, '<br>'),
               }}
             ></div>
+
             <div className="time">{GetTime(chat.time)}</div>
             {chat.type === 2 ? (
               <div className="tick">

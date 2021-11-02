@@ -10,7 +10,7 @@ export const resizeFile = (file, maxWidth, maxHeight) =>
       maxWidth,
       maxHeight,
       'JPEG',
-      100,
+      95,
       0,
       (uri) => {
         resolve(uri)

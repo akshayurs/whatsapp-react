@@ -6,6 +6,7 @@ import { DispatchContext } from '../Helpers/DispatchContext'
 import { GetTime, SameDay, GetDayAndMonth } from '../Helpers/Time'
 import { SortByKey } from '../Helpers/Sort'
 import FlashMsg from '../components/flashMsg'
+import ChangeImage from '../Helpers/ChangeImage'
 
 const insertItem = (arr, item, position) => {
   return [...arr.slice(0, position), item, ...arr.slice(position)]
@@ -109,6 +110,7 @@ function EditChats(props) {
       }
     }
     setInputMsg('')
+    inputEle.current.focus()
     setChats((prev) => {
       return insertItem(prev, chat, position - 1)
     })
@@ -120,6 +122,8 @@ function EditChats(props) {
         messageIndex: prev.messageIndex + 1,
       }
     })
+    setFlashMsg('Message added')
+    clearflash()
   }
   function handleInput(e) {
     e.persist()
@@ -154,7 +158,7 @@ function EditChats(props) {
                 })
               }}
             >
-              <i class="fas fa-save"></i>
+              <i className="fas fa-save"></i>
               Save Changes
             </button>
           </div>
@@ -165,7 +169,6 @@ function EditChats(props) {
         ref={messageContainerEle}
         style={{ background: ' #E5DDD5 url("/img/bg.png")' }}
       >
-        <div className="count">Chat Count - {chats.length}</div>
         {chats.map((chat, index) => {
           return (
             <Message
@@ -185,28 +188,46 @@ function EditChats(props) {
           className={
             'addnewchat ' + (position === chats.length + 1 ? ' selected' : '')
           }
+          onClick={(e) => {
+            setPosition(chats.length + 1)
+          }}
         >
-          <i
-            className="fas fa-plus"
-            onClick={(e) => {
-              setPosition(chats.length + 1)
-            }}
-          ></i>
+          {chats.length + 1}) Add Message here
+          <i className="fas fa-plus"></i>
         </div>
       </div>
       <footer>
-        <div className="position">Message to position - {position}</div>
+        <div className="position">Adding message to position - {position}</div>
         {reply.active ? (
-          <div className="reply-container" data-active="false">
-            <div className="content">
-              {reply.content.replaceAll(/\n/g, ' ')}
+          <div
+            className={
+              'reply-container' + (reply.isDocument ? ' document ' : '')
+            }
+            data-active="false"
+          >
+            <div className="reply-left">
+              <div className="name">{reply.type === 0 ? user.name : 'You'}</div>
+              <div className="content">
+                {reply.content.replaceAll(/\n/g, ' ')}
+                {reply.isDocument && (
+                  <>
+                    <span className="fa">&#xf03e;</span> <span>Photo</span>
+                  </>
+                )}
+              </div>
+
+              <i
+                onClick={() => {
+                  setReply({ active: false })
+                }}
+                className="fas fa-times cancel"
+              ></i>
             </div>
-            <i
-              onClick={() => {
-                setReply({ active: false })
-              }}
-              className="fas fa-times cancel"
-            ></i>
+            {reply.isDocument && (
+              <div className="reply-right">
+                <img src={ChangeImage(reply.src)} alt="" />
+              </div>
+            )}
           </div>
         ) : (
           ''
@@ -335,15 +356,22 @@ function Message(props) {
       )}
       <div
         className={'addnewchat ' + (position === index + 1 ? ' selected' : '')}
+        onClick={(e) => {
+          setPosition(index + 1)
+        }}
       >
-        <i
-          className="fas fa-plus"
-          onClick={(e) => {
-            setPosition(index + 1)
-          }}
-        ></i>
+        {' '}
+        {index + 1}) Add message here
+        <i className="fas fa-plus"></i>
       </div>
-      <div className="message" data-message-index={chat.index}>
+      <div
+        className={
+          'message ' +
+          (chat.type === 1 ? 'from ' : 'to ') +
+          (chat.isDocument ? ' document ' : '')
+        }
+        data-message-index={chat.index}
+      >
         <div
           className={`${chat.type === 1 ? 'received ' : 'sent '} ${
             chat.isReply ? 'replied' : ''
@@ -360,25 +388,50 @@ function Message(props) {
           <i
             className="fas fa-share reply-icon"
             onClick={() => {
+              let doc = {}
+              if (chat.isDocument) {
+                doc = {
+                  isDocument: true,
+                  src: chat.src,
+                }
+              }
               setReply({
                 active: true,
                 type: chat.type === 1 ? 0 : 1,
                 content: chat.content,
                 index: chat.index,
+                ...doc,
               })
             }}
           ></i>
           {chat.isReply ? (
-            <div className="replay-message-container">
-              <div className="name">
-                {chat.replyFor.type === 0 ? user.name : 'You'}
+            <div
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+              className={
+                'replay-message-container ' +
+                (chat.replyFor.isDocument ? ' document' : '')
+              }
+            >
+              <div className="reply-left">
+                <div className="name">
+                  {chat.replyFor.type === 0 ? user.name : 'You'}
+                </div>
+                <div className="content">
+                  {chat.replyFor.content.replaceAll(/\n/g, ' ')}
+                  {chat.replyFor.isDocument && (
+                    <>
+                      <span className="fa">&#xf03e;</span> <span>Photo</span>
+                    </>
+                  )}
+                </div>
               </div>
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{
-                  __html: chat.replyFor.content.replaceAll(/\n/g, ' '),
-                }}
-              ></div>
+              {chat.replyFor.isDocument && (
+                <div className="reply-right">
+                  <img src={ChangeImage(chat.replyFor.src)} alt="" />
+                </div>
+              )}
             </div>
           ) : (
             ''
@@ -417,6 +470,9 @@ function Message(props) {
                   d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"
                 ></path>
               </svg>
+            )}
+            {chat.isDocument && (
+              <img className="image" src={ChangeImage(chat.src)} alt="" />
             )}
             <div
               className="content"

@@ -11,6 +11,7 @@
     .top {
       display: flex;
       align-items: center;
+      padding: 0.5rem 0;
       i {
         padding-left: 1.5rem;
       }
@@ -41,23 +42,17 @@
     padding-bottom: 2rem;
     .addnewchat {
       text-align: center;
+      font-size: 1.1rem;
+      font-family: monospace;
       i {
         padding: 0.5rem;
+        margin-left: 0.5rem;
         background: #eee;
         border-radius: 50%;
       }
       &.selected {
         background-color: rgba(173, 216, 230, 0.5);
       }
-    }
-    .count {
-      margin: 0 auto;
-      padding: 0.5rem 1rem;
-      background: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.363);
-      width: fit-content;
-      border-radius: 1rem;
-      font-size: 1.7rem;
     }
     .triangle {
       display: block;
@@ -116,20 +111,48 @@
       border-radius: 0.3rem;
       animation: increaseHeight 0.2s ease;
       animation-fill-mode: backwards;
-      .name {
-        font-size: 1.2rem;
-        padding-bottom: 0.2rem;
-        color: var(--reply-color);
+      display: flex;
+      align-items: center;
+      &.document {
+        padding: 0;
+        .reply-left {
+          padding: 1rem;
+        }
       }
-      .content {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+      .reply-left {
+        flex: 1;
+        .name {
+          font-size: 1.2rem;
+          padding-bottom: 0.2rem;
+          color: var(--reply-color);
+        }
+        .content {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        .cancel {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          width: 1.5rem;
+          height: 1.5rem;
+          padding: 0.3rem;
+          border-radius: 50%;
+          background-color: rgba(238, 238, 238, 0.555);
+          right: 0.5rem;
+          top: 0.2rem;
+        }
       }
-      .cancel {
-        position: absolute;
-        right: 1rem;
-        top: 0.8rem;
+      .reply-right {
+        // padding-right: 0.1rem;
+        img {
+          width: 5rem;
+          height: 5rem;
+          object-fit: cover;
+          border-radius: 0 0.3rem 0.3rem 0;
+        }
       }
     }
 

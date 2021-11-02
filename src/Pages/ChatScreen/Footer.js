@@ -1,4 +1,5 @@
 import React, { useRef, useContext, useState, memo } from 'react'
+import ChangeImage from '../../Helpers/ChangeImage'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 
 function Footer(props) {
@@ -23,14 +24,23 @@ function Footer(props) {
     let obj = {}
 
     if (reply.active) {
+      let replyFor = {
+        type: reply.type,
+        content: reply.content,
+        index: reply.index,
+      }
+
+      if (reply.isDocument) {
+        replyFor = {
+          ...replyFor,
+          isDocument: true,
+          src: reply.src,
+        }
+      }
       obj = {
         content: inputVal.trim(),
         isReply: true,
-        replyFor: {
-          type: reply.type,
-          content: reply.content,
-          index: reply.index,
-        },
+        replyFor,
       }
     } else {
       obj = {
@@ -58,17 +68,35 @@ function Footer(props) {
     <footer style={{ background: ' #E5DDD5 url("/img/bg.png")' }}>
       <div className={'left ' + (reply.active ? 'reply--visible' : '')}>
         {reply.active ? (
-          <div className="reply-container" data-active="false">
-            <div className="name">{reply.type === 0 ? user.name : 'You'}</div>
-            <div className="content">
-              {reply.content.replaceAll(/\n/g, ' ')}
+          <div
+            className={
+              'reply-container' + (reply.isDocument ? ' document ' : '')
+            }
+            data-active="false"
+          >
+            <div className="reply-left">
+              <div className="name">{reply.type === 0 ? user.name : 'You'}</div>
+              <div className="content">
+                {reply.content.replaceAll(/\n/g, ' ')}
+                {reply.isDocument && (
+                  <>
+                    <span className="fa">&#xf03e;</span> <span>Photo</span>
+                  </>
+                )}
+              </div>
+
+              <i
+                onClick={() => {
+                  setReply({ active: false })
+                }}
+                className="fas fa-times cancel"
+              ></i>
             </div>
-            <i
-              onClick={() => {
-                setReply({ active: false })
-              }}
-              className="fas fa-times cancel"
-            ></i>
+            {reply.isDocument && (
+              <div className="reply-right">
+                <img src={ChangeImage(reply.src)} alt="" />
+              </div>
+            )}
           </div>
         ) : (
           ''

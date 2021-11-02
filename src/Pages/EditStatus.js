@@ -13,6 +13,7 @@ function EditStatus(props) {
   const appDispatch = useContext(DispatchContext)
   const [status, setStatus] = useState([])
   const [user, setUser] = useState({})
+  const [statusViewed, setStatusViewed] = useState(false)
   const [flashMsg, setFlashMsg] = useState('')
   const flashTimeout = useRef(null)
   let flashEle = ''
@@ -49,6 +50,7 @@ function EditStatus(props) {
       const index = GetUserIndex(appState, parseInt(userid))
       setUser(appState[index])
       setStatus(appState[index].status)
+      setStatusViewed(appState[index].statusViewed)
     }
   }, [appState, userid])
   const sotredStatus = SortByKey(status, ['time'], true)
@@ -72,12 +74,26 @@ function EditStatus(props) {
           e.preventDefault()
           appDispatch({
             type: 'UPDATE_STATUS',
-            value: { statusIndex: user.statusIndex, status, userid },
+            value: {
+              statusIndex: user.statusIndex,
+              status,
+              userid,
+              statusViewed,
+            },
           })
           setFlashMsg('Saved')
           clearflash()
         }}
       >
+        <div className="container">
+          <label htmlFor="statusViewed">Status viewed</label>
+          <input
+            type="checkbox"
+            id="statusViewed"
+            checked={statusViewed}
+            onChange={() => setStatusViewed((prev) => !prev)}
+          />
+        </div>
         {sotredStatus.map((item) => {
           let date = new Date(item.time)
           date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
@@ -141,7 +157,6 @@ function EditStatus(props) {
                         600,
                         800
                       )
-                      console.log(image)
                       handleChange(item.index, 'src', image)
                     } catch (err) {
                       alert(err)
@@ -236,7 +251,10 @@ function EditStatus(props) {
           <button
             type="submit"
             className="save"
-            disabled={JSON.stringify(user.status) === JSON.stringify(status)}
+            disabled={
+              JSON.stringify(user.status) === JSON.stringify(status) &&
+              user.statusViewed === statusViewed
+            }
           >
             Save Changes
           </button>
