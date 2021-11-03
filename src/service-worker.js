@@ -67,7 +67,7 @@ registerRoute(
 )
 
 const audio = ['.mp3']
-const fonts = ['fontawesome.', 'fonts.', '.woff2']
+const fonts = ['fontawesome.', 'fonts.', '.woff2', 'ace2720b54.js']
 
 function matchString(array, url) {
   return array.some((item) => {
