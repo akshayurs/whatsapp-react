@@ -51,10 +51,11 @@ registerRoute(
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
   ({ url }) =>
-    url.origin === self.location.origin &&
-    (url.pathname.endsWith('.png') ||
-      url.pathname.endsWith('.jpg') ||
-      url.pathname.endsWith('.ico')), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+    (url.origin === self.location.origin &&
+      (url.pathname.endsWith('.png') ||
+        url.pathname.endsWith('.jpg') ||
+        url.pathname.endsWith('.ico'))) ||
+    url.pathname.endsWith('.svg'),
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
@@ -65,17 +66,30 @@ registerRoute(
   })
 )
 
+const audio = ['.mp3']
+const fonts = ['fontawesome.', 'fonts.', '.woff2']
+
+function matchString(array, url) {
+  return array.some((item) => {
+    const regExp = new RegExp(item)
+    return regExp.test(url)
+  })
+}
+
 //audio files
 registerRoute(
-  ({ url }) =>
-    url.origin === self.location.origin && url.pathname.endsWith('.mp3'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+  ({ url }) => matchString(audio, url.pathname),
   new StaleWhileRevalidate({
     cacheName: 'audio',
-    plugins: [
-      // Ensure that once this runtime cache reaches a maximum size the
-      // least-recently used images are removed.
-      new ExpirationPlugin({ maxEntries: 5 }),
-    ],
+    plugins: [new ExpirationPlugin({ maxEntries: 5 })],
+  })
+)
+
+registerRoute(
+  ({ url }) => matchString(fonts, url.pathname),
+  new StaleWhileRevalidate({
+    cacheName: 'fonts',
+    plugins: [new ExpirationPlugin({ maxEntries: 10 })],
   })
 )
 
