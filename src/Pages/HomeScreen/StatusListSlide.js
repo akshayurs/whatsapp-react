@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import StatusItem from '../../components/StatusItem'
+import { useContext, useEffect, useState } from 'react'
+import StatusItem from '../../Components/StatusItem'
 import { UserContext } from '../../Helpers/UserContext'
 import { SortByKeyLast } from '../../Helpers/Sort'
 import ChangeImage from '../../Helpers/ChangeImage'

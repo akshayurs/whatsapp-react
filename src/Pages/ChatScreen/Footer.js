@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, memo } from 'react'
+import { useRef, useContext, useState, memo } from 'react'
 import ChangeImage from '../../Helpers/ChangeImage'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 

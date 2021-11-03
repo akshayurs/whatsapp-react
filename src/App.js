@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import HomeScreen from './Pages/HomeScreen/HomeScreen'
@@ -19,7 +19,7 @@ import { UserContext } from './Helpers/UserContext'
 import { DispatchContext } from './Helpers/DispatchContext'
 import reducer from './Helpers/Reducer'
 
-import './css/main.css'
+import './scss/main.scss'
 import Settings from './Pages/Settings'
 import NotFound from './Pages/NotFound'
 import Search from './Pages/Search'

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useCallback } from 'react'
+import { useContext, useEffect, useCallback } from 'react'
 import { UserContext } from '../../Helpers/UserContext'
-import ChatItem from '../../components/ChatItem'
+import ChatItem from '../../Components/ChatItem'
 import { SortByKeyLast } from '../../Helpers/Sort'
 
 function ChatListSlide(props) {

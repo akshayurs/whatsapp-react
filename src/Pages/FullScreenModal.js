@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState } from 'react'
 
 function FullScreenModal() {
   let [visible, serVisible] = useState(true)

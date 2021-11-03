@@ -1,7 +1,5 @@
 import { UsersList } from './sampleData'
 import GetUserIndex from './GetUserIndex'
-import { act } from 'react-dom/test-utils'
-
 function saveData(state) {
   localStorage.setItem('whatsAppUsersList', JSON.stringify(state))
 }

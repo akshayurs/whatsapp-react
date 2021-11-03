@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { UserContext } from '../Helpers/UserContext'
 import { withRouter, useParams, Link } from 'react-router-dom'
 import ChangeImage from '../Helpers/ChangeImage'

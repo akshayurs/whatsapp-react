@@ -1,12 +1,12 @@
-import React, { memo, useState, useContext, useRef, useEffect } from 'react'
+import { memo, useState, useContext, useRef, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ChangeImage from '../../Helpers/ChangeImage'
-import DropDown from '../../components/DropDown'
+import DropDown from '../../Components/DropDown'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import CopyText from '../../Helpers/CopyText'
 import { GetTime, GetDayAndMonth, FormatedDate } from '../../Helpers/Time'
 import { DispatchContext } from '../../Helpers/DispatchContext'
-import FlashMsg from '../../components/flashMsg'
+import FlashMsg from '../../Components/flashMsg'
 function download(filename, text) {
   var element = document.createElement('a')
   element.setAttribute(

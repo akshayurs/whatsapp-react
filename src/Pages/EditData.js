@@ -1,13 +1,11 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
-import { DispatchContext } from '../Helpers/DispatchContext'
 import ChangeImage from '../Helpers/ChangeImage'
-import UserItem from '../components/UserItem'
+import UserItem from '../Components/UserItem'
 
 function EditData(props) {
   const appState = useContext(UserContext)
-  const appDispatch = useContext(DispatchContext)
   const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
   return (
     <div className="editdatascreen">

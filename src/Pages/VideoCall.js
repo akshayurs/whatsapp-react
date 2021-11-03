@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useParams, withRouter } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
 import ChangeImage from '../Helpers/ChangeImage'

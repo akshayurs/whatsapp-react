@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { useParams, withRouter } from 'react-router'
 import GetUserIndex from '../Helpers/GetUserIndex'
 import { UserContext } from '../Helpers/UserContext'
 import { DispatchContext } from '../Helpers/DispatchContext'
 import { GetTime, SameDay, GetDayAndMonth } from '../Helpers/Time'
-import { SortByKey } from '../Helpers/Sort'
-import FlashMsg from '../components/flashMsg'
+import FlashMsg from '../Components/flashMsg'
 import ChangeImage from '../Helpers/ChangeImage'
 
 const insertItem = (arr, item, position) => {
@@ -45,25 +44,6 @@ function EditChats(props) {
     flashTimeout.current = setTimeout(() => {
       setFlashMsg('')
     }, 2100)
-  }
-  function handleChange(index, key, value, invert) {
-    setChats((prev) => {
-      return prev.map((calls) => {
-        if (calls.index === index) {
-          if (invert) {
-            return {
-              ...calls,
-              [key]: !calls[key],
-            }
-          }
-          return {
-            ...calls,
-            [key]: value,
-          }
-        }
-        return calls
-      })
-    })
   }
   useEffect(() => {
     if (appState.length !== 0) {

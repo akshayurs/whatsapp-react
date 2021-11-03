@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ChangeImage from '../Helpers/ChangeImage'
 import OpenFullscreen from '../Helpers/OpenFullScreen'
@@ -167,12 +167,6 @@ function ChatItem(props) {
                 {lastMessage?.content.replaceAll(/\n/g, ' ')}
               </div>
             )}
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: lastMessage?.content.replaceAll(/\n/g, ' '),
-              }}
-            ></div>
           </div>
         </div>
         <div className="time-container">

@@ -1,5 +1,5 @@
-import React, { useEffect, memo, useContext, useRef } from 'react'
-import Message from '../../components/Message'
+import { useEffect, memo, useContext, useRef } from 'react'
+import Message from '../../Components/Message'
 import { UserContext } from '../../Helpers/UserContext'
 import { SameDay } from '../../Helpers/Time'
 

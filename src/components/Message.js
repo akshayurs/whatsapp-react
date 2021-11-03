@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ChangeImage from '../Helpers/ChangeImage'
 import { GetTime, GetDayAndMonth } from '../Helpers/Time'
 function Message(props) {
@@ -135,9 +135,6 @@ function Message(props) {
     contentDate = (
       <div className="content-date">{GetDayAndMonth(chat.time)}</div>
     )
-  }
-  if (chat.replyFor) {
-    console.log(chat)
   }
   return (
     <>

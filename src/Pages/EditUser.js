@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams, withRouter } from 'react-router'
 import ChangeImage from '../Helpers/ChangeImage'
 import GetUserIndex from '../Helpers/GetUserIndex'

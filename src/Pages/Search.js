@@ -1,6 +1,6 @@
-import React, { useContext, useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import ContactItem from '../components/ContactItem'
+import ContactItem from '../Components/ContactItem'
 import { UserContext } from '../Helpers/UserContext'
 function Search(props) {
   const appState = useContext(UserContext)

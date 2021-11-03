@@ -1,4 +1,3 @@
-import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { GetDayAndMonth, GetTime } from '../Helpers/Time'
 import ChangeImage from '../Helpers/ChangeImage'

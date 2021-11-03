@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import ChangeImage from '../Helpers/ChangeImage'
 import { GetTime, GetDayAndMonth } from '../Helpers/Time'

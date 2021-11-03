@@ -1,4 +1,3 @@
-import React from 'react'
 function ProgressBars(props) {
   const { index, length } = props
   let progressBars = []

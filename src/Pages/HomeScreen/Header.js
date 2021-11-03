@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'
+import { useState, useContext, useEffect, useRef } from 'react'
 import OpenFullScreen from '../../Helpers/OpenFullScreen'
-import DropDown from '../../components/DropDown'
+import DropDown from '../../Components/DropDown'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 import { Link, withRouter } from 'react-router-dom'
-import FlashMsg from '../../components/flashMsg'
+import FlashMsg from '../../Components/flashMsg'
 function Header(props) {
   const {
     moveSlide,

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { useParams, withRouter } from 'react-router'
 import ChangeImage from '../Helpers/ChangeImage'
 import GetUserIndex from '../Helpers/GetUserIndex'
@@ -6,7 +6,7 @@ import { resizeFile } from '../Helpers/imageResize'
 import { UserContext } from '../Helpers/UserContext'
 import { DispatchContext } from '../Helpers/DispatchContext'
 import { SortByKey } from '../Helpers/Sort'
-import FlashMsg from '../components/flashMsg'
+import FlashMsg from '../Components/flashMsg'
 function EditStatus(props) {
   const { userid } = useParams()
   const appState = useContext(UserContext)

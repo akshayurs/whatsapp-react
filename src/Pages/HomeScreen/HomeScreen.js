@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import Slides from './Slides'
-import NewIcon from '../../components/NewIcon'
+import NewIcon from '../../Components/NewIcon'
 
 import Header from './Header'
 function HomeScreen() {

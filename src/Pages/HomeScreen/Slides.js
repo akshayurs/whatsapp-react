@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import CallListSlide from './CallListSlide'
 import CameraSlide from './CameraSlide'
 import ChatListSlide from './ChatListSlide'

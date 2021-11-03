@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
-import ContactItem from '../components/ContactItem'
+import ContactItem from '../Components/ContactItem'
 import { SortByKey } from '../Helpers/Sort'
 function NewChatScreen(props) {
   const appState = useContext(UserContext)

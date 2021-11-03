@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-} from 'react'
+import { useContext, useState, useRef, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../../Helpers/UserContext'
 import Header from './Header'
