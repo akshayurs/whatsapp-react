@@ -64,6 +64,18 @@ export const UsersList = [
         src: 'githubbackground.jpg',
         status: 2,
       },
+      {
+        index: 6,
+        type: 2,
+        isDocument: {
+          type: 'audio',
+        },
+        showContent: false,
+        content: `<i class="fas fa-microphone mic "></i> audio`,
+        time: 1635190583928,
+        src: '/audio/audio-sample.mp3',
+        status: 2,
+      },
     ],
     calls: [
       {
