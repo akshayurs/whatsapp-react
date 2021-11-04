@@ -11,6 +11,12 @@ function Message(props) {
     handleSelect,
     clickToSelect,
     addContentDate,
+    toEdit,
+    index,
+    setPosition,
+    position,
+    setChats,
+    prevChat,
   } = props
   const element = useRef(null)
   const toReply = useRef(false)
@@ -102,7 +108,7 @@ function Message(props) {
         let doc = {}
         if (chat.isDocument) {
           doc = {
-            isDocument: true,
+            isDocument: chat.isDocument,
             src: chat.src,
           }
         }
@@ -139,12 +145,30 @@ function Message(props) {
   return (
     <>
       {contentDate}
+      {toEdit && (
+        <div
+          className={
+            'addnewchat ' + (position === index + 1 ? ' selected' : '')
+          }
+          onClick={(e) => {
+            setPosition(index + 1)
+          }}
+        >
+          {' '}
+          {index + 1}) Add message here
+          <i className="fas fa-plus"></i>
+        </div>
+      )}
       <div
         ref={element}
-        onTouchStart={(e) => touchstart(e)}
-        onTouchEnd={(e) => touchend(e, element, chat.index)}
-        onTouchMove={(e) => touchmove(e, element, chat.index)}
-        onClick={handleClick}
+        onTouchStart={toEdit ? undefined : (e) => touchstart(e)}
+        onTouchEnd={
+          toEdit ? undefined : (e) => touchend(e, element, chat.index)
+        }
+        onTouchMove={
+          toEdit ? undefined : (e) => touchmove(e, element, chat.index)
+        }
+        onClick={toEdit ? undefined : handleClick}
         onContextMenu={(e) => {
           e.preventDefault()
         }}
@@ -152,7 +176,8 @@ function Message(props) {
           'message ' +
           (chat.type === 1 ? 'from ' : 'to ') +
           (selected ? ' selected' : '') +
-          (chat.isDocument ? ' document ' : '')
+          (chat.isDocument ? ' document ' : '') +
+          (chat.isDocument?.type === 'audio' ? ' audio' : '')
         }
         data-message-index={chat.index}
       >
@@ -162,6 +187,37 @@ function Message(props) {
             chat.isReply ? 'replied' : ''
           }`}
         >
+          {toEdit && (
+            <>
+              <i
+                className="fas fa-trash delete-icon"
+                onClick={() => {
+                  setChats((prev) => {
+                    return prev.filter((item) => item.index !== chat.index)
+                  })
+                }}
+              ></i>
+              <i
+                className="fas fa-share reply-icon"
+                onClick={() => {
+                  let doc = {}
+                  if (chat.isDocument) {
+                    doc = {
+                      isDocument: true,
+                      src: chat.src,
+                    }
+                  }
+                  setReply({
+                    active: true,
+                    type: chat.type === 1 ? 0 : 1,
+                    content: chat.content,
+                    index: chat.index,
+                    ...doc,
+                  })
+                }}
+              ></i>
+            </>
+          )}
           {chat.isReply ? (
             <div
               onClick={(e) => {
@@ -177,14 +233,12 @@ function Message(props) {
                 <div className="name">
                   {chat.replyFor.type === 0 ? user.name : 'You'}
                 </div>
-                <div className="content">
-                  {chat.replyFor.content.replaceAll(/\n/g, ' ')}
-                  {chat.replyFor.isDocument && (
-                    <>
-                      <span className="fa">&#xf03e;</span> <span>Photo</span>
-                    </>
-                  )}
-                </div>
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{
+                    __html: chat.replyFor.content.replaceAll(/\n/g, ' '),
+                  }}
+                ></div>
               </div>
               {chat.replyFor.isDocument && (
                 <div className="reply-right">
@@ -230,11 +284,21 @@ function Message(props) {
                 ></path>
               </svg>
             )}
-            {chat.isDocument && (
+            {chat.isDocument?.type === 'image' && (
               <img className="image" src={ChangeImage(chat.src)} alt="" />
             )}
+            {chat.isDocument?.type === 'audio' && (
+              <>
+                <img src={ChangeImage(user.profile)} alt="profile" />
+                <audio controls>
+                  <source src={chat.src}></source>
+                </audio>
+              </>
+            )}
             <div
-              className="content"
+              className={
+                'content ' + (chat.showContent === false ? ' hide' : ' ')
+              }
               dangerouslySetInnerHTML={{
                 __html: chat.content.replaceAll(/\n/g, '<br>'),
               }}

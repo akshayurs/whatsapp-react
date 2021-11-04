@@ -6,6 +6,10 @@
     background-size: cover !important;
     padding-bottom: 1rem;
     width: 100vw;
+    #audio-input,
+    #camera-input {
+      display: none;
+    }
     .left {
       flex: 1;
       display: flex;
@@ -48,6 +52,9 @@
             color: var(--reply-color);
           }
           .content {
+            i {
+              padding: 0;
+            }
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;

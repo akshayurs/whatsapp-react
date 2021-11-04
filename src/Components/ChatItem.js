@@ -155,18 +155,14 @@ function ChatItem(props) {
           <div className="name">{user.name}</div>
           <div className="lastmessage">
             {tick}
-            {lastMessage.isDocument ? (
+            {
               <div
                 className="content"
                 dangerouslySetInnerHTML={{
-                  __html: '<i class="fas fa-image"></i> Photo',
+                  __html: lastMessage?.content.replaceAll(/\n/g, ' '),
                 }}
               ></div>
-            ) : (
-              <div className="content">
-                {lastMessage?.content.replaceAll(/\n/g, ' ')}
-              </div>
-            )}
+            }
           </div>
         </div>
         <div className="time-container">

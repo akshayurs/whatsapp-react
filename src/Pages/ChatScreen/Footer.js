@@ -1,6 +1,7 @@
 import { useRef, useContext, useState, memo } from 'react'
 import ChangeImage from '../../Helpers/ChangeImage'
 import { DispatchContext } from '../../Helpers/DispatchContext'
+import { resizeFile } from '../../Helpers/imageResize'
 
 function Footer(props) {
   const { reply, setReply, user, inputEle } = props
@@ -76,14 +77,12 @@ function Footer(props) {
           >
             <div className="reply-left">
               <div className="name">{reply.type === 0 ? user.name : 'You'}</div>
-              <div className="content">
-                {reply.content.replaceAll(/\n/g, ' ')}
-                {reply.isDocument && (
-                  <>
-                    <span className="fa">&#xf03e;</span> <span>Photo</span>
-                  </>
-                )}
-              </div>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{
+                  __html: reply.content.replaceAll(/\n/g, ' '),
+                }}
+              ></div>
 
               <i
                 onClick={() => {
@@ -92,7 +91,7 @@ function Footer(props) {
                 className="fas fa-times cancel"
               ></i>
             </div>
-            {reply.isDocument && (
+            {reply.isDocument?.type === 'image' && (
               <div className="reply-right">
                 <img src={ChangeImage(reply.src)} alt="" />
               </div>
@@ -116,15 +115,19 @@ function Footer(props) {
           placeholder="Type a message"
         />
         <i className="fas fa-2x fa-paperclip rotate"></i>
-        <i className="fas fa-2x fa-camera"></i>
+        <label htmlFor="camera-input">
+          <i className="fas fa-2x fa-camera"></i>
+        </label>
       </div>
       <div className="right">
-        <i
-          className={
-            'fas fa-2x fa-microphone mic ' +
-            (inputVal.trim().length === 0 ? 'visible' : '')
-          }
-        ></i>
+        <label htmlFor="audio-input">
+          <i
+            className={
+              'fas fa-2x fa-microphone mic ' +
+              (inputVal.trim().length === 0 ? 'visible' : '')
+            }
+          ></i>
+        </label>
         <i
           onClick={handleSubmit}
           className={
@@ -133,6 +136,62 @@ function Footer(props) {
           }
         ></i>
       </div>
+      <input
+        type="file"
+        accept="audio/*"
+        id="audio-input"
+        onChange={(e) => {
+          const reader = new FileReader()
+          console.log(e.target.files[0])
+          reader.onload = function () {
+            var str = this.result
+            appDispatch({
+              type: 'SEND_MSG',
+              value: {
+                content: {
+                  isDocument: {
+                    type: 'audio',
+                  },
+                  src: str,
+                  showContent: false,
+                  content: '<i class="fas fa-microphone mic "></i> audio',
+                },
+                userIndex: user.userIndex,
+              },
+            })
+          }
+          reader.readAsDataURL(e.target.files[0])
+          e.target.value = ''
+        }}
+      />
+      <input
+        type="file"
+        id="camera-input"
+        accept="image/*"
+        onChange={async (e) => {
+          try {
+            const image = await resizeFile(e.target.files[0], 600, 800)
+            appDispatch({
+              type: 'SEND_MSG',
+              value: {
+                content: {
+                  isDocument: {
+                    type: 'image',
+                  },
+                  src: image,
+                  showContent: false,
+                  content: '<i class="fas fa-image"></i> Photo',
+                },
+                userIndex: user.userIndex,
+              },
+            })
+            e.target.value = ''
+          } catch (err) {
+            alert(err)
+            e.target.value = ''
+          }
+        }}
+      />
       <audio src="/audio/sent.mp3" ref={soundEle}></audio>
     </footer>
   )

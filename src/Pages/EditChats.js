@@ -3,10 +3,12 @@ import { useParams, withRouter } from 'react-router'
 import GetUserIndex from '../Helpers/GetUserIndex'
 import { UserContext } from '../Helpers/UserContext'
 import { DispatchContext } from '../Helpers/DispatchContext'
-import { GetTime, SameDay, GetDayAndMonth } from '../Helpers/Time'
+import OpenFullScreen from '../Helpers/OpenFullScreen'
+import { SameDay } from '../Helpers/Time'
 import FlashMsg from '../Components/flashMsg'
 import ChangeImage from '../Helpers/ChangeImage'
-
+import Message from '../Components/Message'
+import { resizeFile } from '../Helpers/imageResize'
 const insertItem = (arr, item, position) => {
   return [...arr.slice(0, position), item, ...arr.slice(position)]
 }
@@ -24,6 +26,7 @@ function EditChats(props) {
   const [reply, setReply] = useState({
     active: false,
   })
+  const [media, setMedia] = useState({ active: false })
   const [time, setTime] = useState(Date.now())
   const [tick, setTick] = useState({ single: true, double: false, blue: false })
   const [position, setPosition] = useState(0)
@@ -52,6 +55,7 @@ function EditChats(props) {
       setChats(appState[index].chatsList)
       setPosition(appState[index].chatsList.length + 1)
     }
+    OpenFullScreen()
   }, [appState, userid])
   useEffect(() => {
     setTimeout(() => {
@@ -63,14 +67,34 @@ function EditChats(props) {
     inputEle.current.focus()
   }, [position])
   function sendMsg(isOutgoing) {
-    if (inputMsg.trim() === '') {
+    if (!media.active && inputMsg.trim() === '') {
       return
     }
+    inputEle.current.disabled = false
     let chat = {
       index: user.messageIndex + 1,
       type: isOutgoing ? 2 : 1,
       content: inputMsg.trim(),
       time,
+    }
+    if (media.active) {
+      if (media.type === 'audio') {
+        chat = {
+          ...chat,
+          isDocument: { type: 'audio' },
+          showContent: false,
+          content: '<i class="fas fa-microphone mic "></i> audio',
+        }
+      }
+      if (media.type === 'image') {
+        chat = {
+          ...chat,
+          isDocument: { type: 'image' },
+          showContent: false,
+          content: '<i class="fas fa-image"></i> Photo',
+        }
+      }
+      chat = { ...chat, src: media.src }
     }
     if (isOutgoing) {
       let status = 0
@@ -89,6 +113,7 @@ function EditChats(props) {
         replyFor: reply,
       }
     }
+    setMedia({ active: false })
     setInputMsg('')
     inputEle.current.focus()
     setChats((prev) => {
@@ -150,6 +175,15 @@ function EditChats(props) {
         style={{ background: ' #E5DDD5 url("/img/bg.png")' }}
       >
         {chats.map((chat, index) => {
+          let addContentDate = false
+          if (index === 0) {
+            addContentDate = true
+          } else {
+            if (!SameDay(prevChat.current?.time, chat.time)) {
+              addContentDate = true
+            }
+          }
+          prevChat.current = chat
           return (
             <Message
               key={chat.index}
@@ -161,6 +195,8 @@ function EditChats(props) {
               prevChat={prevChat}
               position={position}
               setPosition={setPosition}
+              toEdit={true}
+              addContentDate={addContentDate}
             />
           )
         })}
@@ -187,14 +223,12 @@ function EditChats(props) {
           >
             <div className="reply-left">
               <div className="name">{reply.type === 0 ? user.name : 'You'}</div>
-              <div className="content">
-                {reply.content.replaceAll(/\n/g, ' ')}
-                {reply.isDocument && (
-                  <>
-                    <span className="fa">&#xf03e;</span> <span>Photo</span>
-                  </>
-                )}
-              </div>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{
+                  __html: reply.content.replaceAll(/\n/g, ' '),
+                }}
+              ></div>
 
               <i
                 onClick={() => {
@@ -203,7 +237,7 @@ function EditChats(props) {
                 className="fas fa-times cancel"
               ></i>
             </div>
-            {reply.isDocument && (
+            {reply.isDocument?.type === 'image' && (
               <div className="reply-right">
                 <img src={ChangeImage(reply.src)} alt="" />
               </div>
@@ -212,17 +246,28 @@ function EditChats(props) {
         ) : (
           ''
         )}
-        <div className="date-container">
-          <label htmlFor="time">Time : </label>
-          <input
-            type="datetime-local"
-            id="time"
-            value={date.toISOString().slice(0, 16)}
-            onChange={(e) => {
-              setTime(new Date(e.target.value).getTime())
-            }}
-            required
-          />
+        <div className="container">
+          <div className="date-container">
+            <label htmlFor="time">Time : </label>
+            <input
+              type="datetime-local"
+              id="time"
+              value={date.toISOString().slice(0, 16)}
+              onChange={(e) => {
+                setTime(new Date(e.target.value).getTime())
+              }}
+              required
+            />
+          </div>
+          <div className="media-input-container">
+            <p>Send: </p>
+            <label htmlFor="audio-input">
+              <i className="fas fa-2x fa-microphone mic "></i>
+            </label>
+            <label htmlFor="camera-input">
+              <i className="fas fa-2x fa-camera"></i>
+            </label>
+          </div>
         </div>
         <div className="tick-container">
           <input
@@ -301,204 +346,46 @@ function EditChats(props) {
             }}
           ></i>
         </div>
+        <input
+          type="file"
+          accept="audio/*"
+          id="audio-input"
+          onChange={(e) => {
+            const reader = new FileReader()
+            console.log(e.target.files[0])
+            reader.onload = function () {
+              var str = this.result
+              setMedia({ active: true, src: str, type: 'audio' })
+              setInputMsg('Audio file selected')
+              setFlashMsg('Audio selected')
+              clearflash()
+              inputEle.current.disabled = true
+            }
+            reader.readAsDataURL(e.target.files[0])
+            e.target.value = ''
+          }}
+        />
+        <input
+          type="file"
+          id="camera-input"
+          accept="image/*"
+          onChange={async (e) => {
+            try {
+              const image = await resizeFile(e.target.files[0], 600, 800)
+              setMedia({ active: true, src: image, type: 'image' })
+              setInputMsg('Image selected')
+              setFlashMsg('image selected')
+              clearflash()
+              inputEle.current.disabled = true
+              e.target.value = ''
+            } catch (err) {
+              alert(err)
+              e.target.value = ''
+            }
+          }}
+        />
       </footer>
     </div>
-  )
-}
-
-function Message(props) {
-  const {
-    index,
-    user,
-    chat,
-    setChats,
-    setReply,
-    prevChat,
-    setPosition,
-    position,
-  } = props
-  let addContentDate = false
-  if (index === 0) {
-    addContentDate = true
-  } else {
-    if (!SameDay(prevChat.current?.time, chat.time)) {
-      addContentDate = true
-    }
-  }
-  prevChat.current = chat
-
-  return (
-    <>
-      {addContentDate ? (
-        <div className="content-date">{GetDayAndMonth(chat.time)}</div>
-      ) : (
-        ''
-      )}
-      <div
-        className={'addnewchat ' + (position === index + 1 ? ' selected' : '')}
-        onClick={(e) => {
-          setPosition(index + 1)
-        }}
-      >
-        {' '}
-        {index + 1}) Add message here
-        <i className="fas fa-plus"></i>
-      </div>
-      <div
-        className={
-          'message ' +
-          (chat.type === 1 ? 'from ' : 'to ') +
-          (chat.isDocument ? ' document ' : '')
-        }
-        data-message-index={chat.index}
-      >
-        <div
-          className={`${chat.type === 1 ? 'received ' : 'sent '} ${
-            chat.isReply ? 'replied' : ''
-          }`}
-        >
-          <i
-            className="fas fa-trash delete-icon"
-            onClick={() => {
-              setChats((prev) => {
-                return prev.filter((item) => item.index !== chat.index)
-              })
-            }}
-          ></i>
-          <i
-            className="fas fa-share reply-icon"
-            onClick={() => {
-              let doc = {}
-              if (chat.isDocument) {
-                doc = {
-                  isDocument: true,
-                  src: chat.src,
-                }
-              }
-              setReply({
-                active: true,
-                type: chat.type === 1 ? 0 : 1,
-                content: chat.content,
-                index: chat.index,
-                ...doc,
-              })
-            }}
-          ></i>
-          {chat.isReply ? (
-            <div
-              onClick={(e) => {
-                e.stopPropagation()
-              }}
-              className={
-                'replay-message-container ' +
-                (chat.replyFor.isDocument ? ' document' : '')
-              }
-            >
-              <div className="reply-left">
-                <div className="name">
-                  {chat.replyFor.type === 0 ? user.name : 'You'}
-                </div>
-                <div className="content">
-                  {chat.replyFor.content.replaceAll(/\n/g, ' ')}
-                  {chat.replyFor.isDocument && (
-                    <>
-                      <span className="fa">&#xf03e;</span> <span>Photo</span>
-                    </>
-                  )}
-                </div>
-              </div>
-              {chat.replyFor.isDocument && (
-                <div className="reply-right">
-                  <img src={ChangeImage(chat.replyFor.src)} alt="" />
-                </div>
-              )}
-            </div>
-          ) : (
-            ''
-          )}
-          <div className="main">
-            {chat.type === 1 ? (
-              <svg
-                viewBox="0 0 8 13"
-                width="8"
-                height="13"
-                className="triangle"
-              >
-                <path
-                  opacity=".13"
-                  fill="#0000000"
-                  d="M1.533 3.568L8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z"
-                ></path>
-                <path
-                  fill="white"
-                  d="M1.533 2.568L8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z"
-                ></path>
-              </svg>
-            ) : (
-              <svg
-                viewBox="0 0 8 13"
-                width="8"
-                height="13"
-                className="triangle"
-              >
-                <path
-                  opacity=".13"
-                  d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"
-                ></path>
-                <path
-                  fill="#dcf8c6"
-                  d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"
-                ></path>
-              </svg>
-            )}
-            {chat.isDocument && (
-              <img className="image" src={ChangeImage(chat.src)} alt="" />
-            )}
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: chat.content.replaceAll(/\n/g, '<br>'),
-              }}
-            ></div>
-            <div className="time">{GetTime(chat.time)}</div>
-            {chat.type === 2 ? (
-              <div className="tick">
-                <div
-                  className={'single ' + (chat.status === 0 ? 'active' : '')}
-                >
-                  <svg viewBox="0 0 16 15" width="16" height="15">
-                    <path
-                      fill="currentColor"
-                      d="M10.91 3.316l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"
-                    ></path>
-                  </svg>
-                </div>
-                <div
-                  className={'double ' + (chat.status === 1 ? 'active' : '')}
-                >
-                  <svg viewBox="0 0 16 15" width="16" height="15">
-                    <path
-                      fill="currentColor"
-                      d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"
-                    ></path>
-                  </svg>
-                </div>
-                <div className={'blue ' + (chat.status === 2 ? 'active' : '')}>
-                  <svg viewBox="0 0 16 15" width="16" height="15">
-                    <path
-                      fill="currentColor"
-                      d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
-        </div>
-      </div>
-    </>
   )
 }
 
