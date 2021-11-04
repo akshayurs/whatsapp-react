@@ -271,7 +271,7 @@ function StatusView(props) {
         {status.caption ? <div className="caption">{status.caption}</div> : ''}
         <div className="reply">
           <i className="fas fa-2x fa-chevron-up"></i>
-          <Link to={`/chatscreen/${userid}`}>REPLY</Link>
+          <Link to={`/chatscreen/${userid}/${statusIndex}`}>REPLY</Link>
         </div>
       </div>
     </div>

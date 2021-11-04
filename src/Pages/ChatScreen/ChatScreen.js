@@ -6,7 +6,7 @@ import Footer from './Footer'
 import MessageContainer from './MessageContainer'
 
 function ChatScreen() {
-  const { userid } = useParams()
+  const { userid, statusIndex } = useParams()
   const inputEle = useRef(null)
   const messageContainerEle = useRef(null)
   const selectedMessages = useRef(new Set())
@@ -23,14 +23,27 @@ function ChatScreen() {
     type: 0,
     index: 0,
   })
+  const user = appState.find((user) => user.userIndex === parseInt(userid))
 
+  useEffect(() => {
+    if (statusIndex && user) {
+      setReply({
+        active: true,
+        name: user.name,
+        content: `<i class="fas fa-image"></i> Status`,
+        src: user.status[statusIndex].src,
+        isDocument: { type: 'image' },
+        index: -1,
+        type: 0,
+      })
+    }
+  }, [])
   useEffect(() => {
     if (!clickToSelect) {
       setHeaderState({ type: 0 })
       selectedMessages.current.clear()
     }
   }, [clickToSelect])
-  const user = appState.find((user) => user.userIndex === parseInt(userid))
 
   const handleSelect = useCallback(
     (id) => {

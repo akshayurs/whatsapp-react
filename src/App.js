@@ -86,7 +86,10 @@ function App() {
               <Route path="/newchat">
                 <NewChatScreen />
               </Route>
-              <Route path="/chatscreen/:userid">
+              <Route path="/chatscreen/:userid" exact>
+                <ChatScreen />
+              </Route>
+              <Route path="/chatscreen/:userid/:statusIndex" exact>
                 <ChatScreen />
               </Route>
               <Route path="/statusview/:userid">
