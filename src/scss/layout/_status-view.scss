@@ -168,7 +168,8 @@
     position: fixed;
     bottom: 0%;
   }
-  .reply {
+  .reply,
+  .views {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -179,5 +180,15 @@
     transform: translateX(50%);
     margin: 0 auto;
     z-index: 1001;
+  }
+  .views {
+    flex-direction: row;
+    i {
+      font-size: 1.2rem;
+    }
+    p {
+      margin-left: 0.4rem;
+      font-size: 1.4rem;
+    }
   }
 }

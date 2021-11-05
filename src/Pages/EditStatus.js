@@ -9,6 +9,7 @@ import { SortByKey } from '../Helpers/Sort'
 import FlashMsg from '../Components/flashMsg'
 function EditStatus(props) {
   const { userid } = useParams()
+  const { myStatus } = props
   const appState = useContext(UserContext)
   const appDispatch = useContext(DispatchContext)
   const [status, setStatus] = useState([])
@@ -46,13 +47,23 @@ function EditStatus(props) {
     })
   }
   useEffect(() => {
-    if (appState.length !== 0) {
+    if (myStatus) {
+      const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
+      if (metaData) {
+        setUser({
+          name: metaData.name,
+          status: metaData.status,
+          statusIndex: metaData.statusIndex,
+        })
+        setStatus(metaData.status)
+      }
+    } else if (appState.length !== 0) {
       const index = GetUserIndex(appState, parseInt(userid))
       setUser(appState[index])
       setStatus(appState[index].status)
       setStatusViewed(appState[index].statusViewed)
     }
-  }, [appState, userid])
+  }, [appState, userid, myStatus])
   const sotredStatus = SortByKey(status, ['time'], true)
   return (
     <div className="editstatusscreen">
@@ -66,33 +77,50 @@ function EditStatus(props) {
           }}
           className="fas fa-2x fa-arrow-left"
         ></i>
-        <p>Edit Status - {user.name}</p>
+        <p>Edit Status - {myStatus ? 'My Status' : user.name}</p>
       </header>
       <div className="count">Count: {status.length}</div>
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          appDispatch({
-            type: 'UPDATE_STATUS',
-            value: {
-              statusIndex: user.statusIndex,
-              status,
-              userid,
-              statusViewed,
-            },
+          if (myStatus) {
+            appDispatch({
+              type: 'EDIT_META_DATA',
+              value: {
+                statusIndex: user.statusIndex,
+                status,
+              },
+            })
+          } else {
+            appDispatch({
+              type: 'UPDATE_STATUS',
+              value: {
+                statusIndex: user.statusIndex,
+                status,
+                userid,
+                statusViewed,
+              },
+            })
+          }
+          setUser((prev) => {
+            return { ...prev, status }
           })
           setFlashMsg('Saved')
           clearflash()
         }}
       >
         <div className="container">
-          <label htmlFor="statusViewed">Status viewed</label>
-          <input
-            type="checkbox"
-            id="statusViewed"
-            checked={statusViewed}
-            onChange={() => setStatusViewed((prev) => !prev)}
-          />
+          {!myStatus && (
+            <>
+              <label htmlFor="statusViewed">Status viewed</label>
+              <input
+                type="checkbox"
+                id="statusViewed"
+                checked={statusViewed}
+                onChange={() => setStatusViewed((prev) => !prev)}
+              />
+            </>
+          )}
         </div>
         {sotredStatus.map((item) => {
           let date = new Date(item.time)
@@ -208,6 +236,22 @@ function EditStatus(props) {
                   )
                 }}
               />
+              {myStatus && (
+                <>
+                  <label htmlFor={'statusViewedNumber-' + item.index}>
+                    Status Viewed By :
+                  </label>
+                  <input
+                    type="number"
+                    id={'statusViewedNumber-' + item.index}
+                    value={item.statusViewed}
+                    required
+                    onChange={(e) => {
+                      handleChange(item.index, 'statusViewed', e.target.value)
+                    }}
+                  />
+                </>
+              )}
               <button
                 className="delete"
                 onClick={(e) => {
@@ -229,11 +273,16 @@ function EditStatus(props) {
           onClick={(e) => {
             e.preventDefault()
             setStatus((prev) => {
+              let obj = {}
+              if (myStatus) {
+                obj = { statusViewed: 0 }
+              }
               return prev.concat({
                 src: 'default.jpg',
                 time: Date.now(),
                 caption: '',
                 index: user.statusIndex + 1,
+                ...obj,
               })
             })
             setUser((prev) => {
@@ -253,7 +302,7 @@ function EditStatus(props) {
             className="save"
             disabled={
               JSON.stringify(user.status) === JSON.stringify(status) &&
-              user.statusViewed === statusViewed
+              (user.statusViewed === statusViewed || myStatus)
             }
           >
             Save Changes

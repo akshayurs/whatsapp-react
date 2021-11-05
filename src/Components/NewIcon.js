@@ -18,13 +18,14 @@ function NewIcon(props) {
           ></path>
         </svg>
       </Link>
-      <label htmlFor="camerainput">
+      <Link to="/editstatus/">
         <i
           className={
             'fas fa-2x fa-camera camera ' + (openedSlide === 2 ? 'visible' : '')
           }
         ></i>
-      </label>
+      </Link>
+
       <a
         style={{ color: 'white' }}
         className={'phone ' + (openedSlide === 3 ? 'visible' : '')}

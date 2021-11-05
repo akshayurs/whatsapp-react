@@ -161,4 +161,6 @@ export const metaData = {
   aboutUpdatedTime: 1635006110434,
   profile: 'default.jpg',
   lastUserIndex: 1, //TODO: change this according to defalut user
+  statusIndex: 0,
+  status: [],
 }

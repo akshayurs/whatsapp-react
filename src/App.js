@@ -68,6 +68,9 @@ function App() {
               <Route path="/editstatus/:userid" exact>
                 <EditStatus />
               </Route>
+              <Route path="/editstatus/" exact>
+                <EditStatus myStatus={true} />
+              </Route>
               <Route path="/editcalls/:userid" exact>
                 <EditCalls />
               </Route>
@@ -92,7 +95,10 @@ function App() {
               <Route path="/chatscreen/:userid/:statusIndex" exact>
                 <ChatScreen />
               </Route>
-              <Route path="/statusview/:userid">
+              <Route path="/statusview/" exact>
+                <StatusView myStatus={true} />
+              </Route>
+              <Route path="/statusview/:userid" exact>
                 <StatusView />
               </Route>
               <Route path="/settings">

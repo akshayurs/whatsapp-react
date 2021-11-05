@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-
+import { withRouter } from 'react-router'
 function CameraSlide(props) {
   const cameraEle = useRef(null)
   const [error, setError] = useState(false)
@@ -26,7 +26,12 @@ function CameraSlide(props) {
     }
   }, [cameraStarted, props.startCamera, setCameraStarted])
   return (
-    <div className="slide-item camera-screen">
+    <div
+      className="slide-item camera-screen"
+      onMouseUp={() => {
+        props.history.push('/editstatus/')
+      }}
+    >
       {error === false ? (
         <div className="video">
           <video autoPlay={true} ref={cameraEle} id="videoElement"></video>
@@ -43,4 +48,4 @@ function CameraSlide(props) {
   )
 }
 
-export default CameraSlide
+export default withRouter(CameraSlide)

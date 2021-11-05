@@ -3,9 +3,11 @@ import { withRouter, Link } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
 import ChangeImage from '../Helpers/ChangeImage'
 import UserItem from '../Components/UserItem'
-
+import { metaData as defaultMetaData } from '../Helpers/sampleData'
+import { DispatchContext } from '../Helpers/DispatchContext'
 function EditData(props) {
   const appState = useContext(UserContext)
+  const appDispatch = useContext(DispatchContext)
   const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
   return (
     <div className="editdatascreen">
@@ -27,6 +29,17 @@ function EditData(props) {
         <Link to="/editmetadata/">
           <i className="fas fa-pencil-alt"></i>Edit
         </Link>
+        <Link to={'/editstatus/'}>
+          <i className="fas fa-photo-video"></i>Edit Status
+        </Link>
+        <span
+          onClick={() => {
+            appDispatch({ type: 'EDIT_META_DATA', value: defaultMetaData })
+            props.history.go(0)
+          }}
+        >
+          <i class="fas fa-trash-restore"></i> Reset to Default
+        </span>
       </div>
 
       <div className="contacts-container">

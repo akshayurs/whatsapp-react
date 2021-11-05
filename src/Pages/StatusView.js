@@ -10,12 +10,19 @@ import { GetTime, GetDayAndMonth } from '../Helpers/Time'
 
 function StatusView(props) {
   const { userid } = useParams()
+  const { myStatus } = props
   const appState = useContext(UserContext)
   const appDispatch = useContext(DispatchContext)
-
-  const user = appState.find((user) => user.userIndex === parseInt(userid))
+  let user = {}
+  if (myStatus) {
+    const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
+    user = metaData
+  } else {
+    user = appState.find((user) => user.userIndex === parseInt(userid))
+  }
+  console.log('user', user)
   const [statusIndex, setStatusIndex] = useState(
-    user.statusViewed ? 0 : user.openedStatus + 1
+    user.statusViewed || myStatus ? 0 : user.openedStatus + 1
   )
   const [status, setStatus] = useState({})
   const [openMenu, setOpenMenu] = useState(false)
@@ -48,17 +55,16 @@ function StatusView(props) {
     }
     setLoading({ value: 'loading' })
     videoStarted.current = false
-    // if (user?.status?.length - 1 === statusIndex && !user.statusViewed) {
-    //   appDispatch({ type: 'STATUS_VIEWED', value: parseInt(userid) })
-    // }
-    appDispatch({
-      type: 'STATUS_VIEWED',
-      value: { userid: parseInt(userid), statusIndex },
-    })
+    if (!myStatus) {
+      appDispatch({
+        type: 'STATUS_VIEWED',
+        value: { userid: parseInt(userid), statusIndex },
+      })
+    }
     return () => {
       clearTimeout(timeout.current)
     }
-  }, [statusIndex, userid, appDispatch, user])
+  }, [statusIndex, userid, appDispatch, myStatus])
 
   if (!user || !status) {
     return ''
@@ -202,7 +208,9 @@ function StatusView(props) {
               </Link>
               <Link to={`/contactabout/${userid}`}>
                 <div className="container">
-                  <div className="name">{user.name}</div>
+                  <div className="name">
+                    {myStatus ? 'My Status' : user.name}
+                  </div>
                   <div className="time">{`${GetDayAndMonth(
                     status.time
                   )}, ${GetTime(status.time)}`}</div>
@@ -269,10 +277,17 @@ function StatusView(props) {
           </svg>
         </div>
         {status.caption ? <div className="caption">{status.caption}</div> : ''}
-        <div className="reply">
-          <i className="fas fa-2x fa-chevron-up"></i>
-          <Link to={`/chatscreen/${userid}/${statusIndex}`}>REPLY</Link>
-        </div>
+        {myStatus ? (
+          <div className="views">
+            <i class="fas fa-2x fa-eye"></i>
+            <p>{status.statusViewed}</p>
+          </div>
+        ) : (
+          <div className="reply">
+            <i className="fas fa-2x fa-chevron-up"></i>
+            <Link to={`/chatscreen/${userid}/${statusIndex}`}>REPLY</Link>
+          </div>
+        )}
       </div>
     </div>
   )
