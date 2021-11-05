@@ -27,7 +27,7 @@ function generateData(chats, name) {
   chats.forEach((chat) => {
     text += `${FormatedDate(chat.time)}, ${GetTime(chat.time)} - ${
       chat.type === 1 ? name : 'You'
-    } : ${chat.content}\n`
+    } : ${chat.content.replaceAll(/<i.+i>/g, '~~')}\n`
   })
   return text
 }
