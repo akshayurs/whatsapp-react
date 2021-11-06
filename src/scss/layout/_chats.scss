@@ -68,6 +68,11 @@
       .sent,
       .received {
         background: lightblue;
+        audio {
+          &::-webkit-media-controls-panel {
+            background: lightblue !important;
+          }
+        }
       }
       .triangle path {
         fill: lightblue;

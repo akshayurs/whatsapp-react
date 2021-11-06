@@ -110,7 +110,7 @@ function Header(props) {
                       }"] .main .content`
                     )
                     .innerHTML.replaceAll(/<br>/g, '\n')
-                  CopyText(text)
+                  CopyText(text.replaceAll(/<i.+i>/g, '~~'))
                   setFlashMsg('Copied')
                   clearflash()
                   setClickToSelect(false)
