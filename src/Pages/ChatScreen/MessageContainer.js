@@ -27,7 +27,7 @@ function MessageContainer(props) {
     <div
       className="message-container"
       ref={messageContainerEle}
-      style={{ background: ' #E5DDD5 url("/img/bg.png")' }}
+      style={{ background: ' #E5DDD5 url("/media/bg.png")' }}
       onScroll={() => {
         // messageContainerEle.scrollHeight
         if (

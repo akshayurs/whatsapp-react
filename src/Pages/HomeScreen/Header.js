@@ -57,7 +57,7 @@ function Header(props) {
                 window.history.go(0)
               }}
             >
-              Reset Data
+              Reset to default
             </div>
             <div
               onClick={() => {

@@ -12,11 +12,7 @@ function StatusItem(props) {
     vars = { ...vars, ...{ '--gap': '0deg' } }
   }
   return (
-    <Link
-      // onClick={() => openFullScreen()}
-      to={`/statusview/${user.userIndex}`}
-      className="status-item"
-    >
+    <Link to={`/statusview/${user.userIndex}`} className="status-item">
       <div className="image" style={vars}>
         <div className="border"></div>
         <div className="whiteborder"></div>

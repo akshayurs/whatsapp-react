@@ -35,6 +35,7 @@ function EditData(props) {
         <span
           onClick={() => {
             appDispatch({ type: 'EDIT_META_DATA', value: defaultMetaData })
+            appDispatch({ type: 'RESET_DATA' })
             props.history.go(0)
           }}
         >

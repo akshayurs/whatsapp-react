@@ -5,76 +5,101 @@ export const UsersList = [
     aboutUpdatedTime: 1634906110434,
     phoneNumber: '+91 987654321',
     profile: 'user.jpg',
-    isOnline: true,
-    openedStatus: -1,
+    isOnline: true, // if false, lastSeen: timestamp should be added
+    openedStatus: -1, // -1 for start from beginning
     statusViewed: false,
-    messageIndex: 6,
-    statusIndex: 4,
+    messageIndex: 6, // last message index
+    statusIndex: 7, // last status index
     userIndex: 0,
-    callsIndex: 1,
+    callsIndex: 1, // last call index
     chatsList: [
       {
         index: 0,
-        type: 1,
-        content: 'Hi 👋🏼',
+        type: 2, // 1 for incoming , 2 for outgoing
+        isReply: false, // ( optional for false) if true, replyFor: { index,type (1 to reply for your chat, 0 to reply for incoming chat),content,time} should be added
+        content: 'Hi... ',
         time: 1635149523928,
       },
       {
         index: 1,
-        type: 2,
-        content: 'Hi...',
+        type: 1,
+        content: 'Hi 👋🏼',
         time: 1635149543928,
         status: 2,
       },
       {
         index: 2,
-        type: 1,
-        content: 'How are you?',
-        time: 1635149553928,
+        type: 2,
+        content: 'How can i edit chats or status?',
+        time: 1635149543928,
+        status: 2,
       },
       {
         index: 3,
-        type: 2,
+        type: 1,
         isReply: true,
         replyFor: {
-          type: 1,
-          content: 'How are you?',
-          index: 10,
+          index: 2,
+          content: 'How can i edit chats or status?',
+          type: 2,
         },
-        content: 'Fine',
-        time: 1635149563928,
-        status: 1,
+        content:
+          'Click edit data in home screen drop-down menu and then click edit chats of that user',
+        time: 1635149543928,
       },
       {
         index: 4,
         type: 2,
-        content: 'Good Morning 🌞',
-        time: 1635190583928,
+        content: 'Can i send images?',
+        time: 1635149543928,
         status: 2,
       },
       {
         index: 5,
         type: 1,
-        isDocument: {
-          type: 'image',
+        isReply: true,
+        replyFor: {
+          index: 4,
+          content: 'Can i send images?',
         },
-        showContent: false,
-        content: `<i class="fas fa-image"></i> Photo`,
-        time: 1635190583928,
-        src: 'githubbackground.jpg',
-        status: 2,
+        content: 'Yes, you can',
+        time: 1635149543928,
       },
       {
         index: 6,
-        type: 2,
+        type: 1,
+        showContent: false,
+        isDocument: {
+          type: 'image',
+        },
+        src: 'react.jpg',
+        content: '<i class="fas fa-image"></i> Photo',
+        time: 1635149543928,
+      },
+      {
+        index: 7,
+        type: 1,
+        content: 'You can also send audio',
+        time: 1635149543928,
+      },
+      {
+        index: 8,
+        type: 1,
         isDocument: {
           type: 'audio',
         },
         showContent: false,
         content: `<i class="fas fa-microphone mic "></i> audio`,
-        time: 1635190583928,
-        src: '/audio/audio-sample.mp3',
+        time: 1635149543928,
+        src: '/media/audio-sample.mp3',
         status: 2,
+      },
+      {
+        index: 9,
+        type: 2,
+        content: 'Thank You 🙂',
+        time: 1635149543928,
+        status: 1,
       },
     ],
     calls: [
@@ -95,35 +120,53 @@ export const UsersList = [
     status: [
       {
         index: 1,
-        src: 'welcome.jpg',
+        src: '/sample-status/1.jpg',
         caption: 'Welcome to All',
         time: 1635149553928,
       },
       {
         index: 2,
-        src: 'background.png',
-        caption: 'this is background',
+        src: '/sample-status/2.jpg',
+        caption: 'Prank your friends 😉',
         time: 1635149553928,
       },
       {
         index: 3,
-        isVideo: true,
-        src: 'samplemusic.mp4',
-        caption: 'im video',
+        src: '/sample-status/3.jpg',
+        caption: 'Use like a app',
         time: 1635159553928,
       },
       {
         index: 4,
-        src: 'githubbackground.jpg',
-        caption: 'Code available on Github',
+        src: '/sample-status/4.jpg',
+        caption: 'Must Explore 🔥',
+        time: 1635949523928,
+      },
+      {
+        index: 5,
+        isVideo: true,
+        src: '/sample-status/5.mp4',
+        caption: 'Just to show it supports video 😅',
+        time: 1635949523928,
+      },
+      {
+        index: 6,
+        src: '/sample-status/6.jpg',
+        caption: 'Code available at Github @akshayurs',
+        time: 1635949523928,
+      },
+      {
+        index: 7,
+        src: '/sample-status/7.jpg',
+        caption: 'explore all features by yourself',
         time: 1635949523928,
       },
     ],
   },
   {
-    name: 'UnKnown',
+    name: "It's Unknown",
     about: 'Hey there i am using whatsapp',
-    phoneNumber: '+91 8975643213',
+    phoneNumber: '+91 0000000000',
     aboutUpdatedTime: 1635006110434,
     profile: 'default.jpg',
     isOnline: false,
@@ -157,10 +200,10 @@ export const UsersList = [
 
 export const metaData = {
   name: 'You',
-  about: 'Hey there i am using whatsapp',
+  about: 'Hey there! I am using WhatsApp',
   aboutUpdatedTime: 1635006110434,
   profile: 'default.jpg',
-  lastUserIndex: 1, //TODO: change this according to defalut user
-  statusIndex: 0,
-  status: [],
+  lastUserIndex: 1, //change no number of default contacts at first time
+  statusIndex: 0, // last index of status
+  status: [], // status:{ index,src,caption,time}
 }

@@ -66,7 +66,7 @@ function Footer(props) {
     }, 10)
   }
   return (
-    <footer style={{ background: ' #E5DDD5 url("/img/bg.png")' }}>
+    <footer style={{ background: ' #E5DDD5 url("/media/bg.png")' }}>
       <div className={'left ' + (reply.active ? 'reply--visible' : '')}>
         {reply.active ? (
           <div
@@ -192,7 +192,7 @@ function Footer(props) {
           }
         }}
       />
-      <audio src="/audio/sent.mp3" ref={soundEle}></audio>
+      <audio src="/media/sent.mp3" ref={soundEle}></audio>
     </footer>
   )
 }

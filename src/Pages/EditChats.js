@@ -147,7 +147,9 @@ function EditChats(props) {
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              props.history.go(-1)
+              if (window.confirm('Discard changes ?')) {
+                props.history.go(-1)
+              }
             }}
             className="fas fa-2x fa-arrow-left"
           ></i>

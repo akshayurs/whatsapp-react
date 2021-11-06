@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 function CameraSlide(props) {
   const cameraEle = useRef(null)
   const [error, setError] = useState(false)
@@ -40,8 +41,7 @@ function CameraSlide(props) {
         <div className="error">
           {error}
           <br />
-          Click here to open camera
-          <input type="file" id="camerainput" accept="image/*;capture=camera" />
+          <Link to="/editstatus/">Click here to edit status</Link>
         </div>
       )}
     </div>

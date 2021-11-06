@@ -1,3 +1,5 @@
+// function to copy text to clipboard by creating textarea element
+
 export default function copy(text) {
   var input = document.createElement('textarea')
   input.innerHTML = text

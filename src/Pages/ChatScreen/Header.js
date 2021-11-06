@@ -156,6 +156,7 @@ function Header(props) {
             ''
           )}
           <Link to={'/contactabout/' + userid}>View Contact</Link>
+          <Link to={`/edituser/${userid}`}>Edit contact</Link>
           <div
             onClick={() => {
               appDispatch({ type: 'CLEAR_CHAT', value: { userid } })
@@ -177,7 +178,7 @@ function Header(props) {
           >
             Export Chat
           </div>
-          <Link to={`/edituser/${userid}`}>Edit contact</Link>
+          <Link to={`/editchats/${userid}`}>Edit chats</Link>
         </DropDown>
       )}
       <div className="header">

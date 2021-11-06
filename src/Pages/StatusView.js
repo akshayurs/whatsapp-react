@@ -46,7 +46,7 @@ function StatusView(props) {
     setStatusIndex((prev) => prev + 1)
   }
   useEffect(() => {
-    // OpenFullScreen()
+    OpenFullScreen()
   }, [OpenFullScreen])
   useEffect(() => {
     setStatus(user?.status[statusIndex])

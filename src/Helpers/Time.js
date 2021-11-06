@@ -1,3 +1,5 @@
+// return time in formate HH:MM AM/PM for fiven timestamp
+
 export const GetTime = function (timestamp) {
   let date
   if (timestamp) {
@@ -40,6 +42,9 @@ const monthNames = [
   'December',
 ]
 
+
+// return date in format 'DAY MONTH' for given timestamp
+// returns 'Today' or 'Yesterday' or 'DAY MONTH'
 export const GetDayAndMonth = function (timestamp) {
   const today = new Date()
   const date = new Date(timestamp)
@@ -58,6 +63,9 @@ export const GetDayAndMonth = function (timestamp) {
   }
   return `${day} ${month}`
 }
+
+// Checks if the given dates are of same day
+// used to display date in chats
 
 export const SameDay = function (timestamp, second) {
   if (!timestamp) {
@@ -80,6 +88,8 @@ export const SameDay = function (timestamp, second) {
 
   return false
 }
+
+// returns date in formate 'DD/MM/YYYY'
 
 export const FormatedDate = (timestamp) => {
   const date = new Date(timestamp)

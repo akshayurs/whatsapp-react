@@ -1,13 +1,24 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { UserContext } from '../Helpers/UserContext'
 import ContactItem from '../Components/ContactItem'
+import DropDown from '../Components/DropDown'
 import { SortByKey } from '../Helpers/Sort'
 function NewChatScreen(props) {
   const appState = useContext(UserContext)
   const sortedList = SortByKey(appState, ['name'], true)
+  const [openMenu, setOpenMenu] = useState(false)
   return (
     <div className="new-chat-screen">
+      {openMenu && (
+        <DropDown setOpenMenu={setOpenMenu}>
+          {!window.matchMedia('(display-mode: standalone)').matches ? (
+            <Link to="/editdata/">Edit data</Link>
+          ) : (
+            ''
+          )}
+        </DropDown>
+      )}
       <header>
         <div className="left">
           <i
@@ -29,7 +40,12 @@ function NewChatScreen(props) {
           <Link to="/search">
             <i className="fas fa-2x fa-search"></i>
           </Link>
-          <i className="fas fa-2x fa-ellipsis-v"></i>
+          <i
+            className="fas fa-2x fa-ellipsis-v"
+            onClick={() => {
+              setOpenMenu(true)
+            }}
+          ></i>
         </div>
       </header>
       <div className="item new-group">

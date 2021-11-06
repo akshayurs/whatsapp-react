@@ -1,3 +1,6 @@
+// return the sorted array for given key
+// used to sort contacts
+
 export const SortByKey = function (arr, keys, toAscending) {
   if (keys.length === 1) {
     if (toAscending) {
@@ -28,6 +31,10 @@ export const SortByKey = function (arr, keys, toAscending) {
     }
   }
 }
+
+// sort the given array by key name with last item of the sub array
+// used for sorting chats and status by latest item
+
 export const SortByKeyLast = function (arr, keys, toAscending) {
   if (toAscending) {
     return arr.sort((a, b) => {

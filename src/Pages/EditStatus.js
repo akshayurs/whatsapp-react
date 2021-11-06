@@ -278,7 +278,7 @@ function EditStatus(props) {
                 obj = { statusViewed: 0 }
               }
               return prev.concat({
-                src: 'default.jpg',
+                src: 'image-placeholder.jpg',
                 time: Date.now(),
                 caption: '',
                 index: user.statusIndex + 1,

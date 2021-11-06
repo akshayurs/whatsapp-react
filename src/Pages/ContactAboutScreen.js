@@ -48,7 +48,7 @@ function ContactAboutScreen(props) {
             <h2>Disappearing messages</h2>
             <h3>Off</h3>
           </div>
-          <img src="/img/clock.png" alt="" />
+          <img src="/media/clock.png" alt="" />
         </div>
         <div className="item">
           <div className="content">

@@ -130,6 +130,7 @@ function EditUser(props) {
           type="text"
           id="name"
           value={name}
+          autoComplete="off"
           required
           onChange={(e) => setName(e.target.value)}
           maxLength="20"
@@ -212,6 +213,7 @@ function EditUser(props) {
               type="phone"
               id="phoneNumber"
               value={phoneNumber}
+              autoComplete="off"
               required
               maxLength="15"
               onChange={(e) => setPhoneNumber(e.target.value)}
