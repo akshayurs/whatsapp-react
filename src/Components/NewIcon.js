@@ -26,13 +26,13 @@ function NewIcon(props) {
         ></i>
       </Link>
 
-      <a
+      <Link
         style={{ color: 'white' }}
         className={'phone ' + (openedSlide === 3 ? 'visible' : '')}
-        href="tel:"
+        to="/editdata/"
       >
         <i className="fas fa-2x fa-phone-alt"></i>
-      </a>
+      </Link>
     </div>
   )
 }

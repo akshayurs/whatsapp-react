@@ -73,7 +73,7 @@
     &:nth-last-of-type(2) {
       padding-bottom: 2rem;
     }
-    &:last-of-type {
+    &.border-top {
       border-top: 0.3px solid rgba(117, 117, 117, 0.253);
       padding-top: 2rem;
     }

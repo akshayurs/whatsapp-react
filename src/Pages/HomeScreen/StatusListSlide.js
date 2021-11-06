@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import StatusItem from '../../Components/StatusItem'
 import { UserContext } from '../../Helpers/UserContext'
 import { SortByKeyLast } from '../../Helpers/Sort'
@@ -9,17 +9,27 @@ function StatusListSlide(props) {
   const appState = useContext(UserContext)
   const [imageSrc, setImageSrc] = useState('default.jpg')
   const [myStatus, setMyStatus] = useState({ active: false })
+  const timeout = useRef(null)
   useEffect(() => {
     const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
     if (metaData) {
       readAndSetMetaData()
     } else {
-      setTimeout(readAndSetMetaData, 500)
+      timeout.current = setTimeout(readAndSetMetaData, 500)
+    }
+    return () => {
+      clearTimeout(timeout.current)
     }
   }, [])
 
   function readAndSetMetaData() {
     const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
+    console.log('running set metadata func :', metaData)
+    if (!metaData) {
+      console.log('timeout set inner')
+      timeout.current = setTimeout(readAndSetMetaData, 500)
+      return
+    }
     setImageSrc(metaData.profile)
     if (metaData && metaData.status.length > 0) {
       const lastStatus = metaData.status[metaData.status.length - 1]
