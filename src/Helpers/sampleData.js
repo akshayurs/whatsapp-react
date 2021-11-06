@@ -8,7 +8,7 @@ export const UsersList = [
     isOnline: true, // if false, lastSeen: timestamp should be added
     openedStatus: -1, // -1 for start from beginning
     statusViewed: false,
-    messageIndex: 6, // last message index
+    messageIndex: 9, // last message index
     statusIndex: 7, // last status index
     userIndex: 0,
     callsIndex: 1, // last call index
