@@ -142,7 +142,6 @@ function Footer(props) {
         id="audio-input"
         onChange={(e) => {
           const reader = new FileReader()
-          console.log(e.target.files[0])
           reader.onload = function () {
             var str = this.result
             appDispatch({

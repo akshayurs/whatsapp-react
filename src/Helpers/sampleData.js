@@ -196,6 +196,51 @@ export const UsersList = [
       },
     ],
   },
+  {
+    name: 'Mark',
+    about: 'Hey there i brought whatsapp',
+    phoneNumber: '+1 123456786',
+    aboutUpdatedTime: 1635006110434,
+    profile:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWU7LkS1EgkvoztMiiKVoB9oYxom8WtZGd_Ri2yJCY85qBqcscpttjYlK-pHccAZf_YA0&usqp=CAU',
+    isOnline: false,
+    lastSeen: 1635406110434,
+    openedStatus: -1,
+    statusViewed: false,
+    userIndex: 2,
+    messageIndex: 2,
+    statusIndex: -1,
+    callsIndex: -1,
+    chatsList: [
+      {
+        index: 0,
+        type: 2,
+        content: 'He copied your whatsapp!!',
+        time: 1635072621000,
+        status: 2,
+      },
+      {
+        index: 1,
+        isReply: true,
+        replyFor: {
+          index: 0,
+          content: 'He copied your whatsapp!!',
+          type: 1,
+        },
+        type: 1,
+        content: "It's just for fun",
+        time: 1635072631000,
+      },
+      {
+        index: 2,
+        type: 1,
+        content: "It's a nice copy, But it won't connect to internet 🙁",
+        time: 1635072631000,
+      },
+    ],
+    calls: [],
+    status: [],
+  },
 ]
 
 export const metaData = {
@@ -203,7 +248,7 @@ export const metaData = {
   about: 'Hey there! I am using WhatsApp',
   aboutUpdatedTime: 1635006110434,
   profile: 'default.jpg',
-  lastUserIndex: 1, //change no number of default contacts at first time
+  lastUserIndex: 2, //change no number of default contacts at first time
   statusIndex: 0, // last index of status
   status: [], // status:{ index,src,caption,time}
 }

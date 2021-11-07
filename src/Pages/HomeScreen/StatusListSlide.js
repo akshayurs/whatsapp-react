@@ -24,9 +24,7 @@ function StatusListSlide(props) {
 
   function readAndSetMetaData() {
     const metaData = JSON.parse(localStorage.getItem('metaDataWhatsapp'))
-    console.log('running set metadata func :', metaData)
     if (!metaData) {
-      console.log('timeout set inner')
       timeout.current = setTimeout(readAndSetMetaData, 500)
       return
     }
@@ -68,7 +66,7 @@ function StatusListSlide(props) {
         </Link>
       )}
 
-      {appState.some((user) => !user.statusViewed) ? (
+      {filteredList.some((user) => !user.statusViewed) ? (
         <h2 className="title recent-status-title">Recent updates</h2>
       ) : (
         ''

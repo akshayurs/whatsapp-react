@@ -20,7 +20,6 @@ function StatusView(props) {
   } else {
     user = appState.find((user) => user.userIndex === parseInt(userid))
   }
-  console.log('user', user)
   const [statusIndex, setStatusIndex] = useState(
     user.statusViewed || myStatus ? 0 : user.openedStatus + 1
   )

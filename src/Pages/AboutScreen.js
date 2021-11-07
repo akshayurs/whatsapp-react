@@ -66,7 +66,7 @@ function AboutScreen(props) {
         </a>
       </div>
       <div className="version">
-        <i className="fab fa-whatsapp"></i> Whatsapp Clone V1.0
+        <i className="fab fa-whatsapp"></i> Whatsapp Clone V2.0
       </div>
     </div>
   )

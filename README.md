@@ -12,6 +12,7 @@ https://whatsapp-clone-akshay.netlify.app/
 ## Website Features
 
 - Same UI as WhatsApp
+- Few extra features than original WhatsApp
 - Chats, Status, Calls Screen
 - Website can be installed, Add to home screen (PWA)
 - Data stored in the Local Storage of Browser
