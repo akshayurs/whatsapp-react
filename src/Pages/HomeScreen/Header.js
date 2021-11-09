@@ -3,6 +3,7 @@ import OpenFullScreen from '../../Helpers/OpenFullScreen'
 import DropDown from '../../Components/DropDown'
 import { DispatchContext } from '../../Helpers/DispatchContext'
 import { Link, withRouter } from 'react-router-dom'
+import { metaData as defaultMetaData } from '../../Helpers/sampleData'
 import FlashMsg from '../../Components/flashMsg'
 function Header(props) {
   const {
@@ -52,6 +53,7 @@ function Header(props) {
             <div
               onClick={() => {
                 appDispatch({ type: 'RESET_DATA' })
+                appDispatch({ type: 'EDIT_META_DATA', value: defaultMetaData })
                 setFlashMsg('Reset Successful')
                 clearflash()
                 window.history.go(0)

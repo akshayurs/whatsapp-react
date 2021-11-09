@@ -30,7 +30,7 @@ function ChatScreen() {
       setReply({
         active: true,
         name: user.name,
-        content: `<i class="fas fa-image"></i> Status`,
+        content: `<i className="fas fa-image"></i> Status`,
         src: user.status[statusIndex].src,
         isDocument: { type: 'image' },
         index: -1,

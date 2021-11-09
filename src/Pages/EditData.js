@@ -39,7 +39,7 @@ function EditData(props) {
             props.history.go(0)
           }}
         >
-          <i class="fas fa-trash-restore"></i> Reset to Default
+          <i className="fas fa-trash-restore"></i> Reset to Default
         </span>
       </div>
 

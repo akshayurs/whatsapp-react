@@ -181,7 +181,7 @@ function StatusView(props) {
           )}
           <Link to={`/chatscreen/${userid}`}>Open Chat</Link>
           <Link to={`/contactabout/${userid}`}>Open Contact</Link>
-          <Link to={`/editstatus/${userid}`}>Edit Status</Link>
+          <Link to={`/editstatus/${myStatus ? '' : userid}`}>Edit Status</Link>
           <a href={ChangeImage(status.src)} download>
             Download
           </a>
@@ -278,7 +278,7 @@ function StatusView(props) {
         {status.caption ? <div className="caption">{status.caption}</div> : ''}
         {myStatus ? (
           <div className="views">
-            <i class="fas fa-2x fa-eye"></i>
+            <i className="fas fa-2x fa-eye"></i>
             <p>{status.statusViewed}</p>
           </div>
         ) : (

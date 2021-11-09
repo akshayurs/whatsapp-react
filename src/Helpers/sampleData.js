@@ -19,18 +19,18 @@ export const UsersList = [
         isReply: false, // ( optional for false) if true, replyFor: { index,type (1 to reply for your chat, 0 to reply for incoming chat),content,time} should be added
         content: 'Hi... ',
         time: 1635149523928,
+        status: 2,
       },
       {
         index: 1,
         type: 1,
         content: 'Hi 👋🏼',
         time: 1635149543928,
-        status: 2,
       },
       {
         index: 2,
         type: 2,
-        content: 'How can i edit chats or status?',
+        content: 'What is this website for?',
         time: 1635149543928,
         status: 2,
       },
@@ -40,17 +40,23 @@ export const UsersList = [
         isReply: true,
         replyFor: {
           index: 2,
-          content: 'How can i edit chats or status?',
+          content: 'What is this website for?',
           type: 2,
         },
-        content:
-          'Click edit data in home screen drop-down menu and then click edit chats of that user',
+        content: `It's just a WhatsApp frontend clone with some extra features.
+          * It has almost all the features of WhatsApp.
+          * You can easily add a contact and edit chats, calls, and status in a few seconds.
+          * You can install it to use like a native app.
+          * It's Ad-free and you don't have to enter your details and we won't collect any data.\n
+          Check this code yourself
+          <a href="https://github.com/akshayurs/whatsapp-react" rel=”noreferrer noopener” target="_blank">https://github.com/akshayurs/whatsapp-react</a>
+          Contribute if possible or at least give a ⭐ if you liked it.`,
         time: 1635149543928,
       },
       {
         index: 4,
         type: 2,
-        content: 'Can i send images?',
+        content: 'Can i add images?',
         time: 1635149543928,
         status: 2,
       },
@@ -60,7 +66,7 @@ export const UsersList = [
         isReply: true,
         replyFor: {
           index: 4,
-          content: 'Can i send images?',
+          content: 'Can i add images?',
         },
         content: 'Yes, you can',
         time: 1635149543928,
@@ -73,13 +79,13 @@ export const UsersList = [
           type: 'image',
         },
         src: 'react.jpg',
-        content: '<i class="fas fa-image"></i> Photo',
+        content: '<i className="fas fa-image"></i> Photo',
         time: 1635149543928,
       },
       {
         index: 7,
         type: 1,
-        content: 'You can also send audio',
+        content: 'You can also add audio files',
         time: 1635149543928,
       },
       {
@@ -89,7 +95,7 @@ export const UsersList = [
           type: 'audio',
         },
         showContent: false,
-        content: `<i class="fas fa-microphone mic "></i> audio`,
+        content: `<i className="fas fa-microphone mic "></i> audio`,
         time: 1635149543928,
         src: '/media/audio-sample.mp3',
         status: 2,
@@ -234,7 +240,7 @@ export const UsersList = [
       {
         index: 2,
         type: 1,
-        content: "It's a nice copy, But it won't connect to internet 🙁",
+        content: "It's a nice copy, But it won't connect to the internet 🙁",
         time: 1635072631000,
       },
     ],

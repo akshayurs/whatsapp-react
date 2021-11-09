@@ -46,7 +46,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0.1rem;
     position: relative;
     transform: translateX(0);
     transition: all 0.1s;
@@ -93,6 +92,9 @@
         }
       }
       .sent {
+        .info {
+          right: 1rem;
+        }
         img {
           transform: translate(30%, 10%);
           z-index: 1;
@@ -106,12 +108,12 @@
       .received {
         .main {
           flex-direction: row-reverse;
+          .info {
+            right: 7rem;
+          }
           img {
             transform: translateX(-40%);
             z-index: 1;
-          }
-          .time {
-            right: 7rem;
           }
         }
         audio {
@@ -125,53 +127,87 @@
         max-width: 100%;
       }
     }
+    &.document.image {
+      .time {
+        color: white;
+      }
+    }
     &.document {
       .sent,
       .received {
-        padding: 0.4rem;
+        padding: 0.3rem;
         padding-bottom: 0rem;
         max-width: 75%;
-        .tick {
-          bottom: 1.1rem;
-          right: 1.5rem;
-        }
-        .time {
-          -webkit-text-stroke: 0.1px rgba(255, 255, 255, 0.205);
-          bottom: 0.6rem;
-          right: 2.6rem;
-        }
-      }
-      .received {
-        .time {
-          right: 1.2rem;
+        .main {
+          padding: 0rem;
+          .info {
+            float: none;
+            position: absolute;
+            bottom: 0.9rem;
+            right: 1.2rem;
+            .time {
+              -webkit-text-stroke: 0.1px rgba(255, 255, 255, 0.205);
+            }
+          }
         }
       }
     }
     .received,
     .sent {
       position: relative;
-      padding: 1rem;
+      padding: 0.4rem;
+      padding-bottom: 0.8rem;
       border-radius: 0.5rem;
-      max-width: 65%;
+      max-width: 70%;
       box-shadow: 1px 1px 10px #0000003e;
       min-width: 7rem;
-      padding-bottom: 1.5rem;
-      svg {
+      // padding-bottom: 1.5rem; //TODO:
+      .triangle {
         position: absolute;
         top: 0;
       }
+      .info {
+        //TODO: new
+        padding-left: 0.2rem;
+        float: right;
+        display: flex;
+        align-items: center;
+        transform: translate(5px, 5px);
+      }
       .time {
-        position: absolute;
-        bottom: 0.2rem;
+        padding: 0 2px;
         color: var(--time);
+      }
+    }
+    .sent {
+      .tick {
+        // position: absolute; //TODO:
+        color: black;
+        div {
+          width: 1rem;
+          height: 1rem;
+        }
+        display: flex;
+        align-items: center;
+        color: var(--grey);
+        img {
+          width: 1.5rem;
+        }
       }
     }
 
     .main {
+      padding: 0.4rem;
+      padding-bottom: 0;
+      padding-left: 0.2rem;
       .content {
+        display: inline; //TODO: new
         font-size: 1.3rem;
         margin-bottom: 0.3rem;
-        word-break: break-all;
+        // word-break: break-all;
+        a {
+          color: #1c9bd6;
+        }
         &.hide {
           display: none;
         }

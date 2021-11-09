@@ -83,7 +83,7 @@ function EditChats(props) {
           ...chat,
           isDocument: { type: 'audio' },
           showContent: false,
-          content: '<i class="fas fa-microphone mic "></i> audio',
+          content: '<i className="fas fa-microphone mic "></i> audio',
         }
       }
       if (media.type === 'image') {
@@ -91,7 +91,7 @@ function EditChats(props) {
           ...chat,
           isDocument: { type: 'image' },
           showContent: false,
-          content: '<i class="fas fa-image"></i> Photo',
+          content: '<i className="fas fa-image"></i> Photo',
         }
       }
       chat = { ...chat, src: media.src }

@@ -6,23 +6,4 @@
   svg {
     right: -0.8rem;
   }
-  .time {
-    right: 2rem;
-  }
-  .tick {
-    position: absolute;
-    color: black;
-    div {
-      width: 1rem;
-      height: 1rem;
-    }
-    display: flex;
-    align-items: center;
-    bottom: 0.6rem;
-    right: 1rem;
-    color: var(--grey);
-    img {
-      width: 1.5rem;
-    }
-  }
 }

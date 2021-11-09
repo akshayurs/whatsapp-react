@@ -21,7 +21,7 @@ function MessageContainer(props) {
         messageContainerEle.current.scrollTop =
           messageContainerEle.current.scrollHeight
       }
-    }, 0)
+    }, 10)
   }, [messageContainerEle, user, appState, setReply])
   return (
     <div
