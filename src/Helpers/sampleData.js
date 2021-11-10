@@ -85,7 +85,8 @@ export const UsersList = [
       {
         index: 7,
         type: 1,
-        content: 'You can also add audio files',
+        content:
+          'You can also add audio files and view my status for more information.',
         time: 1635149543928,
       },
       {
