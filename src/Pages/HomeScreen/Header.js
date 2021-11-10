@@ -78,7 +78,7 @@ function Header(props) {
             <a
               href={
                 'whatsapp://send?text=' +
-                encodeURI('Whatsapp Clone\n' + window.location.origin)
+                encodeURI('Whatsapp frontend clone with customizable chats with react\n' + window.location.origin)
               }
             >
               Share Link
