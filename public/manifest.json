@@ -1,7 +1,7 @@
 {
-  "short_name": "Whatsapp",
-  "name": "Whatsapp Clone",
-  "description": "Whatsapp Clone with react",
+  "short_name": "WhatsApp",
+  "name": "WhatsApp Clone",
+  "description": "WhatsApp Clone with react",
   "icons": [
     {
       "src": "favicon.ico",
