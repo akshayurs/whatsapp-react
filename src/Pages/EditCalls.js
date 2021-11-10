@@ -104,18 +104,18 @@ function EditCalls(props) {
               />
               <div className="container">
                 <label
-                  className="incomming-label"
-                  htmlFor={'incomming-' + item.index}
+                  className="incoming-label"
+                  htmlFor={'incoming-' + item.index}
                 >
-                  <i className="fas fa-long-arrow-alt-right"></i>Incomming
+                  <i className="fas fa-long-arrow-alt-right"></i>Incoming
                 </label>
                 <input
                   type="radio"
                   name={'callfrom-' + item.index}
-                  id={'incomming-' + item.index}
-                  checked={item.isIncomming}
+                  id={'incoming-' + item.index}
+                  checked={item.isIncoming}
                   onChange={() => {
-                    handleChange(item.index, 'isIncomming', null, true)
+                    handleChange(item.index, 'isIncoming', null, true)
                   }}
                 />
                 <label
@@ -128,13 +128,13 @@ function EditCalls(props) {
                   type="radio"
                   name={'callfrom-' + item.index}
                   id={'outgoing-' + item.index}
-                  checked={!item.isIncomming}
+                  checked={!item.isIncoming}
                   onChange={() => {
-                    handleChange(item.index, 'isIncomming', null, true)
+                    handleChange(item.index, 'isIncoming', null, true)
                   }}
                 />
               </div>
-              {item.isIncomming ? (
+              {item.isIncoming ? (
                 <div className="container">
                   <label htmlFor={'missed-' + item.index}>Missed</label>
                   <input
@@ -214,7 +214,7 @@ function EditCalls(props) {
                 time: Date.now(),
                 isVideo: true,
                 isMissed: false,
-                isIncomming: true,
+                isIncoming: true,
               })
             })
             setUser((prev) => {

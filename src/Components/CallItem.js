@@ -6,7 +6,7 @@ function CallItem(props) {
   const user = props.user
   
   const red = call.isMissed ? 'red' : ''
-  const direction = call.isIncomming ? 'incomming' : 'outgoing'
+  const direction = call.isIncoming ? 'incoming' : 'outgoing'
   let img = ChangeImage(user.profile)
   return (
     <div

@@ -113,14 +113,14 @@ export const UsersList = [
       {
         index: 0,
         time: 1635149552928,
-        isIncomming: true,
+        isIncoming: true,
         isVideo: true,
         isMissed: true,
       },
       {
         index: 1,
         time: 1635149853928,
-        isIncomming: false,
+        isIncoming: false,
         isVideo: false,
       },
     ],
@@ -189,7 +189,7 @@ export const UsersList = [
       {
         index: 0,
         time: 1635149553928,
-        isIncomming: true,
+        isIncoming: true,
         isVideo: false,
         isMissed: true,
       },
