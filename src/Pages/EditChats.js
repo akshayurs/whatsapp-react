@@ -147,7 +147,11 @@ function EditChats(props) {
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              if (window.confirm('Discard changes ?')) {
+              if (JSON.stringify(user.chatsList) !== JSON.stringify(chats)) {
+                if (window.confirm('Discard changes ?')) {
+                  props.history.go(-1)
+                }
+              } else {
                 props.history.go(-1)
               }
             }}
